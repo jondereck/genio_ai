@@ -3,7 +3,7 @@
 import * as z from "zod";
 import axios from "axios";
 import Heading from "@/components/Heading";
-import { MessageSquare } from "lucide-react";
+import { Code, MessageSquare } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -19,8 +19,9 @@ import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
+import ReactMarkdown from "react-markdown";
 
-const ConversationPage = () => {
+const CodePage = () => {
   const router = useRouter();
   const  [messages, setMessages ] = useState<ChatCompletionRequestMessage[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -60,14 +61,14 @@ const ConversationPage = () => {
   return ( 
     <div>
       <Heading 
-        title="Conversation"
-        description="Out most advanced conversation model."
-        icon={MessageSquare}
-        iconColor="text-green-700"
-        bgColor="bg-green-700/5"
+        title="Code Generator"
+        description="Generate code using descriptive text."
+        icon={Code}
+        iconColor="text-rose-700"
+        bgColor="bg-rose-700/5"
       />
       <div className="px-4 lg:px-8">
-       
+        
         <div className="space-y-4 mt-4">
           {isLoading && (
             <div className="p-8 rounded-lg w-full flex items-center
@@ -94,9 +95,25 @@ const ConversationPage = () => {
                         ? <UserAvatar/>
                         : <BotAvatar/>
                       } 
-                          <p>
-                            {message.content}
-                          </p>
+                          <ReactMarkdown 
+                            className="text-sm overflow-hidden leading-7"
+                            components={{
+                              pre:({ node, ...props}) => (
+                                <div className="overflow-auto w-full my-2 
+                                bg:black/10 p-2 rounded-lg">
+                                  <pre {...props} />
+                                </div>
+                              ),
+                              code:({node, ...props}) => (
+                                <code className="bg-black/10 rounded-lg p-1
+                                " {...props} />
+                              )
+                            }}
+
+                            
+                          >
+                            {message.content || ""}
+                          </ReactMarkdown>
                     </div>
                   ))}
           </div>
@@ -111,9 +128,10 @@ const ConversationPage = () => {
                 rounded-lg
                 fixed
                 bottom-0
-                bg-white
+                bg-white/5
                 border
                 w-full
+                md:9/12
                 lg:w-10/12
                 p-4
                 md:px-6
@@ -132,7 +150,7 @@ const ConversationPage = () => {
                         className="border-0 outline-none focus-visible:ring-0
                         focus-visible:ring-transparent "
                         disabled={isLoading}
-                        placeholder="Can you explain the Riemann Hypothesis in simple terms?"
+                        placeholder="What is the purpose of usestate on react?"
                         {...field}
                       />
                     </FormControl>
@@ -142,7 +160,7 @@ const ConversationPage = () => {
               
               />
               <Button 
-                className="col-span-12  lg:col-span-2 w-full"
+                className="col-span-12 lg:col-span-2 w-full"
                 disabled={isLoading}
               >
                 Generate
@@ -154,4 +172,4 @@ const ConversationPage = () => {
    );
 }
  
-export default ConversationPage;
+export default CodePage;
