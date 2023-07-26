@@ -142,6 +142,7 @@ const ConversationPage = () => {
               
               />
               <Button 
+                variant="premium"
                 className="col-span-12  lg:col-span-2 w-full"
                 disabled={isLoading}
               >

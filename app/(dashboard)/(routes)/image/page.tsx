@@ -21,6 +21,7 @@ import { cn } from "@/lib/utils";
 
 import { SelectItem, Select, SelectTrigger, SelectContent, SelectValue } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
+import ImageLoaderSkeleton from "@/components/ImageLoader";
 
 
 
@@ -68,11 +69,14 @@ const ImagePage = () => {
       <div className="px-4 lg:px-8">
 
         <div className="space-y-4 mt-4">
-          {true && (
+          {isLoading && (
             <div className="p-20">
               <Loader />
+              <ImageLoaderSkeleton /> 
+
             </div>
           )}
+        
           {images.length === 0 && !isLoading && (
             <Empty
               label="No images generated. "
@@ -86,22 +90,23 @@ const ImagePage = () => {
                 className="rounded-lg overflow-hidden"
               >
                 <div className="relative aspect-square">
-                  <Image
-                    alt="Image"
-                    fill
-                    src={src}
-                    className={isLoading ? "animate-pulse" :""}
-                 
-                  />
+                  {isLoading ? <ImageLoaderSkeleton /> : (
+                    <Image
+                      alt="Image"
+                      fill
+                      src={src}
+                      className="bg-slate-200 rounded"
+                    />
+                  )}
                 </div>
                 <CardFooter className="p-2">
                   <Button
                     onClick={() => window.open(src)}
                     variant="secondary"
                     className="w-full"
-                    >
+                  >
                     <Download className="h-4 w-4 mr-2" />
-                </Button>
+                  </Button>
                 </CardFooter>
               </Card>
             ))}
@@ -207,6 +212,7 @@ const ImagePage = () => {
               )}
             />
             <Button
+            variant="premium"
               className="col-span-12  lg:col-span-2 w-full"
               disabled={isLoading}
             >

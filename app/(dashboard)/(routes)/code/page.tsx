@@ -78,7 +78,7 @@ const CodePage = () => {
           )}
           {messages.length === 0 && !isLoading && (
             <Empty 
-              label="No conversation stated. "
+              label="No code generated. "
             />
           )}
           <div className="flex flex-col-reverse gap-y-4">
@@ -160,6 +160,7 @@ const CodePage = () => {
               
               />
               <Button 
+                variant="premium"
                 className="col-span-12 lg:col-span-2 w-full"
                 disabled={isLoading}
               >

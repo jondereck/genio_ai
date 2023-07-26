@@ -14,6 +14,7 @@ import {
   Code,
   Settings
 } from "lucide-react";
+import FreeCounter from "./free-counter";
 
 const epilogue = Epilogue({
   weight: "400",
@@ -63,9 +64,15 @@ const routes = [
     href: "/settings",
     color: "text-gray-400"
   },
-]
+];
 
-const Sidebar = () => {
+interface SidebarProps {
+  apiLimitCount: number;
+}
+
+const Sidebar = ({
+  apiLimitCount = 0,
+}: SidebarProps ) => {
   const pathname = usePathname()
   return (
     <div className="space-y-4 py-4 flex flex-col h-full
@@ -102,6 +109,8 @@ const Sidebar = () => {
           ))}
         </div>
       </div>
+      <FreeCounter 
+      apiLimitCount={apiLimitCount}/>
     </div>
   );
 }
