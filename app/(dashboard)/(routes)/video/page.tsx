@@ -16,7 +16,7 @@ import { useState } from "react";
 import { ChatCompletionRequestMessage } from "openai";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
-import useProModal from "@/components/hooks/use-pro-modal";
+import useProModal from "@/hooks/use-pro-modal";
 
 
 const VideoPage = () => {

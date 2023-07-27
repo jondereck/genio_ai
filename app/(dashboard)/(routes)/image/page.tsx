@@ -22,7 +22,7 @@ import Image from "next/image";
 import { SelectItem, Select, SelectTrigger, SelectContent, SelectValue } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import ImageLoaderSkeleton from "@/components/ImageLoader";
-import useProModal from "@/components/hooks/use-pro-modal";
+import useProModal from "@/hooks/use-pro-modal";
 
 
 

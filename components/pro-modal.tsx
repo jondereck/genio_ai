@@ -9,11 +9,13 @@ import {
   DialogFooter
 } from "@/components/ui/dialog";
 import useProModal from "../hooks/use-pro-modal";
-import { Badge } from "./badge";
+import { Badge } from "./ui/badge";
 import { Check, Code, ImageIcon, MessageSquare, Music, Video, Zap } from "lucide-react";
-import { Card } from "./card";
+import { Card } from "./ui/card";
 import { cn } from "@/lib/utils";
-import { Button } from "./button";
+import { Button } from "./ui/button";
+import axios from "axios";
+import { useState } from "react";
 
 const tools = [ 
   {
@@ -50,8 +52,21 @@ const tools = [
 
 ]
 const ProModal = () => {
-
   const proModal = useProModal();
+  const [loading, setLoading] = useState(false);
+
+  const onSubscribe =async () => {
+    try {
+      setLoading(true)
+      const response = await axios.get("/api/stripe");
+      
+      window.location.href = response.data.url;
+    } catch (error) {
+      console.log(error, "STRIPE-CLIENT-ERROR");
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
     <Dialog 
       open={proModal.isOpen}
@@ -63,14 +78,14 @@ const ProModal = () => {
           <div className="flex items-center gap-x-2 font-bold py-1">
           Upgrade to GenioAi
           <Badge variant="gold" className="uppercase text-sm py-1">
-            Pro
+            Gold
           </Badge>
           </div>
           </DialogTitle>
             <DialogDescription className="text-center pt-2 space-y-2 text-zinc-900 font-medium ">
               {tools.map((tool) => (
                 <Card key={tool.label}
-                className="p-3 border-black flex items-center  justify-between">
+                className="p-3 border-black/5 flex items-center  justify-between">
                   <div className="flex flex-center gap-x-4"> 
                       <div className={cn("p-2 w-fit rounded-md", tool.bgColor)}>
                         <tool.icon className={cn("w-6 h-6",tool.color)}/>
@@ -89,6 +104,8 @@ const ProModal = () => {
         </DialogHeader>
         <DialogFooter>
           <Button 
+            disabled={loading}
+            onClick={onSubscribe}
             size="lg"
             variant="gold"
             className="w-full ">

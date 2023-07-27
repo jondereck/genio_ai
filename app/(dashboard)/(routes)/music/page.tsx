@@ -16,7 +16,7 @@ import { useState } from "react";
 import { ChatCompletionRequestMessage } from "openai";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
-import useProModal from "@/components/hooks/use-pro-modal";
+import useProModal from "@/hooks/use-pro-modal";
 
 
 const MusicPage = () => {
@@ -63,7 +63,7 @@ const MusicPage = () => {
         <div className="space-y-4 mt-4">
           {isLoading && (
             <div className="p-8 rounded-lg w-full flex items-center
-            justify-center bg-muted">
+            justify-center ">
               <Loader />
             </div>
           )}

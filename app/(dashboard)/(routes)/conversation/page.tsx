@@ -19,7 +19,7 @@ import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
-import useProModal from "@/components/hooks/use-pro-modal";
+import useProModal from "@/hooks/use-pro-modal";
 
 const ConversationPage = () => {
   const proModal = useProModal();
@@ -74,7 +74,7 @@ const ConversationPage = () => {
         <div className="space-y-4 mt-4">
           {isLoading && (
             <div className="p-8 rounded-lg w-full flex items-center
-            justify-center bg-muted">
+            justify-center ">
               <Loader/>
             </div>
           )}
