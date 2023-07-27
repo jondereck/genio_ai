@@ -16,9 +16,11 @@ import { useState } from "react";
 import { ChatCompletionRequestMessage } from "openai";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
-import { cn } from "@/lib/utils";
+import useProModal from "@/components/hooks/use-pro-modal";
+
 
 const VideoPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [video, setVideo] = useState<string>();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -39,8 +41,9 @@ const VideoPage = () => {
       setVideo(response.data[0])
       form.reset();
     } catch (error: any) {
-      //TODO: open Pro model
-      console.log(error)
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
@@ -83,19 +86,20 @@ const VideoPage = () => {
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="
-                rounded-lg
-                fixed
-                bottom-0
-                bg-white
-                border
-                w-full
-                lg:w-10/12
-                p-4
-                md:px-6
-                focus-within:shadow-sm
-                grid
-                grid-cols-12
-                gap-2
+            rounded-lg
+            fixed
+            bottom-0
+            bg-white/5
+            border
+            w-full
+            md:9/12
+            lg:w-11/12
+            p-4
+            md:px-6
+            focus-within:shadow-sm
+            grid
+            grid-cols-12
+            gap-2
               "
           >
             <FormField
@@ -118,7 +122,7 @@ const VideoPage = () => {
             />
             <Button
               variant="premium"
-              className="col-span-12  lg:col-span-2 w-full"
+              className="col-span-12 md:col-span-8 lg:col-span-9 xl:col-span-2 2xl:col-span-1 w-full"
               disabled={isLoading}
             >
               Generate

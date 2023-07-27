@@ -20,8 +20,10 @@ import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
 import ReactMarkdown from "react-markdown";
+import useProModal from "@/components/hooks/use-pro-modal";
 
 const CodePage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const  [messages, setMessages ] = useState<ChatCompletionRequestMessage[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -51,8 +53,9 @@ const CodePage = () => {
 
     form.reset();
    } catch (error: any) {
-    //TODO: open Pro model
-    console.log(error)
+    if (error?.response?.status === 403) {
+      proModal.onOpen();
+    }
    }finally {
       router.refresh();
    }
@@ -132,7 +135,7 @@ const CodePage = () => {
                 border
                 w-full
                 md:9/12
-                lg:w-10/12
+                lg:w-11/12
                 p-4
                 md:px-6
                 focus-within:shadow-sm
@@ -161,7 +164,7 @@ const CodePage = () => {
               />
               <Button 
                 variant="premium"
-                className="col-span-12 lg:col-span-2 w-full"
+                className="col-span-12 md:col-span-8 lg:col-span-9 xl:col-span-2 2xl:col-span-1 w-full"
                 disabled={isLoading}
               >
                 Generate

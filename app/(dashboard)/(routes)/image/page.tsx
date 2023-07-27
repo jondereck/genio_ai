@@ -17,15 +17,17 @@ import { useState } from "react";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+
 
 import { SelectItem, Select, SelectTrigger, SelectContent, SelectValue } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import ImageLoaderSkeleton from "@/components/ImageLoader";
+import useProModal from "@/components/hooks/use-pro-modal";
 
 
 
 const ImagePage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
 
@@ -50,8 +52,9 @@ const ImagePage = () => {
       setImages(urls);
 
     } catch (error: any) {
-      //TODO: open Pro model
-      console.log(error)
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }

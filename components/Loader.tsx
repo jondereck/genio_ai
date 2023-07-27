@@ -12,7 +12,7 @@ const Loader = () => {
         />
       </div>
       <p className="text-sm text-muted-foreground">
-        Genio is thinking...
+        GenioAi is thinking...
       </p>
     </div>
    );

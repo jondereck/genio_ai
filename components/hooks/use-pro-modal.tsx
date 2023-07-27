@@ -7,11 +7,11 @@ interface useProModalStore {
   
 }
 
-const useUpdateModal = create<useProModalStore>((set) => ({
+const useProModal = create<useProModalStore>((set) => ({
   isOpen: false,
   onOpen: () => set({isOpen: true}),
   onClose: () => set({isOpen: false}),
 
 }));
  
-export default useUpdateModal;
+export default useProModal;

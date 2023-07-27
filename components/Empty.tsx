@@ -11,7 +11,7 @@ const Empty = ({
   return ( 
     <div  className="
     h-full
-    p-20
+    p-auto
     flex 
     flex-col
     items-center
