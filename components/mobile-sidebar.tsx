@@ -41,6 +41,8 @@ const MobileSidebar = ({
         <Sidebar isPro={isPro} apiLimitCount={apiLimitCount} />
       </SheetContent>
     </Sheet>
+
+    
   );
 }
 
