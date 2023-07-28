@@ -24,7 +24,7 @@ export const LandingNavbar = () => {
             <Image 
               fill
               alt="Logo"
-              src="/nLogo.png"
+              src="/nlogo.png"
             />
           </div>
           <h1 className={cn("text-2xl font-bold text-white", 
