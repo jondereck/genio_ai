@@ -7,7 +7,7 @@ import { Download, ImageIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -23,6 +23,7 @@ import { SelectItem, Select, SelectTrigger, SelectContent, SelectValue } from "@
 import { Card, CardFooter } from "@/components/ui/card";
 import ImageLoaderSkeleton from "@/components/ImageLoader";
 import useProModal from "@/hooks/use-pro-modal";
+import { toast } from "react-hot-toast";
 
 
 
@@ -54,6 +55,8 @@ const ImagePage = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
       }
     } finally {
       router.refresh();
@@ -139,6 +142,7 @@ const ImagePage = () => {
               "
           >
             <FormField
+              control={form.control}
               name="prompt"
               render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-10">
@@ -151,6 +155,7 @@ const ImagePage = () => {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />

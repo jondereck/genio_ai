@@ -7,7 +7,7 @@ import { MessageSquare } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { formSchema } from "./constants";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,7 @@ import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
 import useProModal from "@/hooks/use-pro-modal";
+import { toast } from "react-hot-toast";
 
 const ConversationPage = () => {
   const proModal = useProModal();
@@ -35,7 +36,9 @@ const ConversationPage = () => {
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log(values)
    try {
+    
     const userMessage: ChatCompletionRequestMessage = {
       role: "user",
       content: values.prompt
@@ -54,6 +57,8 @@ const ConversationPage = () => {
    } catch (error: any) {
     if (error?.response?.status === 403) {
       proModal.onOpen();
+    } else {
+      toast.error("Something went wrong");
     }
    }finally {
       router.refresh();
@@ -109,6 +114,7 @@ const ConversationPage = () => {
       <div>
           <Form {...form}>
             <form
+           
               onSubmit={form.handleSubmit(onSubmit)}
               className="
               rounded-lg
@@ -128,10 +134,12 @@ const ConversationPage = () => {
               "
             >
               <FormField 
+                control={form.control}
                 name="prompt"
                 render={({ field }) => (
                   <FormItem className="col-span-12 lg:col-span-10">
                     <FormControl className="m-0 p-0">
+                     
                       <Input 
                         className="border-0 outline-none focus-visible:ring-0
                         focus-visible:ring-transparent "
@@ -140,6 +148,7 @@ const ConversationPage = () => {
                         {...field}
                       />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
 
                 )}

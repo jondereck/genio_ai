@@ -32,6 +32,3 @@ const Empty = ({
 }
  
 export default Empty;
-<div >
-
-</div>

@@ -1,6 +1,6 @@
 'use client';
 import { cn } from "@/lib/utils";
-import { Epilogue } from "next/font/google"
+import { Epilogue, Montserrat } from "next/font/google"
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -16,11 +16,10 @@ import {
 } from "lucide-react";
 import FreeCounter from "./free-counter";
 
-const epilogue = Epilogue({
-  weight: "400",
-  subsets: ["latin"]
+const font = Montserrat({
+  weight: "600",
+  subsets: ["latin"],
 });
-
 const routes = [
   {
     label: "Dashboard",
@@ -89,7 +88,7 @@ const Sidebar = ({
               src="/nlogo.png"
             />
           </div>
-          <h1 className={cn("text-2xl font-bold", epilogue.className)} >
+          <h1 className={cn("text-2xl font-bold", font.className)} >
             GenioAi
           </h1>
         </Link>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import ProModal from "./pro-modal";
+import ProModal from "../pro-modal";
 
 const ModalProvider = () => {
 
