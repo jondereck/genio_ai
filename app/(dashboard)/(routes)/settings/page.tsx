@@ -1,3 +1,4 @@
+"use client";
 
 import Heading from "@/components/Heading";
 import SubscriptionButton from "@/components/subscription-button";
@@ -7,6 +8,7 @@ import { SettingsIcon } from "lucide-react";
 
 const SettingsPage = async () => {
   const isPro = await checkSubscription();
+  
 
   return (
     <div className="">

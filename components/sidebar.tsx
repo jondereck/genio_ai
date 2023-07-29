@@ -68,13 +68,22 @@ const routes = [
 interface SidebarProps {
   apiLimitCount: number;
   isPro: boolean;
+  onClose: () => void;
 }
 
 const Sidebar = ({
   apiLimitCount = 0,
   isPro = false,
+  onClose,
 }: SidebarProps ) => {
-  const pathname = usePathname()
+  const pathname = usePathname();
+
+  const handleLinkClick = () => {
+    onClose();
+    setTimeout(() => {
+      window.location.reload()
+    }, 500);
+  }
   return (
     <div className="space-y-4 py-4 flex flex-col h-full
     bg-[#111827] text-white">
@@ -96,6 +105,7 @@ const Sidebar = ({
         {routes.map((route) => (
             <Link
               key={route.href} 
+             onClick={handleLinkClick}
               href={route.href}
               className={cn(
                 "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",
