@@ -81,7 +81,7 @@ const Sidebar = ({
   const handleLinkClick = () => {
     setTimeout(() => {
       window.location.reload()
-    }, 500);
+    }, 1200);
   }
   return (
     <div className="space-y-4 py-4 flex flex-col h-full
