@@ -68,7 +68,7 @@ const routes = [
 interface SidebarProps {
   apiLimitCount: number;
   isPro: boolean;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 const Sidebar = ({
@@ -79,7 +79,6 @@ const Sidebar = ({
   const pathname = usePathname();
 
   const handleLinkClick = () => {
-    onClose();
     setTimeout(() => {
       window.location.reload()
     }, 500);
