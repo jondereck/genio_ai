@@ -18,6 +18,7 @@ import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
+import { Textarea } from "@/components/ui/textarea";
 
 
 const VideoPage = () => {
@@ -66,7 +67,7 @@ const VideoPage = () => {
         <div className="space-y-4 mt-4">
           {isLoading && (
             <div className="p-8 rounded-lg w-full flex items-center
-            justify-center bg-muted">
+            justify-center">
               <Loader />
             </div>
           )}
@@ -110,7 +111,7 @@ const VideoPage = () => {
               render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-10">
                   <FormControl className="m-0 p-0">
-                    <Input
+                    <Textarea
                       className="border-0 outline-none focus-visible:ring-0
                         focus-visible:ring-transparent "
                       disabled={isLoading}

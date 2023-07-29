@@ -24,6 +24,7 @@ import { Card, CardFooter } from "@/components/ui/card";
 import ImageLoaderSkeleton from "@/components/ImageLoader";
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
+import { Textarea } from "@/components/ui/textarea";
 
 
 
@@ -78,7 +79,6 @@ const ImagePage = () => {
           {isLoading && (
             <div className="p-20">
               <Loader />
-              <ImageLoaderSkeleton /> 
 
             </div>
           )}
@@ -128,7 +128,6 @@ const ImagePage = () => {
                 rounded-lg
                 fixed
                 bottom-0
-                bg-white
                 border
                 w-full
                 md:w-8/12
@@ -147,7 +146,7 @@ const ImagePage = () => {
               render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-10">
                   <FormControl className="m-0 p-0">
-                    <Input
+                    <Textarea
                       className="border-0 outline-none focus-visible:ring-0
                         focus-visible:ring-transparent "
                       disabled={isLoading}

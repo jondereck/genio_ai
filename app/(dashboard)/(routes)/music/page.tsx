@@ -18,6 +18,7 @@ import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
+import { Textarea } from "@/components/ui/textarea";
 
 
 const MusicPage = () => {
@@ -113,7 +114,7 @@ const MusicPage = () => {
               render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-10">
                   <FormControl className="m-0 p-0">
-                    <Input
+                    <Textarea
                       className="border-0 outline-none focus-visible:ring-0
                         focus-visible:ring-transparent "
                       disabled={isLoading}

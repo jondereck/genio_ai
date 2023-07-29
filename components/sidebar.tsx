@@ -15,6 +15,7 @@ import {
   Settings
 } from "lucide-react";
 import FreeCounter from "./free-counter";
+import { ModeToggle } from "./toggle";
 
 const font = Montserrat({
   weight: "600",
@@ -122,6 +123,7 @@ const Sidebar = ({
           ))}
         </div>
       </div>
+    
       <FreeCounter 
       apiLimitCount={apiLimitCount}
       isPro={isPro}/>

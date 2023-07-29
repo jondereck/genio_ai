@@ -21,6 +21,7 @@ import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
+import { Textarea } from "@/components/ui/textarea";
 
 const ConversationPage = () => {
   const proModal = useProModal();
@@ -94,7 +95,7 @@ const ConversationPage = () => {
                     key={message.content}
                     className={cn("p-8 w-full flex items-start gap-x-8 rounded-lg",
                     message.role === "user" 
-                      ? "bg-white border border-black/10 " 
+                      ? " border border-black/10 " 
                       : "bg-muted"
                     )}
                     >
@@ -114,13 +115,11 @@ const ConversationPage = () => {
       <div>
           <Form {...form}>
             <form
-           
               onSubmit={form.handleSubmit(onSubmit)}
               className="
               rounded-lg
               fixed
               bottom-0
-              bg-white/5
               border
               w-full
               md:9/12
@@ -140,9 +139,11 @@ const ConversationPage = () => {
                   <FormItem className="col-span-12 lg:col-span-10">
                     <FormControl className="m-0 p-0">
                      
-                      <Input 
+                      <Textarea 
                         className="border-0 outline-none focus-visible:ring-0
-                        focus-visible:ring-transparent "
+                        focus-visible:ring-slate-500
+                        overflow-auto
+                       "
                         disabled={isLoading}
                         placeholder="Can you explain the Riemann Hypothesis in simple terms?"
                         {...field}

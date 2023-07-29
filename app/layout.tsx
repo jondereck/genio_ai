@@ -6,6 +6,7 @@ import ModalProvider from '@/components/provider/modal-provider'
 import { ToasterProvider } from '@/components/provider/toaster-provider'
 import { CrispChat } from '@/components/crisp-chat'
 import { CrispProvider } from '@/components/provider/crisp-provider'
+import { ThemeProvider } from '@/components/theme-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,10 +25,11 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <CrispProvider/>
         <body className={inter.className}>
-          
-          <ModalProvider />
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem> 
+        <ModalProvider />
           <ToasterProvider />
           {children}
+        </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
