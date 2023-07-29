@@ -10,12 +10,18 @@ const DashboardLayout = async ({
 }) => {
   const apiLimitCount = await getApiLimitCount();
   const isPro = await checkSubscription();
+
+  const handleSidebarClose = () => {
+    // Add your logic to close the sidebar here
+    console.log('Sidebar closed');
+  };
   return (
     <div className="h-full relative">
       <div className="hidden h-full md:flex md:w-72
         md:flex-col md:fixed md:inset-y-0 
         bg-gray-900">
         <Sidebar 
+          onClose={handleSidebarClose}
           isPro={isPro}
           apiLimitCount={apiLimitCount}/>
       </div>
