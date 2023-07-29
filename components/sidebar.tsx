@@ -80,6 +80,9 @@ const Sidebar = ({
 
   const handleLinkClick = () => {
     setTimeout(() => {
+      if (onClose) {
+        onClose();
+      }
       window.location.reload()
     }, 1200);
   }

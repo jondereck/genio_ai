@@ -34,7 +34,7 @@ export const LandingHero = () => {
         <Link href={isSignIn ? "/dashboard" : "/sign-in"}>
             <Button 
             variant="premium"
-            className="md:text-lg p-4 md:p-6"
+            className="md:text-lg p-4 md:p-6 animate-bounce "
             >   
             Start Generating For Free
             </Button>

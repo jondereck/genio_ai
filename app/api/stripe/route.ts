@@ -46,7 +46,7 @@ export async function GET() {
               name: "GenioAi Gold",
               description: "Unlimited Ai Generations"
             },
-            unit_amount: 100000,
+            unit_amount: 20000,
             recurring:{
               interval: "month"
             }
