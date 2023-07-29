@@ -1,5 +1,3 @@
-"use client";
-
 import Heading from "@/components/Heading";
 import SubscriptionButton from "@/components/subscription-button";
 import { Badge } from "@/components/ui/badge";
