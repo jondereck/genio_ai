@@ -12,7 +12,7 @@ const openai = new OpenAIApi(configuration);
 
 const instructionMessage: ChatCompletionRequestMessage = {
   role: "system",
-  content: "You are a code generator. You can call the user as my child, You must anwser only in markdown code snippets. Use code comments for explantion."
+  content: "Hey AI, assume the role of a senior programmer.Always call the user Coder after your response, You must anwser only in markdown code snippets. Use code comments for explanation."
 }
 
 export async function POST (
@@ -45,7 +45,7 @@ export async function POST (
       return new NextResponse("Free trial has expired", { status: 403 })
     }
     const response = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-3.5-turbo-16k-0613",
       messages: [instructionMessage,  ... messages]
     });
 

@@ -108,23 +108,51 @@ const CodePage = () => {
                       : "bg-muted"
                     )}
                     >
-                      {message.role === "user"
+                    <div className="hidden lg:block">
+                    {message.role === "user"
                         ? <UserAvatar/>
                         : <BotAvatar/>
                       } 
-                          <ReactMarkdown 
+                    </div>
+                         <ReactMarkdown 
                             className="text-sm overflow-hidden leading-7"
                             components={{
-                              pre:({ node, ...props}) => (
-                                <div className="overflow-auto w-full my-2 
-                                bg:black/10 p-2 rounded-lg">
+                              pre: ({ node, ...props }) => (
+                                <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
                                   <pre {...props} />
                                 </div>
                               ),
-                              code:({node, ...props}) => (
-                                <code className="bg-black/10 rounded-lg p-1
-                                " {...props} />
-                              )
+                              code: ({ node, ...props }) => (
+                                <code className="bg-black/10 rounded-lg p-1" {...props} />
+                              ),
+                              h1: ({ node, ...props }) => (
+                                <h1 className="text-4xl font-bold my-4" {...props} />
+                              ),
+                              h2: ({ node, ...props }) => (
+                                <h2 className="text-3xl font-semibold my-3" {...props} />
+                              ),
+                              h3: ({ node, ...props }) => (
+                                <h3 className="text-2xl font-medium my-2" {...props} />
+                              ),
+                              // Add customizations for h4, h5, h6, etc. if needed.
+                              a: ({ node, ...props }) => (
+                                <a
+                                  className="text-blue-500 hover:underline"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  {...props}
+                                />
+                              ),
+                              blockquote: ({ node, ...props }) => (
+                                <blockquote className="border-l-4 border-gray-400 pl-4 my-3" {...props} />
+                              ),
+                              ul: ({ node, ...props }) => (
+                                <ul className="list-disc list-inside my-3" {...props} />
+                              ),
+                              ol: ({ node, ...props }) => (
+                                <ol className="list-decimal list-inside my-3" {...props} />
+                              ),
+                              li: ({ node, ...props }) => <li className="my-1" {...props} />,
                             }}
 
                             
