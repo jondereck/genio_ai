@@ -35,10 +35,10 @@ const ImagePage = () => {
   const [images, setImages] = useState<string[]>([]);
   
   const { theme } = useTheme();
-  const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
+  const [isDarkMode, setIsDarkMode] = useState(theme === "dark" || theme === "system" );
 
   useEffect(() => {
-    setIsDarkMode(theme === "dark");
+    setIsDarkMode(theme === "dark" || theme === "system" );
   }, [theme]);
 
   const form = useForm<z.infer<typeof formSchema>>({
