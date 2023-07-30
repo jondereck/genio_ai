@@ -229,7 +229,7 @@ const ImagePage = () => {
             />
             <Button
             variant="premium"
-              className="col-span-12  lg:col-span-2 w-full"
+              className="col-span-12  lg:col-span-2 w-full "
               disabled={isLoading}
             >
               Generate

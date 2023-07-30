@@ -147,13 +147,13 @@ const CodePage = () => {
               bottom-0
               border
               w-full
-              md:w-8/12
-              2xl:w-10/12
+              md:9/12
+              lg:w-11/12
               p-4
               md:px-6
               focus-within:shadow-sm
               grid
-              grid-cols-4
+              grid-cols-12
               gap-2
               ${isDarkMode ? "bg-darkblue" : "bg-white"}
             `}
@@ -179,7 +179,7 @@ const CodePage = () => {
               />
               <Button 
                 variant="premium"
-                className="col-span-12 md:col-span-8 lg:col-span-9 xl:col-span-2 2xl:col-span-1 w-full"
+                className="col-span-12 md:col-span-8 lg:col-span-9 xl:col-span-2 2xl:col-span-1 w-full p-2 lg:p-10"
                 disabled={isLoading}
               >
                 Generate

@@ -165,7 +165,7 @@ const ConversationPage = () => {
               />
               <Button 
                 variant="premium"
-                className="col-span-12 md:col-span-8 lg:col-span-9 xl:col-span-2 2xl:col-span-1 w-full"
+                className="col-span-12 md:col-span-8 lg:col-span-9 xl:col-span-2 2xl:col-span-1 w-full p-2 lg:p-10"
                 disabled={isLoading}
               >
                 Generate
