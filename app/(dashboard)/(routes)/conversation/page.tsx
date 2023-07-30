@@ -36,10 +36,10 @@ const ConversationPage = () => {
   });
 
   const { theme } = useTheme();
-  const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
+  const [isDarkMode, setIsDarkMode] = useState(theme === "dark" || theme === "system");
 
   useEffect(() => {
-    setIsDarkMode(theme === "dark")
+    setIsDarkMode( theme === "dark" || theme === "system")
   },[theme]);
 
   const isLoading = form.formState.isSubmitting;
