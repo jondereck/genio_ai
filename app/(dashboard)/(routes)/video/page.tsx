@@ -12,13 +12,14 @@ import { formSchema } from "./constants";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChatCompletionRequestMessage } from "openai";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
+import { useTheme } from "next-themes";
 
 
 const VideoPage = () => {
@@ -31,6 +32,14 @@ const VideoPage = () => {
       prompt: ""
     }
   });
+
+  const { theme } = useTheme();
+  const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
+
+  useEffect(() => {
+    setIsDarkMode(theme === "dark");
+  },[theme]);
+
 
   const isLoading = form.formState.isSubmitting;
 
@@ -89,22 +98,22 @@ const VideoPage = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="
+            className={`
             rounded-lg
             fixed
             bottom-0
-            bg-white/5
             border
             w-full
-            md:9/12
-            lg:w-11/12
+            md:w-8/12
+            2xl:w-10/12
             p-4
             md:px-6
             focus-within:shadow-sm
             grid
-            grid-cols-12
+            grid-cols-4
             gap-2
-              "
+            ${isDarkMode ? "bg-darkblue" : "bg-white"}
+          `}
           >
             <FormField
               name="prompt"

@@ -12,7 +12,7 @@ import { formSchema } from "./constants";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChatCompletionRequestMessage } from "openai";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
@@ -22,6 +22,7 @@ import BotAvatar from "@/components/bot-avatar";
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
+import { useTheme } from "next-themes";
 
 const ConversationPage = () => {
   const proModal = useProModal();
@@ -33,6 +34,13 @@ const ConversationPage = () => {
       prompt: ""
     }
   });
+
+  const { theme } = useTheme();
+  const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
+
+  useEffect(() => {
+    setIsDarkMode(theme === "dark")
+  },[theme]);
 
   const isLoading = form.formState.isSubmitting;
 
@@ -116,7 +124,7 @@ const ConversationPage = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="
+              className={`
               rounded-lg
               fixed
               bottom-0
@@ -130,7 +138,8 @@ const ConversationPage = () => {
               grid
               grid-cols-12
               gap-2
-              "
+              ${isDarkMode ? "bg-darkblue": "bg-white"}
+              `}
             >
               <FormField 
                 control={form.control}
@@ -140,8 +149,7 @@ const ConversationPage = () => {
                     <FormControl className="m-0 p-0">
                      
                       <Textarea 
-                        className="border-0 outline-none focus-visible:ring-0
-                        focus-visible:ring-slate-500
+                        className="border-0 outline-none 
                         overflow-auto
                        "
                         disabled={isLoading}

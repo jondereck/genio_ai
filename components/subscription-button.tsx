@@ -4,6 +4,7 @@ import { Zap } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import axios from "axios";
+import Loading from "@/app/loading";
 
 
 interface SubscriptionButtonProps {
@@ -29,8 +30,15 @@ const SubscriptionButton = ({
   }
   return (
       <Button disabled={loading} variant={isPro ? "default" : "gold"} onClick={onClick}>
-        {isPro ? "Manage Subscription" : "Upgrade to Gold"}
+        {loading ? (
+          <Loading/>
+        ) : (
+          <>
+          {isPro ? "Manage Subscription" : "Upgrade to Gold"}
         {!isPro && <Zap className="w-4 h-4 fill-white ml-2"/>}
+          </>
+        )}
+        
       </Button>
     );
 }

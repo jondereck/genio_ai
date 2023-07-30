@@ -12,7 +12,7 @@ import { formSchema } from "./constants";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChatCompletionRequestMessage } from "openai";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
@@ -23,6 +23,7 @@ import ReactMarkdown from "react-markdown";
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
+import { useTheme } from "next-themes";
 
 const CodePage = () => {
   const proModal = useProModal();
@@ -34,6 +35,15 @@ const CodePage = () => {
       prompt: ""
     }
   });
+
+  const { theme } = useTheme();
+  const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
+
+  useEffect(() => {
+    setIsDarkMode(theme === "dark");
+  },[theme]);
+
+
 
   const isLoading = form.formState.isSubmitting;
 
@@ -79,7 +89,7 @@ const CodePage = () => {
         <div className="space-y-4 mt-4">
           {isLoading && (
             <div className="p-8 rounded-lg w-full flex items-center
-            justify-center bg-muted">
+            justify-center ">
               <Loader/>
             </div>
           )}
@@ -94,7 +104,7 @@ const CodePage = () => {
                     key={message.content}
                     className={cn("p-8 w-full flex items-start gap-x-8 rounded-lg",
                     message.role === "user" 
-                      ? "bg-white border border-black/10 " 
+                      ? " border border-black/10 " 
                       : "bg-muted"
                     )}
                     >
@@ -131,22 +141,22 @@ const CodePage = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="
-                rounded-lg
-                fixed
-                bottom-0
-                bg-white/5
-                border
-                w-full
-                md:9/12
-                lg:w-11/12
-                p-4
-                md:px-6
-                focus-within:shadow-sm
-                grid
-                grid-cols-12
-                gap-2
-              "
+              className={`
+              rounded-lg
+              fixed
+              bottom-0
+              border
+              w-full
+              md:w-8/12
+              2xl:w-10/12
+              p-4
+              md:px-6
+              focus-within:shadow-sm
+              grid
+              grid-cols-4
+              gap-2
+              ${isDarkMode ? "bg-darkblue" : "bg-white"}
+            `}
             >
               <FormField 
                 name="prompt"

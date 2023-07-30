@@ -15,7 +15,8 @@ import {
   Settings
 } from "lucide-react";
 import FreeCounter from "./free-counter";
-import { ModeToggle } from "./toggle";
+import Loading from "@/app/loading";
+
 
 const font = Montserrat({
   weight: "600",
@@ -80,12 +81,10 @@ const Sidebar = ({
   const pathname = usePathname();
 
   const handleLinkClick = () => {
-    setTimeout(() => {
-      if (onClose) {
-        onClose();
-      }
-      window.location.reload()
-    }, 1200);
+  
+     if (onClose) {
+      onClose();
+    }
   }
   return (
     <div className="space-y-4 py-4 flex flex-col h-full
@@ -104,6 +103,7 @@ const Sidebar = ({
             GenioAi
           </h1>
         </Link>
+        
         <div className="space-y-1">
         {routes.map((route) => (
             <Link

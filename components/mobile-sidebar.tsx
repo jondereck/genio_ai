@@ -2,7 +2,7 @@
 import { Menu } from "lucide-react";
 
 import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
 import Sidebar from "./sidebar";
 import { useEffect, useState } from "react";
 
@@ -44,7 +44,7 @@ const MobileSidebar = ({
 
   return (
     <Sheet>
-      <SheetTrigger>
+      <SheetTrigger asChild>
         <Button
           variant="ghost"
           size="icon"
@@ -61,9 +61,12 @@ const MobileSidebar = ({
             apiLimitCount={apiLimitCount}
             onClose={handleSidebarClose} // Pass the handleSidebarClose function as the onClose prop
           />
+          
         </SheetContent>
+        
       )}
     </Sheet>
+    
   );
 }
 

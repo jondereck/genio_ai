@@ -12,7 +12,7 @@ import { amountOptions, formSchema, resolutionOptions } from "./constants";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
@@ -25,6 +25,7 @@ import ImageLoaderSkeleton from "@/components/ImageLoader";
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
+import { useTheme } from "next-themes";
 
 
 
@@ -32,6 +33,13 @@ const ImagePage = () => {
   const proModal = useProModal();
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
+  
+  const { theme } = useTheme();
+  const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
+
+  useEffect(() => {
+    setIsDarkMode(theme === "dark");
+  }, [theme]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -124,7 +132,7 @@ const ImagePage = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="
+            className={`
                 rounded-lg
                 fixed
                 bottom-0
@@ -138,7 +146,8 @@ const ImagePage = () => {
                 grid
                 grid-cols-4
                 gap-2
-              "
+                ${isDarkMode ? "bg-darkblue" : "bg-white"}
+              `}
           >
             <FormField
               control={form.control}
@@ -146,7 +155,7 @@ const ImagePage = () => {
               render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-10">
                   <FormControl className="m-0 p-0">
-                    <Textarea
+                    <Input
                       className="border-0 outline-none focus-visible:ring-0
                         focus-visible:ring-transparent "
                       disabled={isLoading}

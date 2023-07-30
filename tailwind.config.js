@@ -15,8 +15,10 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+  
     extend: {
       colors: {
+        darkblue: "#020817",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -50,6 +52,7 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        
       },
       borderRadius: {
         lg: "var(--radius)",
