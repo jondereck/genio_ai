@@ -4,7 +4,7 @@ import { LandingNavbar } from "@/components/landing-navbar";
 
 const LandingPage = () => {
   return ( 
-    <div className="h-full">
+    <div className="h-screen">
       <LandingNavbar />
       <LandingHero />
       <LandingContent />
