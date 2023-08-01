@@ -90,7 +90,7 @@ export const AlterForm = ({
                   </FormControl>
                   <FormMessage />
                   <FormDescription>
-                    This is how your AI Companion will be named.
+                    This is how your Alter AI will be named.
                   </FormDescription>
                 </FormItem>
               )}
@@ -110,7 +110,7 @@ export const AlterForm = ({
                   </FormControl>
                   <FormMessage />
                   <FormDescription>
-                  Short description for your AI Companion
+                  Short description for your Alter AI.
                   </FormDescription>
                 </FormItem>
               )}
@@ -146,6 +146,9 @@ export const AlterForm = ({
                       ))}
                     </SelectContent>
                   </Select>
+                  <FormDescription>
+                    Select a category for your Alter AI.
+                  </FormDescription>
                 </FormItem>
               )}
             />
