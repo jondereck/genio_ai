@@ -11,8 +11,8 @@ import { Separator } from "@/components/ui/separator";
 import { ImageUpload } from "@/components/image-upload";
 import AlterEgoPage from "@/components/alter-page";
 import { Input } from "@/components/ui/input";
-import { Select, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { SelectContent } from "@radix-ui/react-select";
+import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from "@/components/ui/select";
+
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Wand2 } from "lucide-react";
