@@ -12,7 +12,8 @@ import {
   Video,
   Music,
   Code,
-  Settings
+  Settings,
+  VenetianMask
 } from "lucide-react";
 import FreeCounter from "./free-counter";
 import Loading from "@/app/loading";
@@ -58,6 +59,12 @@ const routes = [
     icon: Code,
     href: "/code",
     color: "text-rose-700"
+  },
+  {
+    label: "AI Alter Ego",
+    icon: VenetianMask,
+    href: "/alter",
+    color: "text-amber-500"
   },
   {
     label: "Settings",

@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch","fullTextIndex"]
 }
 
 datasource db {
@@ -23,4 +24,32 @@ model UserSubscription {
   stripeSubscriptionId String? @unique @map(name: "stripe_subscription_id")
   stripePriceId String? @map(name:"stripe_price_id")
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_id")
+}
+
+model Category {
+  id          String  @id @default(uuid())
+  name        String
+  alters      Alter[]
+}
+
+model Alter {
+  id          String  @id @default(uuid())
+  userId      String
+  userName    String
+  src         String
+  name        String  @db.Text
+  description String
+  instruction String  @db.Text
+  seed        String  @db.Text
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+ 
+  categoryId  String
+  
+  category    Category @relation(fields: [categoryId], references: [id])
+ 
+
+  @@index([categoryId])
+  @@fulltext([name])
 }
