@@ -22,9 +22,6 @@ import BotAvatar from "@/components/bot-avatar";
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
-import { useTheme } from "next-themes";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { Separator } from "@/components/ui/separator";
 import { CodeWithCopy } from "@/components/code-copy";
 
 const ConversationPage = () => {
@@ -38,12 +35,6 @@ const ConversationPage = () => {
     }
   });
 
-  const { theme } = useTheme();
-  const [isDarkMode, setIsDarkMode] = useState(theme === "dark" || theme === "system");
-
-  useEffect(() => {
-    setIsDarkMode(theme === "dark" || theme === "system")
-  }, [theme]);
 
   const isLoading = form.formState.isSubmitting;
 
@@ -79,7 +70,7 @@ const ConversationPage = () => {
   }
   
   return (
-    <div>
+    <div className="">
       <Heading
         title="Conversation"
         description="Out most advanced conversation model."
@@ -141,7 +132,7 @@ const ConversationPage = () => {
               grid
               grid-cols-12
               gap-2
-              ${isDarkMode ? "bg-darkblue" : "bg-white"}
+             }
               `}
           >
             <FormField
@@ -153,7 +144,7 @@ const ConversationPage = () => {
 
                     <Textarea
                       className="border-0 outline-none 
-                        overflow-auto
+                      bg-background resize-none
                        "
                       disabled={isLoading}
                       placeholder="Can you explain the Riemann Hypothesis in simple terms?"
