@@ -38,7 +38,7 @@ const SettingsPage = async () => {
             plan
           </p>}
         </div>
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 ">
           
         <SubscriptionButton 
           isPro={isPro}
