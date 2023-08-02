@@ -8,6 +8,8 @@ import { CrispChat } from '@/components/crisp-chat'
 import { CrispProvider } from '@/components/provider/crisp-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/toaster'
+import Head from 'next/head'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,6 +25,9 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
+      <Head>
+      <link rel="manifest" href="/manifest.json" />
+      </Head>
       <html lang="en" suppressHydrationWarning>
         <CrispProvider/>
         <body className={inter.className}>
