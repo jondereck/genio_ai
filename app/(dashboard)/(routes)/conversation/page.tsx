@@ -22,6 +22,9 @@ import BotAvatar from "@/components/bot-avatar";
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
+import { useTheme } from "next-themes";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { Separator } from "@/components/ui/separator";
 import { CodeWithCopy } from "@/components/code-copy";
 
 const ConversationPage = () => {
@@ -34,6 +37,19 @@ const ConversationPage = () => {
       prompt: ""
     }
   });
+
+  const { theme } = useTheme();
+  const [isDarkMode, setIsDarkMode] = useState(theme === "dark" || theme === "system");
+
+  useEffect(() => {
+    setIsDarkMode(theme === "dark" || theme === "system")
+  }, [theme]);
+
+  const [isLightMode, setIsLightMode] = useState(theme === "light" || theme === "system");
+
+  useEffect(() => {
+    setIsLightMode(theme === "light" || theme === "system")
+  }, [theme]);
 
 
   const isLoading = form.formState.isSubmitting;
@@ -70,7 +86,7 @@ const ConversationPage = () => {
   }
   
   return (
-    <div className="">
+    <div>
       <Heading
         title="Conversation"
         description="Out most advanced conversation model."
@@ -123,16 +139,18 @@ const ConversationPage = () => {
               fixed
               bottom-0
               border
-              w-full
-              md:9/12
-              lg:w-11/12
-              p-4
+              w-11/12
+              py-2
+              px-4
+              mx-4
+              lg:mx-0
               md:px-6
               focus-within:shadow-sm
               grid
               grid-cols-12
               gap-2
-             }
+              ${isDarkMode ? "bg-darkblue" : "bg-white"}
+              ${isLightMode ? "bg-white" : "bg-darkblue"}
               `}
           >
             <FormField
@@ -144,7 +162,7 @@ const ConversationPage = () => {
 
                     <Textarea
                       className="border-0 outline-none 
-                      bg-background resize-none
+                        overflow-auto
                        "
                       disabled={isLoading}
                       placeholder="Can you explain the Riemann Hypothesis in simple terms?"
