@@ -16,6 +16,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'GenioAi',
   description: 'Ai Platform',
+  manifest: '/manifest.webmanifest'
 }
 
 export default function RootLayout({
