@@ -40,6 +40,14 @@ const VideoPage = () => {
     setIsDarkMode(theme === "dark" || theme === "system" );
   },[theme]);
 
+  
+  const [isLightMode, setIsLightMode] = useState(theme === "light" || theme === "system");
+
+  useEffect(() => {
+    setIsLightMode(theme === "light" || theme === "system")
+  }, [theme]);
+
+
 
   const isLoading = form.formState.isSubmitting;
 
@@ -103,17 +111,19 @@ const VideoPage = () => {
             fixed
             bottom-0
             border
-            w-full
-              md:9/12
-              lg:w-11/12
-            p-4
+            w-11/12
+            py-2
+            px-4
+            mx-4
+            lg:mx-0
             md:px-6
             focus-within:shadow-sm
             grid
             grid-cols-12
             gap-2
             ${isDarkMode ? "bg-darkblue" : "bg-white"}
-          `}
+            ${isLightMode ? "bg-white" : "bg-darkblue"}
+            `}
           >
             <FormField
               name="prompt"
@@ -122,7 +132,8 @@ const VideoPage = () => {
                   <FormControl className="m-0 p-0">
                     <Textarea
                       className="border-0 outline-none focus-visible:ring-0
-                        focus-visible:ring-transparent "
+                      focus-visible:ring-transparent
+                      bg-background resize-none"
                       disabled={isLoading}
                       placeholder="Clown fish swimming under the cave"
                       {...field}

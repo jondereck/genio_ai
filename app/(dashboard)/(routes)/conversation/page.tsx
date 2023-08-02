@@ -115,13 +115,12 @@ const ConversationPage = () => {
                 className={cn("p-4 md:p-2 lg:p-8 w-full flex items-start gap-x-10  rounded-lg   ",
                   message.role === "user"
                     ? " border border-black/10  "
-                    : "bg-muted mb-20 md:mb-"
+                    : "bg-muted "
                 )}
               >
                 <div className="hidden lg:block ">
                   {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
                 </div>
-
                 <CodeWithCopy code={message.content || ""} />
               </div>
             ))}
@@ -161,8 +160,9 @@ const ConversationPage = () => {
                   <FormControl className="m-0 p-0">
 
                     <Textarea
-                      className="border-0 outline-none 
-                        overflow-auto
+                      className="border-0 outline-none focus-visible:ring-0
+                      focus-visible:ring-transparent
+                      bg-background resize-none
                        "
                       disabled={isLoading}
                       placeholder="Can you explain the Riemann Hypothesis in simple terms?"

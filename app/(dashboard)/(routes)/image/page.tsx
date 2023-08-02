@@ -41,6 +41,14 @@ const ImagePage = () => {
     setIsDarkMode(theme === "dark" || theme === "system" );
   }, [theme]);
 
+
+  const [isLightMode, setIsLightMode] = useState(theme === "light" || theme === "system");
+
+  useEffect(() => {
+    setIsLightMode(theme === "light" || theme === "system")
+  }, [theme]);
+
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -96,12 +104,12 @@ const ImagePage = () => {
               label="No images generated. "
             />
           )}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
-          xl:grid-cols-4 gap-4 mt-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3
+          xl:grid-cols-4 gap-4 mt-8 ">
             {images.map((src) => (
               <Card
                 key={src}
-                className="rounded-lg overflow-hidden"
+                className="rounded-lg overflow mb-52"
               >
                 <div className="relative aspect-square">
                   {isLoading ? <ImageLoaderSkeleton /> : (
@@ -113,7 +121,7 @@ const ImagePage = () => {
                     />
                   )}
                 </div>
-                <CardFooter className="p-2">
+                <CardFooter className="p-2 ">
                   <Button
                     onClick={() => window.open(src)}
                     variant="secondary"
@@ -133,20 +141,23 @@ const ImagePage = () => {
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className={`
-                rounded-lg
-                fixed
-                bottom-0
-                border
-                w-full
-                md:w-8/12
-                2xl:w-10/12
-                p-4
-                md:px-6
-                focus-within:shadow-sm
+            rounded-lg
+            fixed
+            bottom-0
+            border
+            hover:shadow-xl
+            w-11/12
+            py-2
+            px-4
+            mx-4
+            lg:mx-0
+            md:px-6
+            focus-within:shadow-sm
                 grid
                 grid-cols-4
                 gap-2
                 ${isDarkMode ? "bg-darkblue" : "bg-white"}
+                ${isLightMode ? "bg-white" : "bg-darkblue"}
               `}
           >
             <FormField
@@ -157,7 +168,7 @@ const ImagePage = () => {
                   <FormControl className="m-0 p-0">
                     <Input
                       className="border-0 outline-none focus-visible:ring-0
-                        focus-visible:ring-transparent "
+                        focus-visible:ring-transparent bg-background"
                       disabled={isLoading}
                       placeholder="A picture of a tree but made of ice cream"
                       {...field}

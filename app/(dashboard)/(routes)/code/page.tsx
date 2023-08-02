@@ -24,6 +24,7 @@ import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { useTheme } from "next-themes";
+import { CodeWithCopy } from "@/components/code-copy";
 
 const CodePage = () => {
   const proModal = useProModal();
@@ -42,6 +43,13 @@ const CodePage = () => {
   useEffect(() => {
     setIsDarkMode(theme === "dark" || theme === "system" );
   },[theme]);
+
+  const [isLightMode, setIsLightMode] = useState(theme === "light" || theme === "system");
+
+  useEffect(() => {
+    setIsLightMode(theme === "light" || theme === "system")
+  }, [theme]);
+
 
 
 
@@ -114,51 +122,7 @@ const CodePage = () => {
                         : <BotAvatar/>
                       } 
                     </div>
-                         <ReactMarkdown 
-                            className="text-sm overflow-hidden leading-7"
-                            components={{
-                              pre: ({ node, ...props }) => (
-                                <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
-                                  <pre {...props} />
-                                </div>
-                              ),
-                              code: ({ node, ...props }) => (
-                                <code className="bg-black/10 rounded-lg p-1" {...props} />
-                              ),
-                              h1: ({ node, ...props }) => (
-                                <h1 className="text-4xl font-bold my-4" {...props} />
-                              ),
-                              h2: ({ node, ...props }) => (
-                                <h2 className="text-3xl font-semibold my-3" {...props} />
-                              ),
-                              h3: ({ node, ...props }) => (
-                                <h3 className="text-2xl font-medium my-2" {...props} />
-                              ),
-                              // Add customizations for h4, h5, h6, etc. if needed.
-                              a: ({ node, ...props }) => (
-                                <a
-                                  className="text-blue-500 hover:underline"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  {...props}
-                                />
-                              ),
-                              blockquote: ({ node, ...props }) => (
-                                <blockquote className="border-l-4 border-gray-400 pl-4 my-3" {...props} />
-                              ),
-                              ul: ({ node, ...props }) => (
-                                <ul className="list-disc list-inside my-3" {...props} />
-                              ),
-                              ol: ({ node, ...props }) => (
-                                <ol className="list-decimal list-inside my-3" {...props} />
-                              ),
-                              li: ({ node, ...props }) => <li className="my-1" {...props} />,
-                            }}
-
-                            
-                          >
-                            {message.content || ""}
-                          </ReactMarkdown>
+                    <CodeWithCopy code={message.content || ""} />
                     </div>
                   ))}
           </div>
@@ -174,17 +138,19 @@ const CodePage = () => {
               fixed
               bottom-0
               border
-              w-full
-              md:9/12
-              lg:w-11/12
-              p-4
+              w-11/12
+              py-2
+              px-4
+              mx-4
+              lg:mx-0
               md:px-6
               focus-within:shadow-sm
               grid
               grid-cols-12
               gap-2
               ${isDarkMode ? "bg-darkblue" : "bg-white"}
-            `}
+              ${isLightMode ? "bg-white" : "bg-darkblue"}
+              `}
             >
               <FormField 
                 name="prompt"
@@ -193,7 +159,7 @@ const CodePage = () => {
                     <FormControl className="m-0 p-0">
                       <Textarea 
                         className="border-0 outline-none focus-visible:ring-0
-                        focus-visible:ring-transparent "
+                        focus-visible:ring-transparent  bg-background resize-none"
                         disabled={isLoading}
                         placeholder="What is the purpose of usestate on react?"
                         {...field}
