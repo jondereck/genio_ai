@@ -18,6 +18,8 @@ export const CodeWithCopy = ({ code }: CodeWithCopyProps) => {
     }
   };
 
+  
+
   return (
     <div className="relative w-full">
       <ReactMarkdown
@@ -46,7 +48,6 @@ export const CodeWithCopy = ({ code }: CodeWithCopyProps) => {
           h3: ({ node, ...props }) => (
             <h3 className="text-2xl font-medium my-2" {...props} />
           ),
-          // Add customizations for h4, h5, h6, etc. if needed.
           a: ({ node, ...props }) => (
             <a
               className="text-blue-500 hover:underline"
@@ -59,10 +60,10 @@ export const CodeWithCopy = ({ code }: CodeWithCopyProps) => {
             <blockquote className="border-l-4 border-gray-400 pl-4 my-3" {...props} />
           ),
           ul: ({ node, ...props }) => (
-            <ul className="list-disc list-inside my-3" {...props} />
+            <ul className="list-disc list-inside my-1" {...props} />
           ),
           ol: ({ node, ...props }) => (
-            <ol className="list-decimal list-inside my-3" {...props} />
+            <ol className="list-decimal list-inside my-1" {...props} />
           ),
           li: ({ node, ...props }) => <li className="my-1" {...props} />,
         }}
