@@ -15,7 +15,9 @@ const Empty = ({
     flex 
     flex-col
     items-center
-    justify-center">
+    justify-center
+    
+    ">
       <div className="relative h-72 w-72">
         <Image
           alt="empty"

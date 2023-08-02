@@ -5,7 +5,7 @@ import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 const UserAvatar = () => {
   const { user } = useUser();
   return ( 
-    <Avatar className="h-8 w-8">
+    <Avatar className="h-8 w-8 ">
       <AvatarImage src={user?.profileImageUrl} />
       <AvatarFallback>
         {user?.firstName?.charAt(0)}
