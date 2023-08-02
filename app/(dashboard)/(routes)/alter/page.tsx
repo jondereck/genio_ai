@@ -1,10 +1,40 @@
 import Heading from "@/components/Heading";
 import AlterEgoPage from "@/components/alter-page";
+import {Alters} from "@/components/alters";
 import { Categories } from "@/components/categories";
 import prismadb from "@/lib/prismadb"
 import { VenetianMask } from "lucide-react";
 
-const AlterPage = async () => {
+interface AlterPageProps  {
+  searchParams: {
+    categoryId: string;
+    name: string;
+  }
+}
+
+const AlterPage = async ({
+  searchParams
+}: AlterPageProps) => {
+  const data = await prismadb.alter.findMany({
+    where: {
+      categoryId: searchParams.categoryId,
+      name: {
+        search: searchParams.name
+      }
+     
+    }, 
+    orderBy: {
+      createdAt: "desc"
+    },
+    include: {
+      _count: {
+        select: {
+          messages: true
+        }
+      }
+    }
+  })
+
   const categories = await prismadb.category.findMany();
 
   return (
@@ -18,6 +48,7 @@ const AlterPage = async () => {
       />
       <AlterEgoPage/>
       <Categories data={categories}/>
+      <Alters  data={data}/> 
      
     </div>
   )

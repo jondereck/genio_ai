@@ -13,7 +13,8 @@ const SearchInput = () => {
   const searchParams = useSearchParams();
 
   const categoryId = searchParams.get("categoryId");
-//@ts-ignore
+  const name = searchParams.get("name");
+
   const [value, setValue] = useState(name || "");
   const debounceValue = useDebounce<string>(value, 500);
 

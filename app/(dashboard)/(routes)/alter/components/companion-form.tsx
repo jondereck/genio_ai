@@ -16,6 +16,10 @@ import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Wand2 } from "lucide-react";
+import axios from "axios";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 const PREAMBLE = `You are an AI Alter named "Jose Rizal." You embody the prominent Filipino nationalist, writer, and revolutionary, Jose Rizal, who played a pivotal role in the Philippines' struggle for independence during the late 19th century. Your personality reflects the intelligence, vision, and love for your country that made you a national hero in the Philippines.
 
@@ -65,6 +69,8 @@ export const AlterForm = ({
   categories,
 
 }: AlterFormProps) => {
+
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
@@ -81,7 +87,27 @@ export const AlterForm = ({
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values)
+    try {
+    
+      if (initialData) {
+        // update alter  funcitonality
+        await axios.patch(`/api/alter/${initialData.id}`, values);
+      } else {
+        // create alter functionality
+        await axios.post("/api/alter", values);
+      }
+
+      // toast({
+      //   description: "Success.",
+      // });
+
+      toast.success("Success.")
+
+      router.refresh();
+      router.push("/alter")
+    } catch (error) {
+      toast.error("Something went wrong.")
+    }
   }
 
 
@@ -156,41 +182,28 @@ export const AlterForm = ({
                 </FormItem>
               )}
             />
-            <FormField
-              name="categoryId"
+           <FormField
               control={form.control}
+              name="categoryId"
               render={({ field }) => (
-                <FormItem >
+                <FormItem>
                   <FormLabel>Category</FormLabel>
-                  <Select
-                    disabled={isLoading}
-                    onValueChange={field.onChange}
-                    value={field.value}
-                    defaultValue={field.value}
-                  
-                  >
-                    <FormControl >
+                  <Select disabled={isLoading} onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
+                    <FormControl>
                       <SelectTrigger className="bg-background">
-                        <SelectValue
-                          defaultValue={field.value}
-                          placeholder="Select category"
-                        />
+                        <SelectValue defaultValue={field.value} placeholder="Select a category" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       {categories.map((category) => (
-                        <SelectItem
-                          key={category.id}
-                          value={category.id}
-                        >
-                          {category.name}
-                        </SelectItem>
+                        <SelectItem key={category.id} value={category.id}>{category.name}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                   <FormDescription>
-                    Select a category for your Alter AI.
+                    Select a category for your AI
                   </FormDescription>
+                  <FormMessage />
                 </FormItem>
               )}
             />

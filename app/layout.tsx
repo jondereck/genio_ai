@@ -7,6 +7,7 @@ import { ToasterProvider } from '@/components/provider/toaster-provider'
 import { CrispChat } from '@/components/crisp-chat'
 import { CrispProvider } from '@/components/provider/crisp-provider'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,6 +30,7 @@ export default function RootLayout({
         <ModalProvider />
           <ToasterProvider />
           {children}
+          <Toaster />
         </ThemeProvider>
         </body>
       </html>
