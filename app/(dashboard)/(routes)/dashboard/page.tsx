@@ -9,7 +9,8 @@ import {
   Music,
   Code,
   Settings,
-  ArrowRight
+  ArrowRight,
+  VenetianMask
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -21,6 +22,13 @@ const tools = [
     icon: MessageSquare,
     color: "text-green-500",
     bgColor: "bg-green-500/10",
+    href: "/conversation",
+  },
+  {
+    label: "Alter Ai Generator",
+    icon: VenetianMask,
+    color: "text-amber-500",
+    bgColor: "bg-amber-500/10",
     href: "/conversation",
   },
   {

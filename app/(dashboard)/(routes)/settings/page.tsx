@@ -1,8 +1,10 @@
 import Heading from "@/components/Heading";
 import SubscriptionButton from "@/components/subscription-button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { checkSubscription } from "@/lib/subscription";
 import { SettingsIcon } from "lucide-react";
+import  Link  from "next/link";
 
 const SettingsPage = async () => {
   const isPro = await checkSubscription();
@@ -18,7 +20,7 @@ const SettingsPage = async () => {
         bgColor="bg-gray-400/10"
 
       />
-      <div className="p-4 lg:px-8 space-y-4">
+      <div className="p-4 lg:px-8 space-y-4 ">
         <div className="text-muted-foreground text-sm">
           {isPro ? (
             <p>
@@ -36,9 +38,17 @@ const SettingsPage = async () => {
             plan
           </p>}
         </div>
+        <div className="flex space-x-2">
+          
         <SubscriptionButton 
           isPro={isPro}
         />
+        <Button variant="secondary">
+            <Link href="https://platform.openai.com/account/usage">
+              Check usage
+            </Link>
+        </Button>
+        </div>
       </div>
 
     </div>

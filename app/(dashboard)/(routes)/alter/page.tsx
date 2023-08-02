@@ -44,7 +44,7 @@ const AlterPage = async ({
         description="Discover a new realm of personalized AI experiences."
         icon={VenetianMask}
         iconColor="text-amber-500"
-        bgColor="bg-amer-500/5"
+        bgColor="bg-amber-500/5"
       />
       <AlterEgoPage/>
       <Categories data={categories}/>

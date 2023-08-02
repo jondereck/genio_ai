@@ -37,6 +37,12 @@ const routes = [
     color: "text-green-700"
   },
   {
+    label: "Alter Ai Generator",
+    icon: VenetianMask,
+    href: "/alter",
+    color: "text-amber-500"
+  },
+  {
     label: "Image Generator",
     icon: ImageIcon,
     href: "/image",
@@ -60,12 +66,7 @@ const routes = [
     href: "/code",
     color: "text-rose-700"
   },
-  {
-    label: "AI Alter Ego",
-    icon: VenetianMask,
-    href: "/alter",
-    color: "text-amber-500"
-  },
+  
   {
     label: "Settings",
     icon: Settings,

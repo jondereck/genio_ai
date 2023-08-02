@@ -26,9 +26,6 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <Head>
-      <link rel="manifest" href="/manifest.json" />
-      </Head>
       <html lang="en" suppressHydrationWarning>
         <CrispProvider/>
         <body className={inter.className}>
