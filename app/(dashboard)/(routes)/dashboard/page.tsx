@@ -29,7 +29,7 @@ const tools = [
     icon: VenetianMask,
     color: "text-amber-500",
     bgColor: "bg-amber-500/10",
-    href: "/conversation",
+    href: "/alter",
   },
   {
     label: "Image Generator",

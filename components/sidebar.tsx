@@ -1,9 +1,13 @@
 'use client';
 import { cn } from "@/lib/utils";
+// Add this import at the top of the Sidebar.tsx file
+import { useEffect, useState } from "react";
+
 import { Epilogue, Montserrat } from "next/font/google"
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BsLayoutSidebarInset } from "react-icons/bs";
 
 import {
   MessageSquare,
@@ -13,10 +17,12 @@ import {
   Music,
   Code,
   Settings,
-  VenetianMask
+  VenetianMask,
+  TvIcon
 } from "lucide-react";
 import FreeCounter from "./free-counter";
 import Loading from "@/app/loading";
+import { Button } from "./ui/button";
 
 
 const font = Montserrat({
@@ -66,7 +72,7 @@ const routes = [
     href: "/code",
     color: "text-rose-700"
   },
-  
+
   {
     label: "Settings",
     icon: Settings,
@@ -85,59 +91,104 @@ const Sidebar = ({
   apiLimitCount = 0,
   isPro = false,
   onClose,
-}: SidebarProps ) => {
+}: SidebarProps) => {
   const pathname = usePathname();
+  const [useClientOpen, setUseClientOpen] = useState(true);
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 768); // Adjust the breakpoint as per your requirements
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initialize the isLargeScreen state on component mount
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleLinkClick = () => {
-  
-     if (onClose) {
+
+    if (onClose) {
       onClose();
     }
   }
-  return (
-    <div className="space-y-4 py-4 flex flex-col h-full
-    bg-[#111827] text-white">
-      <div className="px-3 py-2 flex-1">
-        <Link href="/dashboard" className="flex items-center 
-        pl-3 mb-14">
-          <div className="relative w-10 h-10 mr-4">
-            <Image
-              fill
-              alt="Logo"
-              src="/nlogo.png"
-            />
-          </div>
-          <h1 className={cn("text-2xl font-bold", font.className)} >
-            GenioAi
-          </h1>
-        </Link>
-        
-        <div className="space-y-1">
-        {routes.map((route) => (
-            <Link
-              key={route.href} 
-             onClick={handleLinkClick}
-              href={route.href}
-              className={cn(
-                "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",
-                pathname === route.href ? "text-white bg-white/10" : "text-zinc-400",
-              )}
-            >
-              <div className="flex items-center flex-1">
-                <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
-                {route.label}
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    
-      <FreeCounter 
-      apiLimitCount={apiLimitCount}
-      isPro={isPro}/>
-      
-    </div>
-  );
-}
 
+  const handleUseClientClick = () => {
+    setUseClientOpen(!useClientOpen);
+  };
+
+  return (
+    <>
+      {/* "Open Sidebar" button section */}
+      {isLargeScreen && !useClientOpen && (
+        <button onClick={handleUseClientClick}>
+          <div className="fixed top-4 left-4 p-3 rounded-md text-white ">
+            <BsLayoutSidebarInset className={cn("h-5 w-5 mr-3", "text-[#EF4444]")} />
+          </div>
+        </button>
+      )}
+
+
+      {/* Render the "Use Client" content based on state */}
+      {isLargeScreen && useClientOpen && (
+        <div className="space-y-4 py-4 flex flex-col h-full
+      bg-[#111827] text-white">
+          <div className="px-3 py-2 flex-1">
+            <Link href="/dashboard" className="flex items-center 
+          pl-3 mb-14">
+              <div className="relative w-10 h-10 mr-4">
+                <Image
+                  fill
+                  alt="Logo"
+                  src="/nlogo.png"
+                />
+              </div>
+              <h1 className={cn("text-2xl font-bold", font.className)} >
+                GenioAi
+              </h1>
+              <div>
+                <Button
+                onClick={handleUseClientClick}
+              >
+                <BsLayoutSidebarInset className={cn("h-5 w-5 mr-3", )} />
+              </Button>
+              </div>
+              
+            </Link>
+
+
+            <div className="space-y-1">
+              {routes.map((route) => (
+                <Link
+                  key={route.href}
+                  onClick={handleLinkClick}
+                  href={route.href}
+                  className={cn(
+                    "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",
+                    pathname === route.href ? "text-white bg-white/10" : "text-zinc-400",
+                  )}
+                >
+                  <div className="flex items-center flex-1">
+                    <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
+                    {route.label}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <FreeCounter
+            apiLimitCount={apiLimitCount}
+            isPro={isPro} />
+
+        </div>
+      )}
+
+
+    </>
+  );
+};
 export default Sidebar;
