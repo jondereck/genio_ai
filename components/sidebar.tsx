@@ -7,7 +7,7 @@ import { Epilogue, Montserrat } from "next/font/google"
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BsLayoutSidebarInset } from "react-icons/bs";
+import { BsLayoutSidebarInset, BsLayoutSidebarInsetReverse } from "react-icons/bs";
 
 import {
   MessageSquare,
@@ -126,7 +126,7 @@ const Sidebar = ({
       {isLargeScreen && !useClientOpen && (
         <button onClick={handleUseClientClick}>
           <div className="fixed top-4 left-4 p-3 rounded-md text-white ">
-            <BsLayoutSidebarInset className={cn("h-5 w-5 mr-3", "text-[#EF4444]")} />
+            <BsLayoutSidebarInsetReverse size={25}/>
           </div>
         </button>
       )}
@@ -134,7 +134,7 @@ const Sidebar = ({
 
       {/* Render the "Use Client" content based on state */}
       {isLargeScreen && useClientOpen && (
-        <div className="space-y-4 py-4 flex flex-col h-full
+        <div className=" py-4 flex flex-col h-full
       bg-[#111827] text-white">
           <div className="px-3 py-2 flex-1">
             <Link href="/dashboard" className="flex items-center 
@@ -149,11 +149,13 @@ const Sidebar = ({
               <h1 className={cn("text-2xl font-bold", font.className)} >
                 GenioAi
               </h1>
-              <div>
+              <div className="pl-4">
                 <Button
+                variant="ghost"
+                size="icon"
                 onClick={handleUseClientClick}
               >
-                <BsLayoutSidebarInset className={cn("h-5 w-5 mr-3", )} />
+                <BsLayoutSidebarInset size={25} />
               </Button>
               </div>
               

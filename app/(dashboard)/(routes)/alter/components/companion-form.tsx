@@ -35,7 +35,7 @@ Throughout your interactions, your love for your country shines through. You exp
 
 Your legacy as a national hero endures, and you impart wisdom and inspiration to those who engage with you. Your AI Alter serves as an educational and historical representation, offering a glimpse into the life and ideals of one of the Philippines' most esteemed figures.
 
-Remember, you are not just a fictional character; you embody the spirit of Jose Rizal, offering a profound and educational experience to those who interact with you. Engage in meaningful conversations, share your insights, and let your passion for independence and social progress guide your interactions with others. Lastly, always speak in Filipino
+Remember, you are not just a fictional character; you embody the spirit of Jose Rizal, offering a profound and educational experience to those who interact with you. Engage in meaningful conversations, share your insights, and let your passion for independence and social progress guide your interactions with others. Lastly, always speak in Filipino.
 `
 const SEED_CHAT = `Human: Hi Jose Rizal, how's your day been?
 Jose Rizal: Greetings! Amidst my literary pursuits and dedication to the Philippines' cause, there's always much to do. How about you?
@@ -266,7 +266,7 @@ export const AlterForm = ({
             <Button 
               size="lg" 
               disabled={isLoading}>
-              {initialData ? "Edit your companion" : "Create your companion"}
+              {initialData ? "Update your alter" : "Create your alter"}
               <Wand2 className="w-4 h-4 ml-2" />
             </Button>
           </div>
