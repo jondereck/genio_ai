@@ -38,7 +38,7 @@ const AlterPage = async ({
   const categories = await prismadb.category.findMany();
 
   return (
-    <div className=" p-4">
+    <div className=" p-4 ">
        <Heading
         title="Ai Alter Ego"
         description="Discover a new realm of personalized AI experiences."

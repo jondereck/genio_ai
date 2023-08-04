@@ -38,14 +38,19 @@ const SettingsPage = async () => {
             plan
           </p>}
         </div>
-        <div className="flex space-x-2 ">
+        <div className="flex space-x-4 ">
           
         <SubscriptionButton 
           isPro={isPro}
         />
         <Button variant="secondary">
             <Link href="https://platform.openai.com/account/usage">
-              Check usage
+              Check OpenAi
+            </Link>
+        </Button>
+        <Button variant="secondary">
+            <Link href="https://replicate.com/account/billing#limits">
+              Check Replicate
             </Link>
         </Button>
         </div>

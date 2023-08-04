@@ -113,7 +113,7 @@ export const AlterForm = ({
 
   return (
     //  max-w-3xl
-    <div className="h-full space-y-2 p-4 mx-auto">
+    <div className="h-full space-y-2 p-4 mx-auto overflow-y-auto">
       <AlterEgoPage />
       <Form {...form}>
         <form

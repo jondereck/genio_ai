@@ -40,14 +40,14 @@ const ChatMessages = ({
         isLoading={fakeLoading}
         src={alter.src}
         role="system"
-        content={`Hello, I am ${alter.name}, ${alter.description}`}
+        content={`Hello, I am ${alter.name}, a ${alter.description}`}
       />
       { messages.map((message) => (
         <ChatMessage 
           key={message.content}
           role={message.role}
           content={message.content}
-          src={message.src}
+          src={alter.src}
         />
       ))}
 
