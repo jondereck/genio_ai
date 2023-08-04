@@ -36,6 +36,7 @@ export async function PATCH(
     const alter =  await prismadb.alter.update({
       where: {
         id: params.alterId,
+        userId: user.id,
       },
       data: {
         categoryId,
