@@ -1,3 +1,4 @@
+import ModalProvider from "@/components/provider/modal-provider";
 
 
 const ChatLayout = ({
@@ -7,6 +8,7 @@ const ChatLayout = ({
 }) => {
   return ( 
     <div className="mx-auto  h-full w-full"> 
+        <ModalProvider />
       {children}
     </div>
    );

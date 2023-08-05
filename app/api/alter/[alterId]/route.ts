@@ -1,4 +1,6 @@
+import { checkApiLimit, increaseApiLimit } from "@/lib/api-limit";
 import prismadb from "@/lib/prismadb";
+import { checkSubscription } from "@/lib/subscription";
 import { auth, currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server"
 
@@ -31,7 +33,12 @@ export async function PATCH(
       return new NextResponse("Missing required fields",  { status: 400});
     }
 
-    //TODO
+    const freeTrial = await checkApiLimit();
+    const isPro = await checkSubscription();
+    
+    if (!freeTrial && !isPro) {
+      return new NextResponse("Free trial has expired", { status: 403 })
+    }
 
     const alter =  await prismadb.alter.update({
       where: {
@@ -50,6 +57,8 @@ export async function PATCH(
       }
     });
 
+    
+  
     return NextResponse.json(alter);
     
   } catch (error) {

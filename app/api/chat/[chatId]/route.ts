@@ -7,6 +7,8 @@ import { NextResponse } from "next/server";
 import { MemoryManager } from "@/lib/memory";
 import { rateLimit } from "@/lib/rate.limit";
 import prismadb from "@/lib/prismadb";
+import { checkApiLimit, increaseApiLimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 export async function POST(
   req: Request,
@@ -79,6 +81,14 @@ export async function POST(
       relevantHistory = similarDocs.map((doc) => doc.pageContent).join("\n");
     }
 
+
+    const freeTrial = await checkApiLimit();
+    const isPro = await checkSubscription();
+    
+    if (!freeTrial && !isPro) {
+      return new NextResponse("Free trial has expired", { status: 403 })
+    }
+
     const { handlers } = LangChainStream();
 
     const model = new Replicate({
@@ -137,6 +147,11 @@ export async function POST(
         }
       });
     }
+
+    if (!isPro) {
+      await increaseApiLimit();
+    }
+
 
     return new StreamingTextResponse(s);
 

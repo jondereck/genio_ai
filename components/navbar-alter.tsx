@@ -24,6 +24,7 @@ const NavbarAlter = () => {
   
   ]
 
+
   const onNavigate = (url: string, pro: boolean) => {
     //TODO
 

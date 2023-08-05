@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button";
 import { SendHorizonal } from "lucide-react";
 import ChatMessages from "./chat-messages";
 import { ChatMessageProps } from "./chat-message";
+import useProModal from "@/hooks/use-pro-modal";
+import { toast } from "react-hot-toast";
 
 interface ChatClientProps {
   alter: Alter & {
@@ -23,6 +25,7 @@ interface ChatClientProps {
 export const ChatClient = ({
   alter
 }: ChatClientProps) => {
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages ] = useState<ChatMessageProps[]>(alter.messages)
 
@@ -35,14 +38,26 @@ export const ChatClient = ({
   } = useCompletion ({
     api: `/api/chat/${alter.id}`,
     onFinish(prompt, completion) {
-      const systemMessage: ChatMessageProps = {
-        role: "system",
-        content: completion,
-      };
-      setMessages((current) => [ ...current, systemMessage ]);
-      setInput("");
-
-      router.refresh();
+      try {
+        const systemMessage: ChatMessageProps = {
+          role: "system",
+          content: completion,
+        };
+        setMessages((current) => [...current, systemMessage]);
+        setInput("");
+      
+        router.refresh();
+      } catch (error: any) {
+        console.error("Caught error:", error); // Add this line for logging
+        if (error?.response?.status === 403) {
+          console.log("Error status is 403"); // Add this line for logging
+          proModal.onOpen();
+        } else {
+          console.log("Other error occurred"); // Add this line for logging
+          toast.error("Something went wrong.");
+        }
+      }
+      
     },
   });
 

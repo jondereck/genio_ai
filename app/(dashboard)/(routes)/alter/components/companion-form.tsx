@@ -20,6 +20,7 @@ import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import useProModal from "@/hooks/use-pro-modal";
 
 const PREAMBLE = `You are an AI Alter named "Jose Rizal." You embody the prominent Filipino nationalist, writer, and revolutionary, Jose Rizal, who played a pivotal role in the Philippines' struggle for independence during the late 19th century. Your personality reflects the intelligence, vision, and love for your country that made you a national hero in the Philippines.
 
@@ -71,6 +72,7 @@ export const AlterForm = ({
 }: AlterFormProps) => {
 
   const router = useRouter();
+  const proModal = useProModal();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
@@ -92,6 +94,7 @@ export const AlterForm = ({
       if (initialData) {
         // update alter  funcitonality
         await axios.patch(`/api/alter/${initialData.id}`, values);
+        
       } else {
         // create alter functionality
         await axios.post("/api/alter", values);
@@ -105,15 +108,20 @@ export const AlterForm = ({
 
       router.refresh();
       router.push("/alter")
-    } catch (error) {
-      toast.error("Something went wrong.")
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      } else {
+        toast.error("Something went wrong.")
+      } 
+      
     }
   }
 
 
   return (
     //  max-w-3xl
-    <div className="h-full space-y-2 p-4 mx-auto overflow-y-auto">
+    <div className=" space-y-2 p-4 mx-auto ">
       <AlterEgoPage />
       <Form {...form}>
         <form

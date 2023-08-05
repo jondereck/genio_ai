@@ -16,7 +16,6 @@ const DashboardLayout = async ({
     <div className="h-full relative">
       <div className="flex h-full">
         <Sidebar 
-   
           isPro={isPro}
           apiLimitCount={apiLimitCount}/>
      

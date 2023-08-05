@@ -39,7 +39,7 @@ export const Alters = ({ data
                   fill
                   src={item.src}
                   alt="alter"
-                  className="rounded-cl object-cover"
+                  className="rounded-xl object-cover"
                 />
               </div>
               <p className="font-bold">

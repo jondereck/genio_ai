@@ -33,7 +33,6 @@ export default function RootLayout({
         <ModalProvider />
           <ToasterProvider />
           {children}
-          <Toaster />
         </ThemeProvider>
         </body>
       </html>
