@@ -13,7 +13,8 @@ import {
   Music,
   Code,
   Settings,
-  VenetianMask
+  VenetianMask,
+  Bookmark
 } from "lucide-react";
 import FreeCounter from "./free-counter";
 import Loading from "@/app/loading";
@@ -65,6 +66,12 @@ const routes = [
     icon: Code,
     href: "/code",
     color: "text-rose-700"
+  },
+  {
+    label: "BookMark",
+    icon: Bookmark,
+    href: "/bookmarks",
+    color: "text-pink-500"
   },
   
   {

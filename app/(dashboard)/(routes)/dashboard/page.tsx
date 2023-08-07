@@ -10,7 +10,8 @@ import {
   Code,
   Settings,
   ArrowRight,
-  VenetianMask
+  VenetianMask,
+  Bookmark
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -58,6 +59,12 @@ const tools = [
     color: "text-rose-700",
     bgColor: "bg-rose-700/10",
     href: "/code",
+  },
+  {
+    label: "BookMark",
+    icon: Bookmark,
+    href: "/bookmarks",
+    color: "text-pink-500"
   },
   
 
