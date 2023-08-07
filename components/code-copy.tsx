@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { Button } from "./ui/button";
 
 interface CodeWithCopyProps {
   code: string;
@@ -26,14 +27,15 @@ export const CodeWithCopy = ({ code }: CodeWithCopyProps) => {
         className="text-sm overflow-hidden leading-7"
         components={{
           pre: ({ node, ...props }) => (
-            <div className="relative overflow-auto w-full md:w-3/4  my-2 bg-black/10 p-2 rounded-lg">
+            <div className="relative overflow-auto w-full md:w-auto my-2 bg-black/10 p-2 rounded-lg">
               <pre {...props} />
-              <button
-                className="absolute top-2 right-2 text-xs px-2 py-1 bg-white rounded-md hover:bg-gray-100 focus:outline-none"
+              <Button 
+                variant="ghost"
+                className="absolute top-2 right-2 text-xs px-2 py-1 bg-background rounded-md hover:bg-gray-100 focus:outline-none"
                 onClick={copyCodeToClipboard}
               >
                 {copied ? "Copied!" : "Copy"}
-              </button>
+              </Button>
             </div>
           ),
           code: ({ node, ...props }) => (
@@ -63,13 +65,13 @@ export const CodeWithCopy = ({ code }: CodeWithCopyProps) => {
             <ul className="list-disc list-inside my-1" {...props} />
           ),
           ol: ({ node, ...props }) => (
-            <ol className="list-decimal list-inside my-1" {...props} />
+            <ol className="list-decimal list-inside my-3" {...props} />
           ),
-          li: ({ node, ...props }) => <li className="my-1" {...props} />,
+          li: ({ node, ...props }) => <li className="my-3" {...props} />,
         }}
       >
         {code}
       </ReactMarkdown>
-    </div>
+</div>
   );
 };

@@ -3,7 +3,7 @@
 import * as z from "zod";
 import axios from "axios";
 import Heading from "@/components/Heading";
-import { MessageSquare, Music } from "lucide-react";
+import {  Music } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ChatCompletionRequestMessage } from "openai";
+
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import useProModal from "@/hooks/use-pro-modal";
@@ -33,19 +33,6 @@ const MusicPage = () => {
     }
   });
 
-  const { theme } = useTheme();
-  const [isDarkMode, setIsDarkMode] = useState(theme === "dark" || theme === "system" );
-
-  useEffect(() => {
-    setIsDarkMode(theme === "dark" || theme === "system" );
-  },[theme]);
-
-  
-  const [isLightMode, setIsLightMode] = useState(theme === "light" || theme === "system");
-
-  useEffect(() => {
-    setIsLightMode(theme === "light" || theme === "system")
-  }, [theme]);
 
 
 
@@ -123,8 +110,7 @@ const MusicPage = () => {
               grid
               grid-cols-12
               gap-2
-              ${isDarkMode ? "bg-darkblue" : "bg-white"}
-              ${isLightMode ? "bg-white" : "bg-darkblue"}
+              bg-background
               `}
           >
             <FormField
@@ -136,7 +122,7 @@ const MusicPage = () => {
                     <Textarea
                       className="border-0 outline-none focus-visible:ring-0
                       focus-visible:ring-transparent
-                      bg-background resize-none "
+                      bg-background resize-none p-2"
                       disabled={isLoading}
                       placeholder="Guitar solo"
                       {...field}

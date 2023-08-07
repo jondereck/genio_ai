@@ -9,6 +9,7 @@ import { CrispProvider } from '@/components/provider/crisp-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/toaster'
 import Head from 'next/head'
+import { UseClientProvider } from '@/components/provider/sidebar-open'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -29,11 +30,14 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <CrispProvider/>
         <body className={inter.className}>
+          <UseClientProvider>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem> 
+        
         <ModalProvider />
           <ToasterProvider />
           {children}
         </ThemeProvider>
+        </UseClientProvider>
         </body>
       </html>
     </ClerkProvider>

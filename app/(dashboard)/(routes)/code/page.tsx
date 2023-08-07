@@ -19,11 +19,11 @@ import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
-import ReactMarkdown from "react-markdown";
+
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
-import { useTheme } from "next-themes";
+
 import { CodeWithCopy } from "@/components/code-copy";
 
 const CodePage = () => {
@@ -36,21 +36,6 @@ const CodePage = () => {
       prompt: ""
     }
   });
-
-  const { theme } = useTheme();
-  const [isDarkMode, setIsDarkMode] = useState(theme === "dark" || theme === "system");
-
-  useEffect(() => {
-    setIsDarkMode(theme === "dark" || theme === "system" );
-  },[theme]);
-
-  const [isLightMode, setIsLightMode] = useState(theme === "light" || theme === "system");
-
-  useEffect(() => {
-    setIsLightMode(theme === "light" || theme === "system")
-  }, [theme]);
-
-
 
 
   const isLoading = form.formState.isSubmitting;
@@ -148,8 +133,7 @@ const CodePage = () => {
               grid
               grid-cols-12
               gap-2
-              ${isDarkMode ? "bg-darkblue" : "bg-white"}
-              ${isLightMode ? "bg-white" : "bg-darkblue"}
+              bg-background
               `}
             >
               <FormField 

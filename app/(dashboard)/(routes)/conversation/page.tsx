@@ -22,15 +22,14 @@ import BotAvatar from "@/components/bot-avatar";
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
-import { useTheme } from "next-themes";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { Separator } from "@/components/ui/separator";
+// import { useTheme } from "next-themes";
 import { CodeWithCopy } from "@/components/code-copy";
 
 const ConversationPage = () => {
   const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
+  const [isSidebarOpen, setIsSidebarOpen ] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,18 +37,21 @@ const ConversationPage = () => {
     }
   });
 
-  const { theme } = useTheme();
-  const [isDarkMode, setIsDarkMode] = useState(theme === "dark" || theme === "system");
+  
 
-  useEffect(() => {
-    setIsDarkMode(theme === "dark" || theme === "system")
-  }, [theme]);
 
-  const [isLightMode, setIsLightMode] = useState(theme === "light" || theme === "system");
+  // const { theme } = useTheme();
+  // const [isDarkMode, setIsDarkMode] = useState(theme === "dark" || theme === "system");
 
-  useEffect(() => {
-    setIsLightMode(theme === "light" || theme === "system")
-  }, [theme]);
+  // useEffect(() => {
+  //   setIsDarkMode(theme === "dark" || theme === "system")
+  // }, [theme]);
+
+  // const [isLightMode, setIsLightMode] = useState( theme === "system");
+
+  // useEffect(() => {
+  //   setIsLightMode( theme === "system")
+  // }, [theme]);
 
 
   const isLoading = form.formState.isSubmitting;
@@ -86,6 +88,7 @@ const ConversationPage = () => {
   }
   
   return (
+    
     <div>
       <Heading
         title="Conversation"
@@ -134,22 +137,21 @@ const ConversationPage = () => {
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className={`
-              rounded-lg
-              fixed
-              bottom-0
-              border
-              w-11/12
-              py-2
-              px-4
-              mx-4
-              lg:mx-0
-              md:px-6
-              focus-within:shadow-sm
-              grid
-              grid-cols-12
-              gap-2
-              ${isDarkMode ? "bg-darkblue" : "bg-white"}
-              ${isLightMode ? "bg-white" : "bg-darkblue"}
+            rounded-lg
+            fixed
+            bottom-0
+            border
+            w-11/12
+            py-2
+            px-4
+            mx-4
+            lg:mx-0
+            md:px-6
+            focus-within:shadow-sm
+            grid
+            grid-cols-12
+            gap-2
+              bg-background
               `}
           >
             <FormField
@@ -158,11 +160,10 @@ const ConversationPage = () => {
               render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-10">
                   <FormControl className="m-0 p-0">
-
                     <Textarea
                       className="border-0 outline-none focus-visible:ring-0
                       focus-visible:ring-transparent
-                      bg-background resize-none
+                      bg-background resize-none p-2
                        "
                       disabled={isLoading}
                       placeholder="Can you explain the Riemann Hypothesis in simple terms?"

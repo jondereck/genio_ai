@@ -24,8 +24,7 @@ import { Card, CardFooter } from "@/components/ui/card";
 import ImageLoaderSkeleton from "@/components/ImageLoader";
 import useProModal from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
-import { Textarea } from "@/components/ui/textarea";
-import { useTheme } from "next-themes";
+
 
 
 
@@ -34,20 +33,7 @@ const ImagePage = () => {
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
   
-  const { theme } = useTheme();
-  const [isDarkMode, setIsDarkMode] = useState(theme === "dark" || theme === "system" );
-
-  useEffect(() => {
-    setIsDarkMode(theme === "dark" || theme === "system" );
-  }, [theme]);
-
-
-  const [isLightMode, setIsLightMode] = useState(theme === "light" || theme === "system");
-
-  useEffect(() => {
-    setIsLightMode(theme === "light" || theme === "system")
-  }, [theme]);
-
+ 
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -156,8 +142,7 @@ const ImagePage = () => {
                 grid
                 grid-cols-4
                 gap-2
-                ${isDarkMode ? "bg-darkblue" : "bg-white"}
-                ${isLightMode ? "bg-white" : "bg-darkblue"}
+                bg-background
               `}
           >
             <FormField

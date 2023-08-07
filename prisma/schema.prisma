@@ -75,3 +75,30 @@ model Message {
 
     @@index([alterId])
 }
+
+model BookmarksCategory {
+  id String @id @default(uuid())
+  name String
+
+  bookmarks Bookmarks[]
+}
+
+model Bookmarks {
+  id String  @id @default(uuid())
+  userId String
+  src String
+  name String  @db.Text()
+  description String @db.Text()
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+ 
+  categoryId  String
+  
+  category    BookmarksCategory @relation(fields: [categoryId], references: [id])
+ 
+
+  @@index([categoryId])
+  @@fulltext([name])
+
+}

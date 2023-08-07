@@ -5,7 +5,7 @@ import Heading from "@/components/Heading";
 import { useTheme } from "next-themes";
 import NavbarAlter from "@/components/navbar-alter";
 import { useEffect, useState } from "react";
-import { VenetianMask } from "lucide-react";
+
 
 const AlterEgoPage = () => {
 
@@ -23,7 +23,6 @@ const AlterEgoPage = () => {
   return (
     <div>
       <NavbarAlter/>
-    
     </div>
   );
 }

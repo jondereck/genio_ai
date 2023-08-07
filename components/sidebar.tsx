@@ -18,11 +18,12 @@ import {
   Code,
   Settings,
   VenetianMask,
-  TvIcon
+  Bookmark,
 } from "lucide-react";
 import FreeCounter from "./free-counter";
 import Loading from "@/app/loading";
 import { Button } from "./ui/button";
+import { useClientContext } from "./provider/sidebar-open";
 
 
 const font = Montserrat({
@@ -72,6 +73,12 @@ const routes = [
     href: "/code",
     color: "text-rose-700"
   },
+  {
+    label: "BookMark",
+    icon: Bookmark,
+    href: "/bookmarks",
+    color: "text-pink-500"
+  },
 
   {
     label: "Settings",
@@ -79,21 +86,24 @@ const routes = [
     href: "/settings",
     color: "text-gray-400"
   },
+
 ];
 
 interface SidebarProps {
   apiLimitCount: number;
   isPro: boolean;
   onClose?: () => void;
+  isSidebarOpen?: boolean;
 }
 
 const Sidebar = ({
   apiLimitCount = 0,
   isPro = false,
   onClose,
+  isSidebarOpen
 }: SidebarProps) => {
   const pathname = usePathname();
-  const [useClientOpen, setUseClientOpen] = useState(true);
+  const {useClientOpen, setUseClientOpen } = useClientContext();
   const [isLargeScreen, setIsLargeScreen] = useState(true);
 
   useEffect(() => {
