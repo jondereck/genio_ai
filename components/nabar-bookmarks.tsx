@@ -16,7 +16,7 @@ const NavbarBookmarks = () => {
       pro: false,
     },
     { 
-      label:"Create",
+      label:"New",
       icon:Plus,
       href:"/bookmarks/new",
       pro: false,

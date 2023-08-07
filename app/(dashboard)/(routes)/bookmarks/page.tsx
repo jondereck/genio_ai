@@ -2,6 +2,7 @@ import Heading from "@/components/Heading";
 import AlterEgoPage from "@/components/alter-page";
 import {Alters} from "@/components/alters";
 import { Bookmark } from "@/components/bookmarks";
+import BookmarkNavPage from "@/components/bookmarks-page";
 import { Categories } from "@/components/categories";
 import NavbarBookmarks from "@/components/nabar-bookmarks";
 import prismadb from "@/lib/prismadb"
@@ -44,7 +45,7 @@ const BookmarksPage = async ({
         iconColor="text-amber-500"
         bgColor="bg-amber-500/5"
       />
-      <NavbarBookmarks/>
+      <BookmarkNavPage/>
       <Categories  data={categories}/>
       <Bookmark  data={data}/>
  

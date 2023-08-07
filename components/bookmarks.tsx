@@ -7,7 +7,7 @@ import { MessageSquare } from "lucide-react";
 
 
 interface BookmarksProps {
-  data:Bookmarks[]
+  data: Bookmarks[]
 }
 
 export const Bookmark = ({ data
@@ -28,33 +28,33 @@ export const Bookmark = ({ data
           key={item.id}
           className="bg-primary/10 rounded-xl cursor-pointer hover:opacity-75 transition border-0"
         >
-          <Link href={`/chat/${item.id}`}>
-            <CardHeader className="flex items-center justify-center text-center text-muted-foreground">
-              <div className="relative w-32 h-32">
-                <Image
-                  fill
-                  src={item.src}
-                  alt="alter"
-                  className="rounded-xl object-cover"
-                />
-              </div>
+
+          <CardHeader className="flex items-center justify-center text-center text-muted-foreground">
+            <div className="relative w-32 h-32">
+              <Image
+                fill
+                src={item.src}
+                alt="alter"
+                className="rounded-xl object-cover"
+              />
+            </div>
+            <Link href={item.description}>
               <p className="font-bold">
                 {item.name}
               </p>
-              <p className="font-xs">
-                {item.description}
-              </p>
-            </CardHeader>
-            <CardFooter className="flex items-center justify-between text-sm text-muted-foreground">
-              <p className="text-sm lowercase">
-            {item.name}
-              </p>
-              <div className="flex items-center">
-                <MessageSquare className="w-3 h-3 mr-1"/>
-             
-              </div>
-            </CardFooter>
-          </Link>
+            </Link>
+
+          </CardHeader>
+          <CardFooter className="flex items-center justify-between text-sm text-muted-foreground">
+            <p className="text-sm lowercase">
+              {item.name}
+            </p>
+            <div className="flex items-center">
+              <MessageSquare className="w-3 h-3 mr-1" />
+
+            </div>
+          </CardFooter>
+
 
         </Card>
       ))}
