@@ -21,6 +21,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import useProModal from "@/hooks/use-pro-modal";
+import BookmarkNavPage from "@/components/bookmarks-page";
 
 
 interface BookmarkFormProps {
@@ -85,7 +86,7 @@ export const BookmarkForm = ({
   return (
     //  max-w-3xl
     <div className=" space-y-2 p-4 mx-auto ">
-      <AlterEgoPage />
+      <BookmarkNavPage/>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

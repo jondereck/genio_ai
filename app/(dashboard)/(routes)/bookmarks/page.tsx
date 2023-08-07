@@ -1,10 +1,10 @@
 import Heading from "@/components/Heading";
 import AlterEgoPage from "@/components/alter-page";
 import {Alters} from "@/components/alters";
-import { Bookmark } from "@/components/bookmarks";
+import { Bookmark } from "@/app/(dashboard)/(routes)/bookmarks/components/bookmarks";
 import BookmarkNavPage from "@/components/bookmarks-page";
 import { Categories } from "@/components/categories";
-import NavbarBookmarks from "@/components/nabar-bookmarks";
+import NavbarBookmarks from "@/components/navbar-bookmarks";
 import prismadb from "@/lib/prismadb"
 import { VenetianMask } from "lucide-react";
 

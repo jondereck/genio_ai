@@ -5,7 +5,7 @@ import Heading from "@/components/Heading";
 import { useTheme } from "next-themes";
 import NavbarAlter from "@/components/navbar-alter";
 import { useEffect, useState } from "react";
-import NavbarBookmarks from "./nabar-bookmarks";
+import NavbarBookmarks from "./navbar-bookmarks";
 
 
 const BookmarkNavPage = () => {
