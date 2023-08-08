@@ -4,19 +4,21 @@ const db = new PrismaClient();
 
 async function main() {
   try {
-    await db.bookmarksCategory.createMany({
+    await db.category.createMany({
       data: [
-     
-        { "name": "Productivity" },
-        { "name": "Video Generation" },
-        { "name": "Generative Art" },
-        { "name": "Graphic Design" },
-        { "name": "AI Detection" },
-        { "name": "Portable Apps" },
-        { "name": "Text-to-Voice" },
-        { "name": "Generative Video" },
-        { "name": "Coding" },
-        { "name": "Automation" }
+
+        
+
+          { "name": "Celebrities" },
+          { "name": "Games" },
+          { "name": "Historical Figures" },
+          { "name": "Movies & TV" },
+          { "name": "Musicians" },
+          { "name": "Mythical Creature" },
+          { "name": "Philosophy" },
+          { "name": "Scientists" },
+          { "name": "Superheroes" }
+
 
    
       
@@ -30,3 +32,25 @@ async function main() {
 };
 
 main();
+
+// delete
+
+// async function main() {
+//   try {
+
+//     const categoriesToDelete = ["AI Tools"]
+//     await db.bookmarksCategory.deleteMany({
+//      where: {
+//         name: {
+//           in: categoriesToDelete
+//         }
+//      }
+//     })
+//   } catch (error) {
+//     console.error("Error seeding default categories", error);
+//   } finally {
+//     await db.$disconnect();
+//   }
+// };
+
+// main();

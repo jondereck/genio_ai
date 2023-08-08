@@ -97,7 +97,7 @@ export const BookmarkForm = ({
                 General Information
               </h3>
               <p className="text-sm text-muted-foreground">
-                General information about your Alter Ai
+              Easily add and organize your favorite AI tools for quick access whenever you need them.
               </p>
             </div>
             <Separator className="bg-primary/10" />
@@ -123,13 +123,13 @@ export const BookmarkForm = ({
                   <FormControl>
                     <Input
                       disabled={isLoading}
-                      placeholder="Jose Rizal"
+                      placeholder="Chat Gpt"
                       {...field}
                     />
                   </FormControl>
                   <FormMessage />
                   <FormDescription>
-                    This is how your Alter AI will be named.
+                    Provide a name for your AI tool.
                   </FormDescription>
                 </FormItem>
               )}
@@ -139,17 +139,17 @@ export const BookmarkForm = ({
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2 md:col-span-1">
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel>URL</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isLoading}
-                      placeholder="Writer"
+                      placeholder="https://chat.openai.com/"
                       {...field}
                     />
                   </FormControl>
                   <FormMessage />
                   <FormDescription>
-                    Short description for your Alter AI.
+                  Enter the URL link for your AI Tool.
                   </FormDescription>
                 </FormItem>
               )}
@@ -173,7 +173,7 @@ export const BookmarkForm = ({
                     </SelectContent>
                   </Select>
                   <FormDescription>
-                    Select a category for your AI
+                  Choose a category for your AI Tool.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -185,7 +185,7 @@ export const BookmarkForm = ({
             <Button 
               size="lg" 
               disabled={isLoading}>
-              {initialData ? "Update your bookmark" : "Save your bookmark"}
+              {initialData ? "Update AI Tool Bookmark" : "Save AI Tool Bookmark"}
               <Wand2 className="w-4 h-4 ml-2" />
             </Button>
           </div>

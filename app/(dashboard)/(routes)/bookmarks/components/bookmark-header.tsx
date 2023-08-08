@@ -35,7 +35,7 @@ const BookmarkHeader = ({
   }
 
   return (
-    <div className=" flex justify-between w-full items-center border-primary/10">
+    <div className=" absolute flex justify-between w-auto items-center border-primary/10">
       { user?.id === bookmarks.userId && (
          <DropdownMenu>
          <DropdownMenuTrigger asChild>

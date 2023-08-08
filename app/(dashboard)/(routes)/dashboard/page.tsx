@@ -16,7 +16,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-
+import { FaToolbox } from "react-icons/fa";
 const tools = [ 
   {
     label: "Conversation",
@@ -61,10 +61,11 @@ const tools = [
     href: "/code",
   },
   {
-    label: "BookMark",
-    icon: Bookmark,
+    label: "Ai Toolbox",
+    icon: FaToolbox,
     href: "/bookmarks",
-    color: "text-pink-500"
+    bgColor: "bg-pink-500/10",
+    color: "text-black"
   },
   
 

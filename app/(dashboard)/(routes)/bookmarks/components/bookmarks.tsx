@@ -1,16 +1,13 @@
 "use client"
 
 
-import { Alter, Bookmarks } from "@prisma/client";
+import { Alter, Bookmarks, Category } from "@prisma/client";
 import Empty from "../../../../../components/Empty";
 import { Card, CardFooter, CardHeader } from "../../../../../components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-import { LinkIcon, MessageSquare } from "lucide-react";
-import { useState } from "react";
-import Iframe from 'react-iframe';
-import IframeModal from "@/app/(dashboard)/(routes)/bookmarks/components/iframe";
-import { ChatHeader } from "@/app/(chat)/(routes)/chat/[chatId]/components/chat-header";
+import { LinkIcon } from "lucide-react";
+
 import BookmarkHeader from "./bookmark-header";
 
 
@@ -31,7 +28,7 @@ export const Bookmark = ({ data
   }
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2">
+    <div className="absolute grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2">
       
       {data.map((item) => (
       
@@ -40,27 +37,27 @@ export const Bookmark = ({ data
           className="bg-primary/10 rounded-xl cursor-pointer hover:opacity-75 transition border-0"
         > 
           <BookmarkHeader  bookmarks={item}/>
+          <div>
           <Link href={item.description}>
-          <CardHeader className="flex items-center justify-center text-center text-muted-foreground"> 
-            <div className="relative w-32 h-32">
+          <CardHeader className="flex items-center  justify-center text-center text-muted-foreground"> 
+            <div className="relative w-16 h-16">
               <Image
                 fill
                 src={item.src}
                 alt="alter"
-                className="rounded-xl object-cover"
+                className=" border-solid border-2 rounded-xl object-cover"
               />
             </div>
-            
               <p className="font-bold">
                 {item.name}
               </p>
-          
-
           </CardHeader>
+          </Link>
+          </div>
           
           <CardFooter className="flex items-center justify-between text-sm text-muted-foreground">
             <p className="text-sm lowercase">
-              {item.name}
+              {item.categoryId}
             </p>
            
             <div className="flex items-center">
@@ -72,7 +69,7 @@ export const Bookmark = ({ data
             </div>
           
           </CardFooter>
-</Link>
+
         
         </Card>
        

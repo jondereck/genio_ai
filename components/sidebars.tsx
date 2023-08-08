@@ -4,7 +4,7 @@ import { Epilogue, Montserrat } from "next/font/google"
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import { FaToolbox } from "react-icons/fa";
 import {
   MessageSquare,
   LayoutDashboard,
@@ -17,7 +17,7 @@ import {
   Bookmark
 } from "lucide-react";
 import FreeCounter from "./free-counter";
-import Loading from "@/app/loading";
+
 
 
 const font = Montserrat({
@@ -68,10 +68,10 @@ const routes = [
     color: "text-rose-700"
   },
   {
-    label: "BookMark",
-    icon: Bookmark,
+    label: "Ai Toolbox",
+    icon: FaToolbox,
     href: "/bookmarks",
-    color: "text-pink-500"
+    color: "text-white"
   },
   
   {

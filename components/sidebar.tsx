@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BsLayoutSidebarInset, BsLayoutSidebarInsetReverse } from "react-icons/bs";
-
+import { FaToolbox } from "react-icons/fa";
 import {
   MessageSquare,
   LayoutDashboard,
@@ -74,10 +74,10 @@ const routes = [
     color: "text-rose-700"
   },
   {
-    label: "BookMark",
-    icon: Bookmark,
+    label: "Ai Toolbox",
+    icon: FaToolbox,
     href: "/bookmarks",
-    color: "text-pink-500"
+    color: "text-white"
   },
 
   {
