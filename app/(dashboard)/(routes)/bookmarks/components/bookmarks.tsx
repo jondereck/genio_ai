@@ -40,7 +40,7 @@ export const Bookmark = ({ data
           <div>
           <Link href={item.description}>
           <CardHeader className="flex items-center  justify-center text-center text-muted-foreground"> 
-            <div className="relative w-16 h-16">
+            <div className="relative w-32 h-32">
               <Image
                 fill
                 src={item.src}
@@ -57,7 +57,7 @@ export const Bookmark = ({ data
           
           <CardFooter className="flex items-center justify-between text-sm text-muted-foreground">
             <p className="text-sm lowercase">
-              {item.categoryId}
+             {/* //todo */}
             </p>
            
             <div className="flex items-center">

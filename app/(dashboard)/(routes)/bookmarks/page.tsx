@@ -46,9 +46,9 @@ const BookmarksPage = async ({
         bgColor="bg-gradient-to-r from-pink-500 to-purple-500"
       />
       <BookmarkNavPage/>
-      <div className="w-full overflow-x-auto space-x-2 flex p-1">
+      
          <Categories  data={categories}/>
-      </div>
+   
      
       <Bookmark  data={data}/>
  
