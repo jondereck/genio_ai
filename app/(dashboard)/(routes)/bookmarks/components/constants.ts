@@ -13,4 +13,8 @@ export const formSchema = z.object({
   categoryId: z.string().min(1, {
     message: "Category is required",
   }),
+  tags: z.string().min(1, {
+    message: "Tags is required",
+  }),
+
 });

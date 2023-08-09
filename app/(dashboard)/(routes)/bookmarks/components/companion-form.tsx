@@ -46,6 +46,8 @@ export const BookmarkForm = ({
       description: "",
       src: "",
       categoryId: undefined,
+      tags: "",
+      
     }
 
   })
@@ -166,7 +168,7 @@ export const BookmarkForm = ({
                         <SelectValue defaultValue={field.value} placeholder="Select a category" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent  className="flex h-32 overflow-auto">
                       {categories.map((category) => (
                         <SelectItem key={category.id} value={category.id}>{category.name}</SelectItem>
                       ))}
@@ -178,6 +180,28 @@ export const BookmarkForm = ({
                   <FormMessage />
                 </FormItem>
               )}
+            />
+            <FormField 
+              control={form.control}
+              name="tags"
+              render={({ field }) => (
+                <FormItem className="col-span-2 md:col-span-1">
+                  <FormLabel>Tags</FormLabel>
+                  <FormControl>
+                    <Input className="bg-background" 
+                      disabled={isLoading}
+                      placeholder="Tags"
+                      {...field}
+                    
+                    />
+                  </FormControl> 
+                  <FormMessage/>
+                    <FormDescription>
+                      Tags 
+                    </FormDescription>
+                </FormItem>
+              )}
+            
             />
           </div>
       

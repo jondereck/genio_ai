@@ -14,18 +14,24 @@ const SearchInput = () => {
 
   const categoryId = searchParams.get("categoryId");
   const name = searchParams.get("name");
+  const tags = searchParams.get("tags")
 
   const [value, setValue] = useState(name || "");
   const debounceValue = useDebounce<string>(value, 500);
 
+  const [tagValue, setTagValue ] = useState(tags || "");
+  const debounceTagValue = useDebounce<string>(tagValue, 500);
+
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setValue(e.target.value);
+    setTagValue(e.target.value);
   }
 
   useEffect(() => {
     const query = {
       name: debounceValue,
-      categoryId: categoryId
+      categoryId: categoryId,
+      tags: debounceTagValue,
     };
 
     const url = qs.stringifyUrl({

@@ -12,6 +12,7 @@ interface BookmarksPageProps  {
   searchParams: {
     categoryId: string;
     name: string;
+    tags: string
   }
 }
 
@@ -24,6 +25,9 @@ const BookmarksPage = async ({
       categoryId: searchParams.categoryId,
       name: {
         search: searchParams.name
+      },
+      tags: {
+        search: searchParams.tags
       }
      
     }, 

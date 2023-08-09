@@ -2,7 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 
 const db = new PrismaClient();
 
-async function main() {
+async function bookmarksCategory() {
   try {
     await db.bookmarksCategory.createMany({
       data: [
@@ -12,7 +12,7 @@ async function main() {
         { "name": "Portable Apps" },
         { "name": "AI Detection" },
         { "name": "Generative Video" },
-        { "name": "Text-to-Voice" },
+        { "name": "Text to Voice" },
         { "name": "Video Generation" },
         { "name": "Productivity" },
         { "name": "AI Tools" },
@@ -29,8 +29,36 @@ async function main() {
   }
 };
 
-main();
+bookmarksCategory();
 
+
+
+async function alterCategory() {
+  try {
+    await db.category.createMany({
+      data: [
+     
+          { "name": "Celebrities" },
+          { "name": "Games" },
+          { "name": "Historical Figures" },
+          { "name": "Movies & TV" },
+          { "name": "Musicians" },
+          { "name": "Mythical Creature" },
+          { "name": "Philosophy" },
+          { "name": "Scientists" },
+          { "name": "Superheroes" },
+          { "name": "Fictional Characters" }
+   
+      ]
+    })
+  } catch (error) {
+    console.error("Error seeding default categories", error);
+  } finally {
+    await db.$disconnect();
+  }
+};
+
+alterCategory();
 // delete
 
 // async function main() {

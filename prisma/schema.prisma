@@ -83,6 +83,7 @@ model BookmarksCategory {
   bookmarks Bookmarks[]
 }
 
+
 model Bookmarks {
   id String  @id @default(uuid())
 
@@ -94,14 +95,13 @@ model Bookmarks {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt 
   
-
- 
   categoryId  String
-
   category    BookmarksCategory @relation(fields: [categoryId], references: [id])
+
+  tags        String  @db.Text()
  
 
   @@index([categoryId])
-  @@fulltext([name])
+  @@fulltext([name, tags])
 
 }
