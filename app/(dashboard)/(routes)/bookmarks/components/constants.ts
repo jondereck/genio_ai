@@ -13,8 +13,11 @@ export const formSchema = z.object({
   categoryId: z.string().min(1, {
     message: "Category is required",
   }),
-  tags: z.string().min(1, {
-    message: "Tags is required",
+  tags: z.string().refine((value) => {
+    const tags = value.split(',').map(tag => tag.trim());
+    return tags.length >= 2 && !tags.includes('');
+  }, {
+    message: "Tags should have at least two non-empty words separated by commas",
   }),
 
 });

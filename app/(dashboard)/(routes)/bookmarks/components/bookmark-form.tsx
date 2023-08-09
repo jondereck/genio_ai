@@ -24,6 +24,7 @@ import useProModal from "@/hooks/use-pro-modal";
 import BookmarkNavPage from "@/components/bookmarks-page";
 
 
+
 interface BookmarkFormProps {
   initialData: Bookmarks | null;
   categories: BookmarksCategory[];
@@ -36,7 +37,7 @@ export const BookmarkForm = ({
   categories,
 
 }: BookmarkFormProps) => {
-
+  const initialTags = ["jon", "teo"];
   const router = useRouter();
   const proModal = useProModal();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -194,6 +195,7 @@ export const BookmarkForm = ({
                       {...field}
                     
                     />
+                    
                   </FormControl> 
                   <FormMessage/>
                     <FormDescription>
@@ -203,6 +205,7 @@ export const BookmarkForm = ({
               )}
             
             />
+
           </div>
       
           <div className="w-full flex justify-center">

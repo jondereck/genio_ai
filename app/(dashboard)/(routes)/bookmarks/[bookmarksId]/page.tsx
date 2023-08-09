@@ -1,5 +1,5 @@
 import prismadb from "@/lib/prismadb";
-import { BookmarkForm } from "../components/companion-form";
+import { BookmarkForm } from "../components/bookmark-form";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
 
 interface  BookmarkIdPageProps {
