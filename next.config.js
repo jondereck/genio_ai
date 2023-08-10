@@ -13,7 +13,8 @@ const nextConfig = {
     domains: [
       "oaidalleapiprodscus.blob.core.windows.net",
       "res.cloudinary.com",
-      "sb.kaleidousercontent.com"
+      "sb.kaleidousercontent.com",
+      "cdn.icon-icons.com"
     ]
   }
 }

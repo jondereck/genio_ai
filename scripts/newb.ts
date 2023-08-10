@@ -1,41 +1,79 @@
 
+// async function bookmarksCategory() {
+//   try {
+//     await db.bookmarksCategory.createMany({
+//       data: [
 
-async function newBookmarks() {
-  try {
-    const existingCategory = await db.bookmarksCategory.findFirst({
-      where: {
-   
-        name: "Automation",
-      }
-    });
-
-    if (!existingCategory) {
-      console.error("Category does not exist.")
-      return;
-    }
+//         { "name": "Graphic Design" },
+//         // { "name": "Conversational AI" },
+//         { "name": "Portable Apps" },
+//         { "name": "AI Detection" },
+//         { "name": "Generative Video" },
+//         { "name": "Text to Voice" },
+//         { "name": "Video Generation" },
+//         { "name": "Productivity" },
+//         { "name": "AI Tools" },
+//         { "name": "Automation" }
 
 
-    await db.bookmarks.createMany({
 
-      data: [
-        {
-          id: uuidv4(),
-          src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
-          name: "Remove bg",
-          description: "https://www.remove.bg/",
-          userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-          tags: "image, background eraser, bg eraser",
-          categoryId: existingCategory.id
-        },
-      ]
-    });
+//       ]
+//     })
+//   } catch (error) {
+//     console.error("Error seeding default categories", error);
+//   } finally {
+//     await db.$disconnect();
+//   }
+// };
 
-    console.log("New bookmarks created.")
-  } catch (error) {
-    console.error("Error creating new Bookmarks", error)
-  } finally {
-    await db.$disconnect
-  }
-};
+// bookmarksCategory();
 
-newBookmarks();
+
+
+// async function alterCategory() {
+//   try {
+//     await db.category.createMany({
+//       data: [
+
+//           { "name": "Celebrities" },
+//           { "name": "Games" },
+//           { "name": "Historical Figures" },
+//           { "name": "Movies & TV" },
+//           { "name": "Musicians" },
+//           { "name": "Mythical Creature" },
+//           { "name": "Philosophy" },
+//           { "name": "Scientists" },
+//           { "name": "Superheroes" },
+//           { "name": "Fictional Characters" }
+
+//       ]
+//     })
+//   } catch (error) {
+//     console.error("Error seeding default categories", error);
+//   } finally {
+//     await db.$disconnect();
+//   }
+// };
+
+// alterCategory();
+// delete
+
+// async function main() {
+//   try {
+
+//     const categoriesToDelete = ["AI Tools"]
+//     await db.bookmarksCategory.deleteMany({
+//      where: {
+//         name: {
+//           in: categoriesToDelete
+//         }
+//      }
+//     })
+//   } catch (error) {
+//     console.error("Error seeding default categories", error);
+//   } finally {
+//     await db.$disconnect();
+//   }
+// };
+
+// main();
