@@ -12,7 +12,8 @@ const nextConfig = {
   images: {
     domains: [
       "oaidalleapiprodscus.blob.core.windows.net",
-      "res.cloudinary.com"
+      "res.cloudinary.com",
+      "sb.kaleidousercontent.com"
     ]
   }
 }
