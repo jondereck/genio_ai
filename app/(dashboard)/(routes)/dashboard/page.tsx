@@ -26,7 +26,7 @@ const tools = [
     href: "/conversation",
   },
   {
-    label: "Alter Ai Generator",
+    label: "Alter Ai Companion",
     icon: VenetianMask,
     color: "text-amber-500",
     bgColor: "bg-amber-500/10",
@@ -65,7 +65,7 @@ const tools = [
     icon: FaToolbox,
     href: "/bookmarks",
     bgColor: "bg-pink-500/10",
-    color: "text-black"
+    color: "text-pink-500"
   },
   
 

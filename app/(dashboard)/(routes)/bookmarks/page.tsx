@@ -50,10 +50,7 @@ const BookmarksPage = async ({
         bgColor="bg-gradient-to-r from-pink-500 to-purple-500"
       />
       <BookmarkNavPage/>
-      
-         <Categories  data={categories}/>
-   
-     
+      <Categories  data={categories}/>
       <Bookmark  data={data}/>
  
     </div>

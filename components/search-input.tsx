@@ -41,7 +41,7 @@ const SearchInput = () => {
 
     return router.push(url)
 
-  },[debounceValue, router, categoryId])
+  },[debounceValue, debounceTagValue, router, categoryId])
 
   return (  
     <div className="relative w-full">

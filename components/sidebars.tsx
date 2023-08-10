@@ -38,7 +38,7 @@ const routes = [
     color: "text-green-700"
   },
   {
-    label: "Alter Ai Generator",
+    label: "Alter Ai Companion",
     icon: VenetianMask,
     href: "/alter",
     color: "text-amber-500"

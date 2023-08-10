@@ -8,7 +8,7 @@ async function bookmarksCategory() {
       data: [
      
         { "name": "Graphic Design" },
-        { "name": "Conversational AI" },
+        // { "name": "Conversational AI" },
         { "name": "Portable Apps" },
         { "name": "AI Detection" },
         { "name": "Generative Video" },

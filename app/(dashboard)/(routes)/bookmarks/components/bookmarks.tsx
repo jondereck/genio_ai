@@ -6,7 +6,7 @@ import Empty from "../../../../../components/Empty";
 import { Card, CardFooter, CardHeader } from "../../../../../components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-import { LinkIcon } from "lucide-react";
+import { LinkIcon, Tag } from "lucide-react";
 
 import BookmarkHeader from "./bookmark-header";
 
@@ -48,7 +48,7 @@ export const Bookmark = ({ data
                 className=" border-solid border-2 rounded-xl object-cover"
               />
             </div>
-              <p className="font-bold">
+              <p className=" text-sm lg:text-lg font-bold whitespace-nowrap">
                 {item.name}
               </p>
           </CardHeader>
@@ -56,10 +56,12 @@ export const Bookmark = ({ data
           </div>
           
           <CardFooter className="flex items-center justify-between text-sm text-muted-foreground">
+            <div className="flex items-center justify-between ">
+             <Tag className="w-3 h-3 mr-2"/> 
             <p className="text-sm lowercase">
-             {/* //todo */}
+            {item.tags && item.tags.length > 0 && item.tags.split(' ')[0]}...
             </p>
-           
+            </div>
             <div className="flex items-center">
               <LinkIcon className="w-3 h-3 mr-1" />
               <button
