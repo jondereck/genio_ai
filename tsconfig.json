@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/provider/sidebar-open.js", "components/provider/sidebar-open.jsx", "components/provider/sidebar-open.js", "components/provider/sidebar-open.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/provider/sidebar-open.js", "components/provider/sidebar-open.jsx", "components/provider/sidebar-open.js", "components/provider/sidebar-open.ts", "scripts/seeds.js", "scripts/seeds.js"],
   "exclude": ["node_modules"]
 }
