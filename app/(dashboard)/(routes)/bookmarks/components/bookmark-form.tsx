@@ -169,7 +169,7 @@ export const BookmarkForm = ({
                         <SelectValue defaultValue={field.value} placeholder="Select a category" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent  className="flex h-32 overflow-auto">
+                    <SelectContent  className="flex h-52 overflow-auto">
                       {categories.map((category) => (
                         <SelectItem key={category.id} value={category.id}>{category.name}</SelectItem>
                       ))}

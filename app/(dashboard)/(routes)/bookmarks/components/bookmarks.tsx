@@ -39,13 +39,13 @@ export const Bookmark = ({ data
           <BookmarkHeader  bookmarks={item}/>
           <div>
           <Link href={item.description}>
-          <CardHeader className="flex items-center  justify-center text-center text-muted-foreground"> 
-            <div className="relative w-32 h-32">
+          <CardHeader className="flex items-center   justify-center text-center text-muted-foreground"> 
+            <div className="relative  my-2 w-32 h-32">
               <Image
                 fill
                 src={item.src}
                 alt="alter"
-                className=" border-solid border-2 rounded-xl object-cover"
+                className="   border-solid border-2 rounded-xl object-cover"
               />
             </div>
               <p className=" text-sm lg:text-lg font-bold whitespace-nowrap">

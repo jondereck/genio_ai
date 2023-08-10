@@ -24,6 +24,7 @@ import FreeCounter from "./free-counter";
 import Loading from "@/app/loading";
 import { Button } from "./ui/button";
 import { useClientContext } from "./provider/sidebar-open";
+import { TooltipTrigger, Tooltip, TooltipContent, TooltipProvider } from "./ui/tooltip";
 
 
 const font = Montserrat({
@@ -103,7 +104,7 @@ const Sidebar = ({
   isSidebarOpen
 }: SidebarProps) => {
   const pathname = usePathname();
-  const {useClientOpen, setUseClientOpen } = useClientContext();
+  const { useClientOpen, setUseClientOpen } = useClientContext();
   const [isLargeScreen, setIsLargeScreen] = useState(true);
 
   useEffect(() => {
@@ -133,7 +134,7 @@ const Sidebar = ({
   return (
     <>
       {isLargeScreen && (
-        <div className={`flex h-screen ${!useClientOpen ? "w-0": "w-72"  }`}>
+        <div className={`flex h-screen ${!useClientOpen ? "w-0" : "w-72"}`}>
           {/* Main Content */}
           {isLargeScreen && (
             <div
@@ -141,31 +142,42 @@ const Sidebar = ({
                 } transition duration-310`}
             >
               <div className="px-4 py-2 flex-1">
-               <div className="flex items-start">
-                <Link href="/dashboard" className="flex items-center 
+                <div className="flex items-start">
+                  <Link href="/dashboard" className="flex items-center 
                  pl-3 mb-14">
-                  <div className="relative w-10 h-10 mr-4">
-                    <Image
-                      fill
-                      alt="Logo"
-                      src="/nlogo.png"
-                    />
-                  </div>
-                  <h1 className={cn("text-2xl font-bold", font.className)} >
-                    GenioAi
-                  </h1>
-                  
-                </Link>
-                <div className="pl-4">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={handleUseClientClick}
-                    >
-                      <BsLayoutSidebarInset size={25} />
-                    </Button>
-                  </div>
-                  </div>
+                    <div className="relative w-10 h-10 mr-4">
+                      <Image
+                        fill
+                        alt="Logo"
+                        src="/nlogo.png"
+                      />
+                    </div>
+                    <h1 className={cn("text-2xl font-bold", font.className)} >
+                      GenioAi
+                    </h1>
+
+                  </Link>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div className="pl-4">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={handleUseClientClick}
+                          >
+                            <BsLayoutSidebarInset size={25} />
+                          </Button>
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Close Sidebar</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+
+
+                </div>
 
                 <div className="space-y-1">
                   {routes.map((route) => (
@@ -198,11 +210,21 @@ const Sidebar = ({
           <div className={`flex flex-col flex-1 ${useClientOpen ? 'ml-[200px]' : 'ml-0'}`}>
             {/* "Open Sidebar" button section */}
             {isLargeScreen && !useClientOpen && (
-              <button onClick={handleUseClientClick}>
-                <div className="fixed top-4 left-4 p-3 rounded-md bg-slate-500 text-white">
-                  <BsLayoutSidebarInsetReverse size={25} />
-                </div>
-              </button>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <button onClick={handleUseClientClick}>
+                      <div className="absolute top-4 left-4 p-3 rounded-md bg-background hover:shadow-lg">
+                        <BsLayoutSidebarInsetReverse size={25} />
+                      </div>
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    Open Sidebar
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
             )}
           </div>
 
