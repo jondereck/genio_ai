@@ -11,7 +11,7 @@ const SettingsPage = async () => {
   
 
   return (
-    <div className="">
+    <>
       <Heading
         title="Settings"
         description="Manage account settings."
@@ -20,7 +20,7 @@ const SettingsPage = async () => {
         bgColor="bg-gray-400/10"
 
       />
-      <div className="p-4 lg:px-8 space-y-4 ">
+      <div className="p-8 space-y-4 ">
         <div className="text-muted-foreground text-sm">
           {isPro ? (
             <p>
@@ -38,11 +38,12 @@ const SettingsPage = async () => {
             plan
           </p>}
         </div>
-        <div className="flex space-x-4 ">
-          
+        <div className="flex py-2 space-x-2">   
         <SubscriptionButton 
           isPro={isPro}
-        />
+        /></div>
+
+        <div className="flex flex-wrap justify-start items-center gap-2   ">
         <Button variant="secondary">
             <Link href="https://platform.openai.com/account/usage">
               Check OpenAi
@@ -52,11 +53,13 @@ const SettingsPage = async () => {
             <Link href="https://replicate.com/account/billing#limits">
               Check Replicate
             </Link>
-        </Button>
+        </Button>  
         </div>
-      </div>
+        
+        </div>
+   
 
-    </div>
+    </>
   );
 }
 

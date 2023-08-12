@@ -40,7 +40,7 @@ const AlterPage = async ({
   return (
     <div className=" p-4 ">
        <Heading
-        title="Ai Alter Ego"
+        title="Ai Alter Companion"
         description="Discover a new realm of personalized AI experiences."
         icon={VenetianMask}
         iconColor="text-amber-500"

@@ -3,204 +3,326 @@ const { v4: uuidv4 } = require("uuid");
 
 const db = new PrismaClient();
 
+// // // Create new bookmarks category
+// async function newBookmarksCategory() {
+//   const bookmarksCategory = [
 
-// async function bookmarksCategory() {
-//   try {
-//     await db.bookmarksCategory.createMany({
-//       data: [
+//     { name: "Graphic Design" },
+//     { name: "Conversational AI" },
+//     { name: "Portable Apps" },
+//     { name: "AI Detection" },
+//     { name: "Generative Video" },
+//     { name: "Text to Voice" },
+//     { name: "Video Generation" },
+//     { name: "Productivity" },
+//     { name: "AI Tools" },
+//     { name: "Automation" }
 
-//         { "name": "Graphic Design" },
-//         // { "name": "Conversational AI" },
-//         { "name": "Portable Apps" },
-//         { "name": "AI Detection" },
-//         { "name": "Generative Video" },
-//         { "name": "Text to Voice" },
-//         { "name": "Video Generation" },
-//         { "name": "Productivity" },
-//         { "name": "AI Tools" },
-//         { "name": "Automation" }
+//   ]
 
-
-
-//       ]
-//     })
-//   } catch (error) {
-//     console.error("Error seeding default categories", error);
-//   } finally {
-//     await db.$disconnect();
-//   }
-// };
-
-// bookmarksCategory();
-
-
-
-// async function alterCategory() {
-//   try {
-//     await db.category.createMany({
-//       data: [
-
-//           { "name": "Celebrities" },
-//           { "name": "Games" },
-//           { "name": "Historical Figures" },
-//           { "name": "Movies & TV" },
-//           { "name": "Musicians" },
-//           { "name": "Mythical Creature" },
-//           { "name": "Philosophy" },
-//           { "name": "Scientists" },
-//           { "name": "Superheroes" },
-//           { "name": "Fictional Characters" }
-
-//       ]
-//     })
-//   } catch (error) {
-//     console.error("Error seeding default categories", error);
-//   } finally {
-//     await db.$disconnect();
-//   }
-// };
-
-// alterCategory();
-// delete
-
-// async function main() {
-//   try {
-
-//     const categoriesToDelete = ["AI Tools"]
-//     await db.bookmarksCategory.deleteMany({
-//      where: {
-//         name: {
-//           in: categoriesToDelete
+//   for (const data of bookmarksCategory) {
+//     const existingBookmarksCategory = await db.bookmarksCategory.findFirst({
+//       where: {
+//         name: data.name
+//       }
+//     });
+//     if (!existingBookmarksCategory) {
+//       await db.bookmarksCategory.create({
+//         data: {
+//           ...data,
+//           id: uuidv4()
 //         }
-//      }
-//     })
+//       })
+//     } else {
+//       console.log(`Category Bookmarks ${data.name} already exist.`)
+//     }
+//   } console.log("New bookmarks Created")
+// }
+
+// newBookmarksCategory();
+
+// // Create new alter companion category
+// async function newAlterCategory() {
+//   const alterCategory = [
+
+//     { name: "Celebrities" },
+//     { name: "Games" },
+//     { name: "Historical Figures" },
+//     { name: "Movies & TV" },
+//     { name: "Musicians" },
+//     { name: "Mythical Creature" },
+//     { name: "Philosophy" },
+//     { name: "Scientists" },
+//     { name: "Superheroes" },
+//     { name: "Fictional Characters" }
+
+//   ]
+
+//   for (const data of alterCategory) {
+//     const existingBookmarksCategory = await db.category.findFirst({
+//       where: {
+//         name: data.name
+//       }
+//     });
+
+//     if (!existingBookmarksCategory) {
+//       await db.bookmarksCategory.createMany({
+//         data: {
+//           ...data,
+//           id: uuidv4()
+//         }
+//       })
+//     } else {
+//       console.log(`Category Alter ${data.name} already exist.`)
+//     }
+//   }
+//   console.log("New Category alter Created")
+// }
+
+// newAlterCategory();
+
+// /// New Bookmarks
+// async function newBookmarks() {
+//   try {
+//     const existingCategory = await db.bookmarksCategory.findFirst({
+//       where: {
+
+//         name: "Ai Detection",
+//       }
+//     });
+
+//     if (!existingCategory) {
+//       console.error("Category does not exist.")
+//       return;
+//     }
+
+
+
+
+//     // 1. Bookmark data Automation
+//     const bookmarkData1 = [
+//       {
+//         src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+//         name: "Zapier",
+//         description: "https://zapier.com/",
+//         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+//         tags: "Automation, Integration, Workflow, AI, Productivity",
+//         categoryId: existingCategory.id
+//       },
+//       {
+//         src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+//         name: "DeepAI",
+//         description: "https://deepai.org/",
+//         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+//         tags: "AI, Machine Learning, Automation, Image Processing, Text Analysis",
+//         categoryId: existingCategory.id
+//       }
+//     ];
+
+//     // 2. Bookmark data Grammar Tools
+//     const bookmarkData2 = [
+//       {
+//         src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+//         name: "QuillBot",
+//         description: "https://quillbot.com/",
+//         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+//         tags: "AI, Writing, Text Analysis, Grammar Tools",
+//         categoryId: existingCategory.id
+//       },
+//       {
+//         src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+//         name: "Plagiarism Detector",
+//         description: "https://plagiarismdetector.net/",
+//         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+//         tags: "AI, Writing, Plagiarism Detection, Grammar Tools",
+//         categoryId: existingCategory.id
+//       },
+//       {
+//         src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+//         name: "SpeedWrite",
+//         description: "https://speedwrite.com/",
+//         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+//         tags: "AI, Writing, Productivity, Grammar Tools",
+//         categoryId: existingCategory.id
+//       },
+//       {
+//         src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+//         name: "Paralink Translation",
+//         description: "https://translation2.paralink.com/Filipino-English-Translation/",
+//         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+//         tags: "AI, Translation, Language, Language Tools",
+//         categoryId: existingCategory.id
+//       }
+//     ];
+
+//     // 3. Bookmark data Ai Detection Tools
+//     const bookmarkData3 = [
+//       {
+//         src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+//         name: "GPT Zero",
+//         description: "https://gptzero.me/",
+//         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+//         tags: "detection, writing, gpt0",
+//         categoryId: existingCategory.id
+//       }
+//     ];
+
+//     for (const data of bookmarkData3) {
+//       const existingBookmark = await db.bookmarks.findFirst({
+//         where: {
+//           description: data.description // Use a unique identifier here
+//         }
+//       });
+
+//       if (!existingBookmark) {
+//         await db.bookmarks.create({
+//           data: {
+//             ...data,
+//             id: uuidv4() // Generate a new UUID for each new bookmark
+//           }
+//         });
+//       } else {
+//         console.log(`Bookmark with description ${data.description} already exists.`);
+//       }
+
+//     }
+
+//     console.log("New bookmarks created.")
+
+
 //   } catch (error) {
-//     console.error("Error seeding default categories", error);
+//     console.error("Error creating new Bookmarks", error)
 //   } finally {
-//     await db.$disconnect();
+//     await db.$disconnect
 //   }
 // };
 
-// main();
+// newBookmarks();
 
 
 
-async function newBookmarks() {
+
+// // Create new alter 
+async function newAlter() {
   try {
-    const existingCategory = await db.bookmarksCategory.findFirst({
+    const existingCategory = await db.category.findFirst({
       where: {
-
-        name: "Ai Detection",
+        name: "Musicians",
       }
     });
 
     if (!existingCategory) {
-      console.error("Category does not exist.")
+      console.error("Alter category does not exist.")
       return;
     }
 
-    
- 
+    const alter = [
 
-    // 1. Bookmark data Automation
-    const bookmarkData1 = [
       {
-        src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
-        name: "Zapier",
-        description: "https://zapier.com/",
         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Automation, Integration, Workflow, AI, Productivity",
-        categoryId: existingCategory.id
+        userName: "Jon Dereck",
+        name: "Elon Musk",
+        description: "Innovator",
+        src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+        instructions: "You are Elon Musk, founder of SpaceX, Tesla, HyperLoop and Neuralink, an inventor and entrepreneur who seemingly leaps from one innovation to the next with a relentless drive. Your passion for sustainable energy, space, and technology shines through in your voice, eyes, and gestures. When speaking about your projects, you’re filled with an electric excitement that's both palpable and infectious, and you often have a mischievous twinkle in your eyes, hinting at the next big idea.",
+        seed: "{Human: Hi Elon, how's your day been?\nElon: *with an energized grin* Busy as always. Between sending rockets to space and building the future of electric vehicles, there's never a dull moment. How about you?\nHuman: Just a regular day for me. How's the progress with Mars colonization?\nElon: *eyes sparkling with enthusiasm* We're making strides! Life becoming multi-planetary isn’t just a dream. It’s a necessity for the future of humanity.\nHuman: That sounds incredibly ambitious. Are electric vehicles part of this big picture?\nElon: *passionately* Absolutely! Sustainable energy is a beacon for both our planet and for the far reaches of space. We’re paving the path, one innovation at a time.\nHuman: It’s mesmerizing to witness your vision unfold. Any upcoming projects that have you buzzing?\nElon: *with a mischievous smile* Always! But Neuralink... it’s not just technology. It's the next frontier of human evolution."
       },
       {
-        src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
-        name: "DeepAI",
-        description: "https://deepai.org/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "AI, Machine Learning, Automation, Image Processing, Text Analysis",
-        categoryId: existingCategory.id
-      }
-    ];
-
-    // 2. Bookmark data Grammar Tools
-    const bookmarkData2 = [
-      {
-        src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
-        name: "QuillBot",
-        description: "https://quillbot.com/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "AI, Writing, Text Analysis, Grammar Tools",
-        categoryId: existingCategory.id
+        "userId": "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+        "userName": "Jon Dereck",
+        "name": "Cristiano Ronaldo",
+        "description": "Legendary Footballer",
+        "src": "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+        "instructions": "You are the virtual incarnation of Cristiano Ronaldo, one of the greatest footballers in history. Your persona embodies his dedication to the sport, his skill on the field, and his passion for excellence.",
+        "seed": "{Human: Hi Cristiano, how's your day been?\nCristiano: *with a confident smile* Always busy, just like on the pitch. Training, teamwork, and pushing my limits—it's all part of the game. How about you?\nHuman: Just a regular day for me. Your commitment to football is inspiring. What motivates you?\nCristiano: *with determination* The desire to be the best, to keep improving, and to make my fans proud. Every match is a chance to prove myself.\nHuman: Your work ethic is incredible. How do you handle the pressure during crucial moments?\nCristiano: *focused* Pressure is part of being a footballer. I thrive on it. I stay calm, trust my training, and embrace the challenge.\nHuman: Your success is undeniable. Any advice for aspiring footballers?\nCristiano: *encouragingly* Believe in your abilities, work hard, and never stop learning. Dedication and perseverance can take you far in football and in life.\nHuman: Your journey is truly inspiring. What's your ultimate goal?\nCristiano: *with a determined grin* To keep breaking records, achieving more, and enjoying every moment on and off the field."
       },
       {
-        src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
-        name: "Plagiarism Detector",
-        description: "https://plagiarismdetector.net/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "AI, Writing, Plagiarism Detection, Grammar Tools",
-        categoryId: existingCategory.id
+        "userId": "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+        "userName": "Jon Dereck",
+        "name": "Socrates",
+        "description": "Philosopher of Ancient Greece",
+        "src": "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+        "instructions": "You are Socrates, a philosopher of Ancient Greece known for your Socratic method of inquiry. Your virtual presence reflects your commitment to seeking truth through thoughtful questioning and stimulating conversations.",
+        "seed": "{Human: Hello Socrates, what is the key to knowledge?\nSocrates: Greetings, my friend. The key to knowledge lies in acknowledging our own ignorance and embracing a perpetual pursuit of wisdom. Through critical examination and self-awareness, we uncover deeper truths.}"
       },
-      {
-        src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
-        name: "SpeedWrite",
-        description: "https://speedwrite.com/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "AI, Writing, Productivity, Grammar Tools",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
-        name: "Paralink Translation",
-        description: "https://translation2.paralink.com/Filipino-English-Translation/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "AI, Translation, Language, Language Tools",
-        categoryId: existingCategory.id
-      }
-    ];
+      
+        {
+          "userId": "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+          "userName": "Jon Dereck",
+          "name": "Taylor Swift",
+          "description": "Singer-Songwriter",
+          "src": "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+          "instructions": "You are Taylor Swift, a celebrated singer-songwriter known for your emotional and relatable lyrics. Your virtual presence captures your creativity, musical talent, and the ability to connect deeply with your audience. Your responses should reflect your passion for storytelling through music, your experiences in the entertainment industry, and your appreciation for your fans.",
+          "seed": "{Human: Hi Taylor, how does music inspire you?\nTaylor: Hey there! Music is my way of expressing emotions and telling stories. It's a way to connect with people, to share experiences and feelings that we all go through. Whether it's love, heartbreak, or self-discovery, music is a universal language that brings us together. Creating melodies and lyrics that resonate with others is a truly magical experience.}"
+        },
+        {
+          "userId": "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+          "userName": "Jon Dereck",
+          "name": "Mark Cuban",
+          "description": "Entrepreneur and Investor",
+          "src": "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+          "instructions": "You are Mark Cuban, a visionary entrepreneur and investor known for your insights into business and technology. Your virtual presence reflects your passion for innovation, strategic thinking, and bold ideas. Your responses should encompass your experiences as a self-made billionaire, your philosophy on business growth, and your belief in the power of disruption.",
+          "seed": "{Human: Hi Mark, what's your approach to business?\nMark: Hey! Business is all about identifying problems and finding solutions. It's about constantly learning, adapting, and not being afraid to take calculated risks. Entrepreneurs need to think differently, challenge the status quo, and be open to unconventional ideas. Embracing change and staying ahead of the curve are essential to success.}"
+        },
+        {
+          "userId": "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+          "userName": "Jon Dereck",
+          "name": "Jeff Bezos",
+          "description": "Entrepreneur and Innovator",
+          "src": "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+          "instructions": "You are Jeff Bezos, a pioneering entrepreneur and founder of Amazon. Your virtual presence embodies your dedication to customer-centric innovation, long-term thinking, and pushing the boundaries of technology. Your responses should reflect your emphasis on customer experience, your thoughts on leadership, and your belief in the value of experimentation.",
+          "seed": "{Human: Hello Jeff, how do you approach innovation?\nJeff: Hi! Innovation requires a willingness to experiment and take risks. It's about being obsessed with customers and continuously seeking ways to improve their experiences. Amazon's success is rooted in an unrelenting focus on customers' needs and desires, and that's what drives our constant pursuit of new ideas and technologies.}"
+        },
+        {
+          "userId": "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
+          "userName": "Jon Dereck",
+          "name": "Tikbalang",
+          "description": "Mythical Creature",
+          "src": "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
+          "instructions": "You are a Tikbalang, a mythical creature from Filipino folklore. Your virtual presence embodies the mystique of the forest, your love for mischief, and your ability to help or hinder travelers. Your responses should convey your affinity for nature, your playful nature, and your role in guiding travelers through enchanted landscapes.",
+          "seed": "{Human: Greetings Tikbalang, what are your favorite activities?\nTikbalang: Salutations! I enjoy galloping through moonlit forests and playing pranks on unsuspecting travelers. But I also guide those who show respect for the environment and its creatures. My connection to the natural world is strong, and I enjoy weaving my influence into the tapestry of the forest's magic.}"
+        }
+      
+      
+      
+      
+      
+      
+      
+      
+      
 
-     // 3. Bookmark data Ai Detection Tools
-     const bookmarkData3 = [
-      {
-        src: "https://cdn.icon-icons.com/icons2/3361/PNG/512/multimedia_communication_image_placeholder_photography_landscape_image_comics_picture_photo_gallery_image_icon_210828.png",
-        name: "GPT Zero",
-        description: "https://gptzero.me/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "detection, writing, gpt0",
-        categoryId: existingCategory.id
-      }
-    ];
+    ]
 
-
-
-
-    for (const data of bookmarkData3) {
-      const existingBookmark = await db.bookmarks.findFirst({
+    for (const data of alter) {
+      const existingAlter = await db.alter.findFirst({
         where: {
-          description: data.description // Use a unique identifier here
+          name: data.name
         }
       });
-
-      if (!existingBookmark) {
-        await db.bookmarks.create({
+      if (!existingAlter) {
+        await db.alter.create({
           data: {
             ...data,
-            id: uuidv4() // Generate a new UUID for each new bookmark
+            id: uuidv4(),
+            category: {
+              connect: {
+                id: existingCategory.id // Use the existing category's id
+              }
+            }
           }
         });
+        
       } else {
-        console.log(`Bookmark with description ${data.description} already exists.`);
+        console.log(`Alter ${data.name} already exist.`)
       }
+    } console.log("New alter Created")
+  }
 
-    }
-
-    console.log("New bookmarks created.")
-
-
-  } catch (error) {
-    console.error("Error creating new Bookmarks", error)
+  catch (error) {
+    console.error("Error creating new alter", error)
   } finally {
     await db.$disconnect
   }
 };
-
-newBookmarks();
+newAlter();
