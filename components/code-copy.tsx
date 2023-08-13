@@ -8,15 +8,11 @@ interface CodeWithCopyProps {
 
 export const CodeWithCopy = ({ code }: CodeWithCopyProps) => {
   const [copied, setCopied] = useState(false);
-
-  const copyCodeToClipboard = () => {
-    const codeBlock = document.querySelector("pre code");
-    if (codeBlock) {
-      const codeContent = codeBlock.textContent || "";
-      navigator.clipboard.writeText(codeContent);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
+  
+ const copyCodeToClipboard = (codeContent: string) => {
+    navigator.clipboard.writeText(codeContent);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   
@@ -32,7 +28,7 @@ export const CodeWithCopy = ({ code }: CodeWithCopyProps) => {
               <Button 
                 variant="ghost"
                 className="absolute top-2 right-2 text-xs px-2 py-1 bg-background rounded-md hover:bg-gray-100 focus:outline-none"
-                onClick={copyCodeToClipboard}
+                onClick={() => copyCodeToClipboard(props.children as string)} 
               >
                 {copied ? "Copied!" : "Copy"}
               </Button>

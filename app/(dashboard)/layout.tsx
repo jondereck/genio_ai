@@ -19,7 +19,7 @@ const DashboardLayout = async ({
           isPro={isPro}
           apiLimitCount={apiLimitCount}/>
      
-      <main className=" flex-1  ">
+      <main className=" flex-1 md:pl-72 pb-10  w-full h-full">
         <Navbar />
         {children}
       </main> 

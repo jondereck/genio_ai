@@ -134,7 +134,7 @@ const Sidebar = ({
   return (
     <>
       {isLargeScreen && (
-        <div className={`flex h-screen ${!useClientOpen ? "w-0" : "w-72"}`}>
+        <div className={`fixed flex h-screen ${!useClientOpen ? "w-0" : "w-72"}`}>
           {/* Main Content */}
           {isLargeScreen && (
             <div

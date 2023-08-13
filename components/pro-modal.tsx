@@ -82,7 +82,7 @@ const ProModal = () => {
         <DialogHeader>
           <DialogTitle className="flex justify-center items-center flex-col gap-y-4 pb-2">
             <div className="flex items-center gap-x-2 font-bold py-1">
-              Upgrade to GenioAi
+              Upgrade to Genio Ai
               <Badge variant="gold" className="uppercase text-sm py-1">
                 Gold
               </Badge>
@@ -109,21 +109,25 @@ const ProModal = () => {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <div className="grid grid-cols-2 ">
-            <p className="text-lg font-medium" >
-              200/mo
-            </p>
+    
+            
             
             <Button
               disabled={loading}
               onClick={onSubscribe}
               size="lg"
               variant="gold"
-              className="w-full ">
-              Upgrade
+              className="w-full  justify-between flex ">
+                <p className="text-lg font-light  text-background" >
+                ₱ 200/month
+            </p>
+            <div className="flex  justify-center items-center">
+               Upgrade
               <Zap className="w-4 h-4 ml-2 fill-white" />
+            </div>
+             
             </Button>
-          </div>
+        
 
         </DialogFooter>
       </DialogContent>
