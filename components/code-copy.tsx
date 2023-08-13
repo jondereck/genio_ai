@@ -8,13 +8,17 @@ interface CodeWithCopyProps {
 
 export const CodeWithCopy = ({ code }: CodeWithCopyProps) => {
   const [copied, setCopied] = useState(false);
-  
- const copyCodeToClipboard = (codeContent: string) => {
-    navigator.clipboard.writeText(codeContent);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyCodeToClipboard = () => {
+    const codeBlockMatches = code.match(/```([\s\S]+?)```/gm);
+    if (codeBlockMatches) {
+      const codeContent = codeBlockMatches.map(match => match.replace(/```/g, "")).join("\n");
+      if (codeContent) {
+        navigator.clipboard.writeText(codeContent.trim());
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
+    }
   };
-
   
 
   return (
@@ -25,13 +29,13 @@ export const CodeWithCopy = ({ code }: CodeWithCopyProps) => {
           pre: ({ node, ...props }) => (
             <div className="relative overflow-auto w-full md:w-auto my-2 bg-black/10 p-2 rounded-lg">
               <pre {...props} />
-              <Button 
-                variant="ghost"
+              <button 
+              
                 className="absolute top-2 right-2 text-xs px-2 py-1 bg-background rounded-md hover:bg-gray-100 focus:outline-none"
-                onClick={() => copyCodeToClipboard(props.children as string)} 
+                onClick={copyCodeToClipboard}
               >
                 {copied ? "Copied!" : "Copy"}
-              </Button>
+              </button>
             </div>
           ),
           code: ({ node, ...props }) => (
