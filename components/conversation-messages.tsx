@@ -49,6 +49,9 @@ isLoading
       </div>
 
       <CodeWithCopy code={message.content || ""} />
+        <div>
+        
+        </div>
       
     </div>
     
@@ -68,7 +71,7 @@ isLoading
           )}
       </div>
       <div ref={scrollRef}/>
-    
+      <Separator className="mt-10 lg:mt-20 bg-background"/>
     </div>
   );
 };

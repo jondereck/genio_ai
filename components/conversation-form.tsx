@@ -16,7 +16,7 @@ interface ChatFormProps {
   isLoading: boolean;
 }
 
-const ChatForm: React.FC<ChatFormProps> = ({ onSubmit, isLoading }) => {
+export const ConversationForm: React.FC<ChatFormProps> = ({ onSubmit, isLoading }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -90,4 +90,4 @@ const ChatForm: React.FC<ChatFormProps> = ({ onSubmit, isLoading }) => {
   );
 };
 
-export default ChatForm;
+

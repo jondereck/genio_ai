@@ -14,11 +14,10 @@ import useProModal from "@/hooks/use-pro-modal";
 
 import { z } from "zod";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+
 import { Separator } from "@/components/ui/separator";
 import ConversationMessages from "@/components/conversation-messages";
-import ChatForm from "@/components/conversation-form";
+import {ConversationForm} from "@/components/conversation-form";
 
 
 export const ClientPage = () => {
@@ -68,11 +67,8 @@ export const ClientPage = () => {
         iconColor="text-green-700"
         bgColor="bg-green-700/5"
       />
-      <div className="h-full">
       <ConversationMessages isLoading={isLoading} messages={messages} />
-      <Separator className="mt-10 lg:mt-20 bg-background"/>
-      </div>
-      <ChatForm onSubmit={handleSubmit} isLoading={isLoading} />
+      <ConversationForm onSubmit={handleSubmit} isLoading={isLoading} />
     </div>
   );
 };
