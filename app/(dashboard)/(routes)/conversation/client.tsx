@@ -7,17 +7,18 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { ChatCompletionRequestMessage } from "openai";
 
-import { formSchema } from "../constants";
+import { formSchema } from "./constants";
 import Heading from "@/components/Heading";
 import { MessageSquare } from "lucide-react";
 import useProModal from "@/hooks/use-pro-modal";
 
 import { z } from "zod";
-import ConversationMessages from "./conversation-messages";
-import ChatForm from "./chat-form";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Separator } from "@/components/ui/separator";
+import ConversationMessages from "@/components/conversation-messages";
+import ChatForm from "@/components/conversation-form";
 
 
 export const ClientPage = () => {
@@ -69,9 +70,8 @@ export const ClientPage = () => {
       />
       <div className="h-full">
       <ConversationMessages isLoading={isLoading} messages={messages} />
-      <Separator className="mt-5 lg:mt-20 bg-background"/>
+      <Separator className="mt-10 lg:mt-20 bg-background"/>
       </div>
-     
       <ChatForm onSubmit={handleSubmit} isLoading={isLoading} />
     </div>
   );

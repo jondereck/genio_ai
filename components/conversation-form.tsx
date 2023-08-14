@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { formSchema } from "../constants";
+import { formSchema } from "../app/(dashboard)/(routes)/conversation/constants";
 import { z } from "zod";
 import { Separator } from "@/components/ui/separator";
 

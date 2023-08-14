@@ -9,6 +9,7 @@ import { CodeWithCopy } from "@/components/code-copy";
 import Loader from "@/components/Loader";
 import Empty from "@/components/Empty";
 import ChatMessage from "@/app/(chat)/(routes)/chat/[chatId]/components/chat-message";
+import { Separator } from "./ui/separator";
 
 
 interface ConversationMessagesProps {
@@ -48,8 +49,10 @@ isLoading
       </div>
 
       <CodeWithCopy code={message.content || ""} />
+      
     </div>
-  ))}
+    
+  ))} 
         </div>
 
         {isLoading && (
@@ -65,6 +68,7 @@ isLoading
           )}
       </div>
       <div ref={scrollRef}/>
+    
     </div>
   );
 };

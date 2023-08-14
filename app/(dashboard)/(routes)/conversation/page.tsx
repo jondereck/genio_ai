@@ -1,4 +1,4 @@
-import { ClientPage } from "./components/client";
+import { ClientPage } from "./client";
 
 
 
