@@ -10,8 +10,9 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 import Heading from "@/components/Heading";
 import { Code } from "lucide-react";
-import ConversationMessages from "@/components/conversation-messages";
-import { ConversationForm } from "@/components/conversation-form";
+import ConversationMessages from "../conversation/components/conversation-messages";
+import { ConversationForm } from "../conversation/components/chat-form";
+
 
 
 export const ClientPage = () => {
