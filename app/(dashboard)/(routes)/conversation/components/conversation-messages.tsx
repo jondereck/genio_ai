@@ -8,6 +8,7 @@ import BotAvatar from "@/components/bot-avatar";
 import { CodeWithCopy } from "@/components/code-copy";
 import Loader from "@/components/Loader";
 import Empty from "@/components/Empty";
+import ChatMessage from "@/app/(chat)/(routes)/chat/[chatId]/components/chat-message";
 
 
 interface ConversationMessagesProps {
