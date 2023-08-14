@@ -13,18 +13,23 @@ const DashboardLayout = async ({
 
 
   return (
-    <div className="h-full relative">
-      <div className="flex h-full">
-        <Sidebar 
-          isPro={isPro}
-          apiLimitCount={apiLimitCount}/>
-     
-      <main className=" flex-1 md:pl-72 pb-10  w-full h-full">
-        <Navbar />
-        {children}
-      </main> 
-      </div>
+    <div className=" ">
+    <div className="flex h-full">
+      <Sidebar 
+        isPro={isPro}
+        apiLimitCount={apiLimitCount}/>
+      
+      <main className="flex-auto">
+        <div className="ml-auto"> {/* This div will push Navbar to the right */}
+          <Navbar />
+        </div>
+        <div className="overflow-x-auto flex-1  h-screen">
+          {children}
+        </div>
+      </main>
     </div>
+  </div>
+  
   );
 }
 

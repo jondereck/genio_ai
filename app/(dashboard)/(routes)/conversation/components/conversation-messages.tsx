@@ -32,23 +32,23 @@ isLoading
       <div className="space-y-4 mt-4">
      
         <div className="flex flex-col gap-y-4">
-          {messages.map((message) => (
-            <div
-              key={message.content}
-              className={cn(
-                "p-4 md:p-2 lg:p-8 w-full flex items-start gap-x-10  rounded-lg   ",
-                message.role === "user"
-                  ? " border border-black/10  "
-                  : "bg-muted "
-              )}
-            > <div ref={scrollRef}/>
-              <div className="hidden lg:block ">
-                {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-              </div>
-             
-              <CodeWithCopy code={message.content || ""} />
-            </div>
-          ))}
+        {messages.map((message) => (
+    <div
+      key={message.content}
+      className={cn(
+        "p-4 md:p-2 lg:p-8 w-full flex gap-x-10 rounded-2xl",
+        message.role === "user"
+          ? "border border-black/10 items-end justify-end"
+          : "bg-muted items-start"
+      )}
+    >
+      <div className="hidden lg:block">
+        {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
+      </div>
+
+      <CodeWithCopy code={message.content || ""} />
+    </div>
+  ))}
         </div>
 
         {isLoading && (
@@ -63,7 +63,7 @@ isLoading
             />
           )}
       </div>
-      
+      <div ref={scrollRef}/>
     </div>
   );
 };

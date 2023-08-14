@@ -69,7 +69,7 @@ export const ClientPage = () => {
       />
       <div className="h-full">
       <ConversationMessages isLoading={isLoading} messages={messages} />
-      <Separator className="mt-40 bg-background"/>
+      <Separator className="mt-5 lg:mt-20 bg-background"/>
       </div>
      
       <ChatForm onSubmit={handleSubmit} isLoading={isLoading} />

@@ -42,6 +42,7 @@ const ChatForm: React.FC<ChatFormProps> = ({ onSubmit, isLoading }) => {
             rounded-lg
             border
             w-full
+            md:w-1/2
             lg:w-1/2
             justify-center
             items-center
