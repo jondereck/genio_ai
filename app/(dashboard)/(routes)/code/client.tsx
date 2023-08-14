@@ -11,7 +11,7 @@ import axios from "axios";
 import Heading from "@/components/Heading";
 import { Code } from "lucide-react";
 import ConversationMessages from "../conversation/components/conversation-messages";
-import { ConversationForm } from "../conversation/components/chat-form";
+import { ConversationForm } from "../conversation/components/coversation-form";
 
 
 

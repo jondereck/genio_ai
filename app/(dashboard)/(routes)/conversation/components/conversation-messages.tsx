@@ -9,6 +9,7 @@ import { CodeWithCopy } from "@/components/code-copy";
 import Loader from "@/components/Loader";
 import Empty from "@/components/Empty";
 import ChatMessage from "@/app/(chat)/(routes)/chat/[chatId]/components/chat-message";
+import { Separator } from "@/components/ui/separator";
 
 
 interface ConversationMessagesProps {
@@ -50,7 +51,9 @@ isLoading
       <CodeWithCopy code={message.content || ""} />
       
     </div>
+    
   ))}
+    <Separator className="mt-10 lg:mt-20 bg-background"/>
         </div>
 
         {isLoading && (
