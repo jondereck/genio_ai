@@ -37,7 +37,6 @@ export const BookmarkForm = ({
   categories,
 
 }: BookmarkFormProps) => {
-  const initialTags = ["jon", "teo"];
   const router = useRouter();
   const proModal = useProModal();
   const form = useForm<z.infer<typeof formSchema>>({

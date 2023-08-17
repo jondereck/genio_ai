@@ -45,7 +45,7 @@ export const Bookmark = ({ data
                 fill
                 src={item.src}
                 alt="alter"
-                className="   border-solid border-2 rounded-xl object-cover"
+                className="border-solid border-2 rounded-xl object-cover"
               />
             </div>
               <p className=" text-sm lg:text-lg font-bold whitespace-nowrap">

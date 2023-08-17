@@ -9,6 +9,8 @@ import { useUser } from "@clerk/nextjs";
 import { DropdownMenu, DropdownMenuItem,DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { useState } from "react";
+import { DeleteConfirmationModal } from "@/components/deletetion-confirmation";
 
 
 interface ChatHeaderProps {
@@ -25,12 +27,35 @@ export const ChatHeader = ({
 }: ChatHeaderProps) => {
   const router = useRouter();
   const { user } = useUser();
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [ isLoading, setIsLoading ] = useState(false);
+
+  const handleDelete = () => {
+      setShowDeleteConfirmation(true);
+  }
+
+  const confirmDelete = async () => {
+    try {
+      setIsLoading(true);
+      await onDelete();
+    } catch (error) {
+      console.log(error, "Error deleting alter")
+    } finally {
+      setShowDeleteConfirmation(false); 
+     }
+  }
+
+  const cancelDelete = () => {
+    setShowDeleteConfirmation(false)
+  }
+
+
 
   const onDelete =  async() => {
     try {
       await axios.delete(`/api/alter/${alter.id}`);
 
-      toast.success("Success.");
+      toast.success(`Success deleting ${alter.name}`);
 
       router.refresh();
       router.push("/alter");
@@ -75,13 +100,21 @@ export const ChatHeader = ({
             <Edit2  className="w-4 h-4 mr-2"/>
             Edit
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={onDelete}>
+            <DropdownMenuItem onClick={handleDelete}>
             <Trash2  className="w-4 h-4 mr-2"/>
             Delete
             </DropdownMenuItem>
          </DropdownMenuContent>
         </DropdownMenu>
-      )}
+      )} 
+
+      <DeleteConfirmationModal 
+      isOpen={showDeleteConfirmation}
+      onCancel={cancelDelete}
+      onConfirm={confirmDelete}
+      title={`Are you sure you want to delete Alter ${alter.name}`}
+      disabled={isLoading}
+      />
     </div>
   );
 }
