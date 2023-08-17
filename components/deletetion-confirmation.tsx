@@ -24,13 +24,13 @@ export const DeleteConfirmationModal = ({
   if (!isOpen) return null;
 
   return (
-    <Dialog open={isOpen}>
+    <Dialog open={isOpen} onOpenChange={onCancel} >
       <DialogContent >
         <DialogHeader>
           <DialogTitle className="flex flex-col justify-center items-center">
             {title}
           </DialogTitle>
-            <DialogDescription className="text-center pt-2  space-y-2 font-medium">
+            <DialogDescription className="text-center pt-2  space-y-2 font-medium sm:w-full sm:max-w-md">
               <div className="bg-background p-6 rounded-lg">
 
                 <div className="flex justify-center items-center mt-4 ">
