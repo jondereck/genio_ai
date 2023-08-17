@@ -42,7 +42,7 @@ export async function POST (
 
     
     const response = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo-16k-0613",
+      model: "gpt-3.5-turbo",
       messages
     });
 

@@ -53,11 +53,13 @@ export const Bookmark = ({ data
                 </div> </Link>
               <HoverCard >
                 <HoverCardTrigger>
+                  
                   <Button variant="link">
-                    <p className="text-lg lg:text-xl font-bold whitespace-nowrap">
+                  <div className="flex text-lg lg:text-xl font-bold "> 
                       {item.name}
-                    </p>
+                    </div>
                   </Button>
+              
                 </HoverCardTrigger>
                 <HoverCardContent className="flex">
                   <div className="flex-wrap bg-background/95 ">
