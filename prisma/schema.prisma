@@ -1,56 +1,55 @@
 generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["fullTextSearch","fullTextIndex"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
 model UserApiLimit {
-  id String @id @default(cuid())
-  userId String @unique
-  count Int @default(0)
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  count     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model UserSubscription {
-  id String @id @default(cuid())
-  userId String @unique
-  stripeCustomerId String? @unique @map(name:"stripe_customer_id")
-  stripeSubscriptionId String? @unique @map(name: "stripe_subscription_id")
-  stripePriceId String? @map(name:"stripe_price_id")
+  id                     String    @id @default(cuid())
+  userId                 String    @unique
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_id")
 }
 
 model Category {
-  id          String  @id @default(uuid())
-  name        String
-  alters      Alter[]
+  id     String  @id @default(uuid())
+  name   String
+  alters Alter[]
 }
 
 model Alter {
-  id          String  @id @default(uuid())
-  userId      String
-  userName    String
-  src         String
-  name        String  @db.Text
-  description String
-  instructions String  @db.Text
-  seed        String  @db.Text
+  id           String @id @default(uuid())
+  userId       String
+  userName     String
+  src          String
+  name         String @db.Text
+  description  String
+  instructions String @db.Text
+  seed         String @db.Text
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
- 
-  categoryId  String
-  
-  category    Category @relation(fields: [categoryId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  categoryId String
+
+  category Category @relation(fields: [categoryId], references: [id])
 
   messages Message[]
- 
 
   @@index([categoryId])
   @@fulltext([name])
@@ -62,46 +61,44 @@ enum Role {
 }
 
 model Message {
-    id          String  @id @default(uuid())
-    role Role
-    content String @db.Text
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+  id        String   @id @default(uuid())
+  role      Role
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-    alterId String
-    userId String
+  alterId String
+  userId  String
 
-    alter Alter @relation(fields: [alterId], references: [id], onDelete: Cascade)
+  alter Alter @relation(fields: [alterId], references: [id], onDelete: Cascade)
 
-    @@index([alterId])
+  @@index([alterId])
 }
 
 model BookmarksCategory {
-  id String @id @default(uuid())
+  id   String @id @default(uuid())
   name String
 
   bookmarks Bookmarks[]
 }
 
-
 model Bookmarks {
-  id String  @id @default(uuid())
+  id String @id @default(uuid())
 
-  userId String
-  src String
-  name String  @db.Text()
+  userId      String
+  src         String
+  name        String @db.Text()
+  url         String @db.Text()
   description String @db.Text()
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt 
-  
-  categoryId  String
-  category    BookmarksCategory @relation(fields: [categoryId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  tags        String  @db.Text()
- 
+  categoryId String
+  category   BookmarksCategory @relation(fields: [categoryId], references: [id])
+
+  tags String @db.Text()
 
   @@index([categoryId])
   @@fulltext([name, tags])
-
 }

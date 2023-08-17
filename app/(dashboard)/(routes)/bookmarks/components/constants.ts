@@ -4,6 +4,9 @@ export const formSchema = z.object({
   name: z.string().min(1, {
     message: "Name is required",
   }),
+  url: z.string().min(1, {
+    message: "Url is required",
+  }),
   description: z.string().min(1, {
     message: "Description is required",
   }),

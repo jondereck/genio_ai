@@ -10,6 +10,7 @@ import { LinkIcon, Tag } from "lucide-react";
 
 import BookmarkHeader from "./bookmark-header";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Button } from "@/components/ui/button";
 
 
 interface BookmarksProps {
@@ -39,8 +40,9 @@ export const Bookmark = ({ data
         >
           <BookmarkHeader bookmarks={item} />
           <div>
-            <Link href={item.description}>
-              <CardHeader className="flex items-center   justify-center text-center text-muted-foreground">
+
+            <CardHeader className="flex items-center   justify-center text-center text-muted-foreground">
+              <Link href={item.url}>
                 <div className="relative  my-2 w-32 h-32">
                   <Image
                     fill
@@ -48,35 +50,53 @@ export const Bookmark = ({ data
                     alt="alter"
                     className="border-solid border-2 rounded-xl object-cover"
                   />
-                </div>
-                <HoverCard>
-                  <HoverCardTrigger>
-                    <p className="text-sm lg:text-lg font-bold whitespace-nowrap">
-                    { item.name }
+                </div> </Link>
+              <HoverCard >
+                <HoverCardTrigger>
+                  <Button variant="link">
+                    <p className="text-lg lg:text-xl font-bold whitespace-nowrap">
+                      {item.name}
                     </p>
-                  </HoverCardTrigger>
-                  <HoverCardContent>
-                   {item.tags}
-                  </HoverCardContent>
-                </HoverCard>
-              </CardHeader>
-            </Link>
+                  </Button>
+                </HoverCardTrigger>
+                <HoverCardContent className="flex">
+                  <div className="flex-wrap bg-background/95 ">
+                    {item.description}
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
+            </CardHeader>
+
           </div>
 
           <CardFooter className="flex items-center justify-between text-sm text-muted-foreground">
-            <div className="flex items-center justify-between ">
-              <Tag className="w-3 h-3 mr-2" />
-              <p className="text-sm lowercase">
-                {item.tags && item.tags.length > 0 && item.tags.split(' ')[0]}...
-              </p>
-            </div>
-            <div className="flex items-center">
+
+            <HoverCard>
+              <HoverCardTrigger>
+
+                <div className="flex items-center justify-start ">
+                  <Tag className="w-3 h-3 mr-2" />
+                  <p className="text-sm lowercase">
+                  {item.tags && item.tags.length > 0 && item.tags.substring(0, Math.min(item.tags.length, 20))}...
+                  </p>
+
+                </div>
+
+              </HoverCardTrigger>
+              <HoverCardContent>
+                <div className="text-xs font-light bg-background flex-auto">
+                  {item.tags}
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+            {/* <div className="flex items-center">
               <LinkIcon className="w-3 h-3 mr-1" />
               <button
                 className="text-primary"
               >
-              </button>
-            </div>
+              </button>  
+              </div> */}
+
 
           </CardFooter>
 

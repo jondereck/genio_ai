@@ -47,6 +47,7 @@ export const BookmarkForm = ({
       src: "",
       categoryId: undefined,
       tags: "",
+      url: "",
       
     }
 
@@ -136,8 +137,28 @@ export const BookmarkForm = ({
                 </FormItem>
               )}
             />
-            <FormField
+             <FormField
               name="description"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="col-span-2 md:col-span-1">
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isLoading}
+                      placeholder="OpenAI is an organization focused on artificial intelligence research and development."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                  <FormDescription>
+                  Enter a short description for your AI Tool.
+                  </FormDescription>
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="url"
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2 md:col-span-1">
@@ -198,7 +219,7 @@ export const BookmarkForm = ({
                   </FormControl> 
                   <FormMessage/>
                     <FormDescription>
-                      Tags 
+                    Enter the Tags for easy search for your AI Tool. 
                     </FormDescription>
                 </FormItem>
               )}

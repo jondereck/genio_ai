@@ -15,6 +15,7 @@ export async function POST(
       src,
       tags,
       description,
+      url,
       categoryId
     } = body 
 
@@ -22,7 +23,7 @@ export async function POST(
       return new NextResponse("Unauthorized", { status: 401})
     }
 
-    if ( !name ||  !src || !description || !categoryId || !tags) {
+    if ( !name ||  !src || !description || !categoryId || !tags || !url) {
       return new NextResponse("Missing  required fields", { status: 400});
     }
 
@@ -33,6 +34,7 @@ export async function POST(
           name,
           src,
           description,
+          url,
           tags
 
         }
