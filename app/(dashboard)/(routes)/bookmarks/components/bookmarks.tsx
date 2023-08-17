@@ -11,14 +11,41 @@ import { LinkIcon, Tag } from "lucide-react";
 import BookmarkHeader from "./bookmark-header";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Button } from "@/components/ui/button";
+import PaginationControls from "./pagination-control";
+import { useEffect, useState } from "react";
 
 
 interface BookmarksProps {
-  data: Bookmarks[]
+  data: Bookmarks[];
 }
 
-export const Bookmark = ({ data
+const BookmarksPerPage = 14;
+
+export const Bookmark = ({
+  data,
 }: BookmarksProps) => {
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [displayedBookmarks, setDisplayedBookmarks] = useState<Bookmarks[]>([]);
+  const totalPages = Math.ceil(data.length / BookmarksPerPage);
+
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+  };
+
+  useEffect(() => {
+    // Calculate start and end indices based on currentPage
+    const startIdx = (currentPage - 1) * BookmarksPerPage;
+    const endIdx = startIdx + BookmarksPerPage;
+
+    // Slice data to get displayed bookmarks for the current page
+    const bookmarksForPage = data.slice(startIdx, endIdx);
+    setDisplayedBookmarks(bookmarksForPage);
+ 
+  }, [currentPage, data]);
+
+
   if (data.length === 0) {
     return (
       <div className="pt-10 flex flex-col items-center justify-center space-y-3">
@@ -31,16 +58,13 @@ export const Bookmark = ({ data
 
   return (
     <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 mt-4 gap-2">
-
-      {data.map((item) => (
-
+      {displayedBookmarks.map((item) => (
         <Card
           key={item.id}
           className="bg-primary/10 rounded-xl cursor-pointer hover:opacity-75 transition border-0"
         >
           <BookmarkHeader bookmarks={item} />
           <div>
-
             <CardHeader className="flex items-center   justify-center text-center text-muted-foreground">
               <Link href={item.url}>
                 <div className="relative  my-2 w-32 h-32">
@@ -53,13 +77,13 @@ export const Bookmark = ({ data
                 </div> </Link>
               <HoverCard >
                 <HoverCardTrigger>
-                  
+
                   <Button variant="link">
-                  <div className="flex text-lg lg:text-xl font-bold "> 
+                    <div className="flex text-lg lg:text-xl font-bold ">
                       {item.name}
                     </div>
                   </Button>
-              
+
                 </HoverCardTrigger>
                 <HoverCardContent className="flex">
                   <div className="flex-wrap bg-background/95 ">
@@ -68,22 +92,16 @@ export const Bookmark = ({ data
                 </HoverCardContent>
               </HoverCard>
             </CardHeader>
-
           </div>
-
           <CardFooter className="flex items-center justify-between text-sm text-muted-foreground">
-
             <HoverCard>
               <HoverCardTrigger>
-
                 <div className="flex items-center justify-start ">
                   <Tag className="w-3 h-3 mr-2" />
                   <p className="text-sm lowercase">
-                  {item.tags && item.tags.length > 0 && item.tags.substring(0, Math.min(item.tags.length, 20))}...
+                    {item.tags && item.tags.length > 0 && item.tags.substring(0, Math.min(item.tags.length, 20))}...
                   </p>
-
                 </div>
-
               </HoverCardTrigger>
               <HoverCardContent>
                 <div className="text-xs font-light bg-background flex-auto">
@@ -98,14 +116,14 @@ export const Bookmark = ({ data
               >
               </button>  
               </div> */}
-
-
           </CardFooter>
-
-
         </Card>
-
       ))}
+      <PaginationControls
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
 
     </div>
   );

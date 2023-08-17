@@ -8,7 +8,7 @@ import NavbarBookmarks from "@/components/navbar-bookmarks";
 import prismadb from "@/lib/prismadb"
 import { BookmarkIcon, VenetianMask } from "lucide-react";
 
-interface BookmarksPageProps  {
+interface BookmarkClientProps  {
   searchParams: {
     categoryId: string;
     name: string;
@@ -16,9 +16,9 @@ interface BookmarksPageProps  {
   }
 }
 
-const BookmarksPage = async ({
+const BookmarkClient = async ({
   searchParams
-}: BookmarksPageProps) => {
+}: BookmarkClientProps) => {
 
   
 
@@ -55,10 +55,11 @@ const BookmarksPage = async ({
       <BookmarkNavPage/>
       <Categories  data={categories}/>
       <Bookmark  
+      
       data={data}/>
  
     </div>
   )
 }
 
-export default BookmarksPage;
+export default BookmarkClient;
