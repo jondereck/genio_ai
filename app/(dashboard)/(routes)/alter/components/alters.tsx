@@ -9,6 +9,8 @@ import { MessageSquare } from "lucide-react";
 import PaginationControls from "../../../../../components/pagination-control";
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Button } from "@/components/ui/button";
 
 
 
@@ -21,24 +23,24 @@ interface AlterProps {
 
 }
 
-const BookmarksPerPage = 10;
+const AltersPerPage = 10;
 
 export const Alters = ({ data
 }: AlterProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [displayedBookmarks, setDisplayedBookmarks] = useState<Alter[]>([]);
-  const totalPages = Math.ceil(data.length / BookmarksPerPage);
+  const [displayedAlters, setDisplayedAlters] = useState<Alter[]>([]);
+  const totalPages = Math.ceil(data.length / AltersPerPage);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage)
   };
 
   useEffect(() => {
-    const startIdx = (currentPage - 1) * BookmarksPerPage; // -13
-    const endIdx = startIdx + BookmarksPerPage; // 1
+    const startIdx = (currentPage - 1) * AltersPerPage; // -13
+    const endIdx = startIdx + AltersPerPage; // 1
 
-    const bookmarksForPage = data.slice(startIdx, endIdx);
-    setDisplayedBookmarks(bookmarksForPage);
+    const alterForPage = data.slice(startIdx, endIdx);
+    setDisplayedAlters(alterForPage);
   }, [currentPage, data]);
 
 
@@ -52,13 +54,14 @@ export const Alters = ({ data
       </div>
     )
   }
+  const excludedWords = ['the', 'is', 'and', 'or', 'of']; // Add more words as needed
   return (
-     //@ts-ignore
-    <div className="flex-wrap"> 
-    <Separator className="mt-2"/>
+    //@ts-ignore
+    <div className="flex-wrap">
+      <Separator className="mt-2" />
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-2 mt-4">
-       
-        {displayedBookmarks.map((item, data) => (
+
+        {displayedAlters.map((item, data) => (
           <Card
             key={item.id}
             className="bg-primary/10 rounded-xl cursor-pointer hover:opacity-75 transition border-0"
@@ -76,19 +79,39 @@ export const Alters = ({ data
                 <p className="font-bold">
                   {item.name}
                 </p>
-                <p className="font-xs">
-                  {item.description}
-                </p>
+                <HoverCard>
+                  <HoverCardTrigger>
+                    <Button variant="link">
+                      <p className="font-xs">
+                        {item.description
+                          .split(' ')
+                          .map((word, index) =>
+                            excludedWords.includes(word.toLowerCase()) && index !== 0
+                              ? word.toLowerCase()
+                              : word.charAt(0).toUpperCase() + word.slice(1)
+                          )
+                          .slice(0, 2)
+                          .join(' ')}...
+                      </p>
+                    </Button>
+                  </HoverCardTrigger>
+                  <HoverCardContent>
+                    <p className="font-xs">
+                      {item.description}
+                    </p>
+                  </HoverCardContent>
+                </HoverCard>
+
               </CardHeader>
               <CardFooter className="flex items-center justify-between text-sm text-muted-foreground">
                 <p className="text-sm lowercase">
                   @{item.userName}
                 </p>
-                
+
                 <div className="flex items-center">
                   <MessageSquare className="w-3 h-3 mr-1" />
-                 
-{/*                  
+
+                  {/*                  
                   {item._count.messages} */}
 
 
@@ -98,17 +121,20 @@ export const Alters = ({ data
 
           </Card>
         ))}
-      </div>     <Separator className="mt-2" />
+      </div>     
+      {data.length > AltersPerPage  && (
+        <>
+        <Separator className="mt-2" />
       <div className="flex items-center justify-center">
-   
+
         <PaginationControls
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={handlePageChange}
-
-
         />
       </div>
+      </>
+      )} 
 
     </div>
 

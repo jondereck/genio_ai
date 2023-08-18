@@ -59,7 +59,7 @@ export const Bookmark = ({
 
   return (
     <div className="flex-wrap ">
-      <Separator className="mt-2"/>
+      <Separator className="mt-2" />
       <div className=" grid grid-cols-2  sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-5 mt-4 gap-2 justify-between items-center">
         {displayedBookmarks.map((item) => (
           <Card
@@ -124,15 +124,19 @@ export const Bookmark = ({
         ))}
 
       </div>
-      <Separator className="mt-4" />
-      <div className="  flex justify-center items-center">
-        <PaginationControls
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-      </div>
-      
+      {data.length > BookmarksPerPage && (
+        <>
+          <Separator className="mt-4" />
+          <div className="  flex justify-center items-center">
+            <PaginationControls
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        </>
+      )}
+
     </div>
   );
 }
