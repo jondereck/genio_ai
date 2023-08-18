@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/provider/sidebar-open.js", "components/provider/sidebar-open.jsx", "components/provider/sidebar-open.js", "components/provider/sidebar-open.ts", "scripts/seeds.js", "scripts/seeds.js", "scripts/alter-lists.js", "components/code-copy.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/provider/sidebar-open.js", "components/provider/sidebar-open.jsx", "components/provider/sidebar-open.js", "components/provider/sidebar-open.ts", "scripts/seeds.ts", "scripts/seeds.ts", "scripts/alter-lists.ts", "components/code-copy.jsx"],
   "exclude": ["node_modules"]
 }
