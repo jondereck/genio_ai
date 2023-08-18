@@ -53,6 +53,7 @@ export const Alters = ({ data
     )
   }
   return (
+     //@ts-ignore
     <div className="flex-wrap"> 
     <Separator className="mt-2"/>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-2 mt-4">
@@ -83,9 +84,14 @@ export const Alters = ({ data
                 <p className="text-sm lowercase">
                   @{item.userName}
                 </p>
+                
                 <div className="flex items-center">
                   <MessageSquare className="w-3 h-3 mr-1" />
+                 
+                 
                   {item._count.messages}
+
+
                 </div>
               </CardFooter>
             </Link>
