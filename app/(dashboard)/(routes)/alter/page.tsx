@@ -1,6 +1,6 @@
 import Heading from "@/components/Heading";
 import AlterEgoPage from "@/components/alter-page";
-import {Alters} from "@/components/alters";
+import {Alters} from "@/app/(dashboard)/(routes)/alter/components/alters";
 import { Categories } from "@/components/categories";
 import prismadb from "@/lib/prismadb"
 import { VenetianMask } from "lucide-react";

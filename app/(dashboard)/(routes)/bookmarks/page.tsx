@@ -44,7 +44,7 @@ const BookmarksPage = async ({
 
   const categories = await prismadb.bookmarksCategory.findMany();
   return (
-    <div className=" p-4 ">
+    <div className=" p-4 flex flex-col  ">
        <Heading
         title="Ai Toolbox"
         description="Your gateway to AI tools and experiences, all in one place."
@@ -56,6 +56,7 @@ const BookmarksPage = async ({
       <Categories  data={categories}/>
       <Bookmark  
       data={data}/>
+
  
     </div>
   )

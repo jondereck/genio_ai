@@ -23,7 +23,7 @@ const DashboardLayout = async ({
         <div className="ml-auto"> {/* This div will push Navbar to the right */}
           <Navbar />
         </div>
-        <div className="overflow-x-auto flex-1  h-full lg:h-screen">
+        <div className="overflow-x-auto flex-1  h-auto lg:h-screen">
           {children}
         </div>
       </main>

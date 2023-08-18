@@ -13,14 +13,13 @@ const PaginationControls = ({
   totalPages,
   onPageChange,
 }: PaginationControlsProps) => {
-  const router = useRouter();
-
+  
   const handlePageChange = (newPage: number) => {
     onPageChange(newPage);
   };
 
   return (
-    <div className=" flex space-x-4  mt-4">
+    <div className="flex items-center space-x-4 mt-auto py-2 border-t">
       <Button
         variant="secondary"
         disabled={currentPage === 1}
@@ -31,7 +30,7 @@ const PaginationControls = ({
         Previous
       </Button>
       
-      <div className="text-gray-600  flex-wrap">
+      <div className="text-gray-600  flex items-center">
         Page {currentPage} of {totalPages}
       </div>
       
