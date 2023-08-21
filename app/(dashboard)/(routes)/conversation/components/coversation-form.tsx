@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { formSchema } from "../constants";
 import { z } from "zod";
 import { Separator } from "@/components/ui/separator";
+import { toast } from "react-hot-toast";
 
 
 interface ChatFormProps {
@@ -24,9 +25,20 @@ export const ConversationForm: React.FC<ChatFormProps> = ({ onSubmit, isLoading 
     }
   });
 
-  const handleFormSubmit = (input: z.infer<typeof formSchema>) => {
-    onSubmit(input);
-    form.reset()
+  const handleFormSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      // Attempt to submit the form
+      await onSubmit(values);
+      
+      // If the submission was successful, reset the form
+      form.reset();
+    } catch (error) {
+      // Handle errors that occur during submission
+      console.error('Submission error:', error);
+  
+      // Optionally, display an error message to the user
+      // errorMessageElement.textContent = 'An error occurred. Please try again.';
+    }
   }
 
   return (

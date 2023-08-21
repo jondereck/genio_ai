@@ -69,8 +69,6 @@ export const ClientPage = () => {
         bgColor="bg-green-700/5"
       />
       <ConversationMessages isLoading={isLoading} messages={messages} />
-    
-  
       <ConversationForm onSubmit={handleSubmit} isLoading={isLoading} />
     </div>
   );
