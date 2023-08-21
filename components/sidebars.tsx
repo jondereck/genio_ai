@@ -17,6 +17,7 @@ import {
   Bookmark
 } from "lucide-react";
 import FreeCounter from "./free-counter";
+import { NewModal } from "./new-modal";
 
 
 
@@ -41,7 +42,8 @@ const routes = [
     label: "Alter Ai Companion",
     icon: VenetianMask,
     href: "/alter",
-    color: "text-amber-500"
+    color: "text-amber-500",
+    isNew: true,
   },
   {
     label: "Image Generator",
@@ -71,7 +73,8 @@ const routes = [
     label: "Ai Toolbox",
     icon: FaToolbox,
     href: "/bookmarks",
-    color: "text-white"
+    color: "text-white",
+    isNew: true,
   },
   
   {
@@ -130,10 +133,14 @@ export const Sidebar = ({
                 pathname === route.href ? "text-white bg-white/10" : "text-zinc-400",
               )}
             >
-              <div className="flex items-center flex-1">
-                <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
-                {route.label}
-              </div>
+               <div className="flex items-center  flex-1">
+                        <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
+                        {route.label}
+                       
+                          {route.isNew && (<div ><NewModal/></div>)}
+               
+                        
+                      </div>
             </Link>
           ))}
         </div>

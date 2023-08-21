@@ -25,6 +25,7 @@ import Loading from "@/app/loading";
 import { Button } from "./ui/button";
 import { useClientContext } from "./provider/sidebar-open";
 import { TooltipTrigger, Tooltip, TooltipContent, TooltipProvider } from "./ui/tooltip";
+import { NewModal } from "./new-modal";
 
 
 const font = Montserrat({
@@ -48,7 +49,8 @@ const routes = [
     label: "Alter Ai Companion",
     icon: VenetianMask,
     href: "/alter",
-    color: "text-amber-500"
+    color: "text-amber-500",
+    isNew: true,
   },
   {
     label: "Image Generator",
@@ -78,7 +80,8 @@ const routes = [
     label: "Ai Toolbox",
     icon: FaToolbox,
     href: "/bookmarks",
-    color: "text-white"
+    color: "text-white",
+    isNew: true,
   },
 
   {
@@ -190,9 +193,13 @@ const Sidebar = ({
                         pathname === route.href ? "text-white bg-white/10" : "text-zinc-400",
                       )}
                     >
-                      <div className="flex items-center flex-1">
+                      <div className="flex items-center  flex-1">
                         <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
                         {route.label}
+                       
+                          {route.isNew && (<><NewModal/></>)}
+               
+                        
                       </div>
                     </Link>
                   ))}
