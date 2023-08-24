@@ -70,23 +70,21 @@ export const Bookmark = ({
             <div>
               <CardHeader className="flex items-center   justify-center text-center text-muted-foreground">
                 <Link href={item.url}>
-                  <div className="relative  my-2 w-32 h-32">
+                  <div className="relative  my-2 lg:w-32 lg:h-32 w-20 h-20" >
                     <Image
                       fill
                       src={item.src}
                       alt="alter"
-                      className="border-solid border-2 rounded-xl object-cover"
+                      className="border-solid border-2 rounded-full bg-white object-cover"
                     />
                   </div> </Link>
                 <HoverCard >
                   <HoverCardTrigger>
-
                     <Button variant="link">
                       <div className="flex text-lg lg:text-xl font-bold ">
                         {item.name}
                       </div>
                     </Button>
-
                   </HoverCardTrigger>
                   <HoverCardContent className="flex">
                     <div className="flex-wrap bg-background/95 ">
