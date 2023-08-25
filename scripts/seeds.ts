@@ -260,7 +260,7 @@ async function newBookmarks() {
       {
         src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677778/ousabjtfxefe5qsqrrr5.jpg",
         name: "Tinyeye",
-        description: "Tinyeye is a powerful reverse image search engine.",
+        description: "TinyReverse is a powerful reverse image search engine.",
         url: "https://tineye.com/",
         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
         tags: "Image Search, Reverse Search, Image Recognition",
