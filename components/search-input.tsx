@@ -17,10 +17,10 @@ const SearchInput = () => {
   const tags = searchParams.get("tags")
 
   const [value, setValue] = useState(name || "");
-  const debounceValue = useDebounce<string>(value, 500);
+  const debounceValue = useDebounce<string>(value, 200);
 
   const [tagValue, setTagValue ] = useState(tags || "");
-  const debounceTagValue = useDebounce<string>(tagValue, 500);
+  const debounceTagValue = useDebounce<string>(tagValue, 200);
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setValue(e.target.value);
