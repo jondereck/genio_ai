@@ -117,7 +117,7 @@ async function main() {
                 }
             },
             folder: "/backups",
-            backupFolderName: "14-33-2023-08-25", // Specify the name of the folder you want to restore from
+            backupFolderName: "16-21-2023-08-25", // Specify the name of the folder you want to restore from
         });
     } catch (error) {
         console.error('Error:', error);

@@ -1,4 +1,4 @@
-const { alterLists } = require("./alter-lists");
+
 
 const { PrismaClient } = require("@prisma/client");
 const { v4: uuidv4 } = require("uuid");
@@ -86,263 +86,74 @@ const db = new PrismaClient();
 
 // New Bookmarks
 async function newBookmarks() {
-  try {
-    const existingCategory = await db.bookmarksCategory.findFirst({
-      where: {
-        name: "Automation",
-      }
-    });
-
-    if (!existingCategory) {
-      console.error("Category does not exist.")
-      return;
-    }
-
-
-
-
-    // 1. Bookmark data Automation
-    const bookmarkData1 = [
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677928/ohqvuoish2ea8gdb2kpl.png",
-        name: "Zapier",
-        description: "Automation and integration platform for streamlining workflows and enhancing productivity.",
-        url: "https://zapier.com/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Automation, Integration, Workflow, AI, Productivity",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677901/eyrfqrokn4psoeq4abnz.png",
-        name: "DeepAI",
-        description: "AI-powered platform for machine learning, automation, image processing, and text analysis.",
-        url: "https://deepai.org/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "AI, Machine Learning, Automation, Image Processing, Text Analysis",
-        categoryId: existingCategory.id
-      }
-    ];
-
-
-    // 2. Bookmark data Grammar Tools
-    const bookmarkData2 = [
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677778/ousabjtfxefe5qsqrrr5.jpg",
-        name: "GPT Zero",
-        description: "AI-powered tool for various tasks such as detection and writing.",
-        url: "https://gptzero.me/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "detection, writing, gpt0",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677813/zddfpzpdiwujxvmykizb.png",
-        name: "QuillBot",
-        description: "AI-powered writing tool with text analysis and grammar enhancement features.",
-        url: "https://quillbot.com/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "AI, Writing, Text Analysis, Grammar Tools",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677880/bwhafmdxaxbub946mgrs.png",
-        name: "Plagiarism Detector",
-        description: "AI-based tool for detecting plagiarism and ensuring originality in writing.",
-        url: "https://plagiarismdetector.net/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "AI, Writing, Plagiarism Detection, Grammar Tools",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677849/fsycbdl1hylzld3botci.png",
-        name: "SpeedWrite",
-        description: "AI-powered writing tool for increased productivity and improved grammar.",
-        url: "https://speedwrite.com/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "AI, Writing, Productivity, Grammar Tools",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677972/k3upanhqielpjq6sefs1.jpg",
-        name: "Paralink Translation",
-        description: "AI-driven translation tool for accurate and efficient language translation.",
-        url: "https://translation2.paralink.com/Filipino-English-Translation/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "AI, Translation, Language, Language Tools",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677737/h8d1ltgdziytys5u1n6e.png",
-        name: "Conch Ai",
-        description: "AI-based tool for sentence and essay paraphrasing with language enhancement features.",
-        url: "https://www.getconch.ai/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Sentence, Essay, Paraphrase, Language Tools",
-        categoryId: existingCategory.id
-      }
-    ];
-
-
+  try { 
     // 3. Bookmark data Ai Detection Tools
     const bookmarkData3 = [
       {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677928/ohqvuoish2ea8gdb2kpl.png",
-        name: "Framer",
-        description: "Design and prototyping tool for UI/UX projects with collaboration and animation features.",
-        url: "https://framer.com/",
         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Design, Prototyping, UI/UX, Collaboration, Animation",
-        categoryId: existingCategory.id
+        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691391160/rbwhx5i9amnoxpdon5xw.svg",
+        name: "Runway ML",
+        description: "Runway ML is a creative toolkit for machine learning that allows artists and developers to experiment with AI models. Create videos from text effortlessly.",
+        url: "https://runwayml.com/",
+        tags: "AI, Machine Learning, Creative Toolkit",
+        categoryId: "ac424178-24f1-49e6-868e-304e144f3e8a" // Suggested Category ID for "AI Tools"
       },
       {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677901/eyrfqrokn4psoeq4abnz.png",
-        name: "Quick Qr",
-        description: "QR code generator and design tool for encoding data, especially on mobile devices.",
-        url: "https://quickqr.art/",
         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "QR Code, Generator, Design, Data Encoding, Mobile",
-        categoryId: existingCategory.id
+        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691391160/rbwhx5i9amnoxpdon5xw.svg",
+        name: "Murf AI",
+        description: "Murf AI offers lifelike AI voices for podcasts, videos, and professional presentations. Create studio-quality voiceovers in minutes.",
+        url: "https://murf.ai/",
+        tags: "AI, Voice Generation, Voiceovers",
+        categoryId: "ac424178-24f1-49e6-868e-304e144f3e8a" // Suggested Category ID for "AI Tools"
       },
       {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677928/ohqvuoish2ea8gdb2kpl.png",
-        name: "Rows",
-        description: "AI-powered data analysis and automation tool with spreadsheet integration and collaboration features.",
-        url: "https://rows.com/ai",
         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Data Analysis, Automation, Spreadsheet, AI Integration, Collaboration",
-        categoryId: existingCategory.id
+        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691391160/rbwhx5i9amnoxpdon5xw.svg",
+        name: "Stock AI",
+        description: "Stock AI provides AI-powered tools for generating images and stock market analysis.",
+        url: "https://www.stockai.com/",
+        tags: "AI, Image Generation, Stock Market Analysis",
+        categoryId: "49f13715-de3e-473f-8a88-13afae51c56b" // Suggested Category ID for "Automation"
       },
       {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677928/ohqvuoish2ea8gdb2kpl.png",
-        name: "Paperclips",
-        description: "Organizational tool for productivity, note-taking, bookmarking, and AI-enhanced features.",
-        url: "https://paperclips.app",
         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Organization, Productivity, Notes, Bookmarking, AI",
-        categoryId: existingCategory.id
+        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691391160/rbwhx5i9amnoxpdon5xw.svg",
+        name: "Scribehow",
+        description: "Scribehow instantly turns any process into a step-by-step guide, simplifying complex tasks.",
+        url: "https://scribehow.com/",
+        tags: "AI, Process Documentation, Step-by-Step Guides",
+        categoryId: "ac424178-24f1-49e6-868e-304e144f3e8a" // Suggested Category ID for "AI Tools"
       },
       {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677901/eyrfqrokn4psoeq4abnz.png",
-        name: "Dumme",
-        description: "Time management and scheduling tool with AI-driven calendar features.",
-        url: "https://dumme.com/",
         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Time Management, Scheduling, Calendar, AI",
-        categoryId: existingCategory.id
+        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691391160/rbwhx5i9amnoxpdon5xw.svg",
+        name: "Compose AI",
+        description: "Compose AI saves time by generating content, preventing repetitive writing tasks.",
+        url: "https://www.compose.ai/",
+        tags: "AI, Content Generation, Writing Assistance",
+        categoryId: "ac424178-24f1-49e6-868e-304e144f3e8a" // Suggested Category ID for "AI Tools"
       },
       {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677928/ohqvuoish2ea8gdb2kpl.png",
-        name: "Verbaly",
-        description: "Speech recognition and language processing tool for enhanced communication with AI capabilities.",
-        url: "https://verbaly.ai",
         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Speech Recognition, Language Processing, AI, Communication",
-        categoryId: existingCategory.id
+        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691391160/rbwhx5i9amnoxpdon5xw.svg",
+        name: "WiseOne",
+        description: "WiseOne provides reliable information and instant answers while exploring the web.",
+        url: "https://wiseone.io/",
+        tags: "AI, Web Exploration, Information Retrieval",
+        categoryId: "ac424178-24f1-49e6-868e-304e144f3e8a" // Suggested Category ID for "AI Tools"
       },
       {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677901/eyrfqrokn4psoeq4abnz.png",
-        name: "Ai Spend",
-        description: "Expense tracking and financial management tool with AI-driven budgeting features.",
-        url: "https://aispend.io",
         userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Expense Tracking, Financial Management, AI, Budgeting",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677778/ousabjtfxefe5qsqrrr5.jpg",
-        name: "GPT Zero",
-        description: "AI-powered tool for various tasks such as detection and writing.",
-        url: "https://gptzero.me/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "detection, writing, gpt0",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677778/ousabjtfxefe5qsqrrr5.jpg",
-        name: "Tinyeye",
-        description: "TinyReverse is a powerful reverse image search engine.",
-        url: "https://tineye.com/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Image Search, Reverse Search, Image Recognition",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677880/bwhafmdxaxbub946mgrs.png",
-        name: "Watermark Remover",
-        description: "Watermark Remover Ai is a cutting-edge AI-powered tool designed to remove watermarks from images. ",
-        url: "https://www.watermarkremover.io/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Image Editing, Watermark Removal, AI Tools",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677928/ohqvuoish2ea8gdb2kpl.png",
-        name: "Removal Ai",
-        description: "Removal Ai is an AI-powered image background remover that makes background removal a breeze.",
-        url: "https://removal.ai/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Image Editing, Background Removal, AI Tools",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677778/ousabjtfxefe5qsqrrr5.jpg",
-        name: "Smallpdf",
-        description: "Smallpdf is an online platform that offers a variety of PDF tools for editing, conversion, and more.",
-        url: "https://smallpdf.com/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "PDF Tools, Document Conversion, Editing",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677849/fsycbdl1hylzld3botci.png",
-        name: "Rasterbator",
-        description: "Rasterbator is a web-based tool that allows you to create large posters by converting images into dot matrix patterns.",
-        url: "https://rasterbator.net/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Poster Printing, Image Conversion, Dot Matrix",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691677901/eyrfqrokn4psoeq4abnz.png",
-        name: "T to Handwriting",
-        description: "T to Handwriting is a web-based tool that converts typed text into handwritten-style text.",
-        url: "https://saurabhdaware.github.io",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Text to Handwriting, Typography, Text Styling",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1692251641/tvhoq7xhpovgzg4jel3w.png",
-        name: "Unscreen",
-        description: "Unscreen is an online tool that helps you remove backgrounds from videos and GIFs.",
-        url: "https://www.unscreen.com/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Video Editing, Background Removal, GIFs",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1692251540/ouazfzqzrtpyr4ygbgax.png",
-        name: "Fakeyou",
-        description: "Fakeyou is a web service that generates fake identity information for various purposes.",
-        url: "https://fakeyou.com/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "Identity Generation, Privacy, Online Security",
-        categoryId: existingCategory.id
-      },
-      {
-        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1692251454/i9bznwbkesumydbjayco.png",
-        name: "Synthesia",
-        description: "Synthesia is a platform that allows you to create AI-generated video content easily and efficiently.",
-        url: "https://www.synthesia.io/",
-        userId: "user_2Sx6hcUhFmTUVComqt7tIxpmmnm",
-        tags: "AI Video Creation, Video Marketing, Content Creation",
-        categoryId: existingCategory.id
+        src: "https://res.cloudinary.com/ddzjzrqrj/image/upload/v1691391160/rbwhx5i9amnoxpdon5xw.svg",
+        name: "Perplexity AI",
+        description: "Perplexity AI eliminates noise and provides concise and accurate answers.",
+        url: "https://www.perplexity.ai/",
+        tags: "AI, Noise Reduction, Accurate Answers",
+        categoryId: "ac424178-24f1-49e6-868e-304e144f3e8a" // Suggested Category ID for "AI Tools"
       }
-      
-             
-      
     ]
-
+    
 
     for (const data of bookmarkData3) {
       const existingBookmark = await db.bookmarks.findFirst({
