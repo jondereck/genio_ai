@@ -68,9 +68,56 @@ async function main() {
                     }
 
 
+                } else if (currentFile.name === "category") {
+                    const data = currentModel;
+
+                    // Check if a bookmark with the same unique identifier (e.g., id) exists
+                    const existingCategory = await db.category.findUnique({
+                        where: {
+                            id: data.id, // Assuming id is the unique identifier
+                        },
+                    });
+
+                    if (!existingCategory) {
+                        // Insert the bookmark into the database
+                        const newCategory = await db.category.create({
+                            data: { 
+                                name: data.name,                            
+                            },
+                        });
+                        console.log('Restored Alter Category', newCategory);
+                    } else {
+                        console.log(`Alter Category already exist. Skipping ${data.name}...`)
+                    }
+
+
+                } else if (currentFile.name === "bookmarksCategory") {
+                    const data = currentModel;
+
+                    // Check if a bookmark with the same unique identifier (e.g., id) exists
+                    const existingBookmarksCategory = await db.bookmarksCategory.findUnique({
+                        where: {
+                            id: data.id, // Assuming id is the unique identifier
+                        },
+                    });
+
+                    if (!existingBookmarksCategory) {
+                        // Insert the bookmark into the database
+                        const newBookmarksCategory = await db.bookmarksCategory.create({
+                            data: { 
+                                name: data.name,                            
+                            },
+                        });
+                        console.log('Restored Bookmarks Category', newBookmarksCategory);
+                    } else {
+                        console.log(`Bookmarks Category already exist. Skipping ${data.name}...`)
+                    }
+
+
                 }
             },
             folder: "/backups",
+            backupFolderName: "14-33-2023-08-25", // Specify the name of the folder you want to restore from
         });
     } catch (error) {
         console.error('Error:', error);
