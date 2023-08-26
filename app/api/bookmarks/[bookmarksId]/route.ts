@@ -13,6 +13,8 @@ export async function PATCH(
     const {
       name,
       src,
+      tags,
+      url,
       description,
       categoryId
     } = body;
@@ -40,6 +42,8 @@ export async function PATCH(
           name,
           src,
           description,
+          tags,
+          url,
         }
     })
 
