@@ -22,7 +22,7 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
   try {
     setIsLoading(true);
     setImages([]);
-    // const response = await axios.post("api/image", values);
+    const response = await axios.post("api/image/test", values);
 
     const urls = response.data.map((image: { url: string }) => image.url);
 
