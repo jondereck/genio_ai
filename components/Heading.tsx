@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
+import { FaIcons, FaReact } from "react-icons/fa";
 
 interface HeadingProps {
   title: string;

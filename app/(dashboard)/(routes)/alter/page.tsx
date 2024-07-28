@@ -19,7 +19,8 @@ const AlterPage = async ({
     where: {
       categoryId: searchParams.categoryId,
       name: {
-        search: searchParams.name
+        contains: searchParams.name, // Use contains, startsWith, or endsWith
+        mode: 'insensitive' // 
       }
      
     }, 

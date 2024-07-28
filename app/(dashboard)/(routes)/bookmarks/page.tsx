@@ -6,7 +6,7 @@ import BookmarkNavPage from "@/components/bookmarks-page";
 import { Categories } from "@/components/categories";
 import NavbarBookmarks from "@/components/navbar-bookmarks";
 import prismadb from "@/lib/prismadb"
-import { BookmarkIcon, VenetianMask } from "lucide-react";
+import { BookmarkIcon, VenetianMask, Wrench } from "lucide-react";
 
 interface BookmarksPageProps  {
   searchParams: {
@@ -26,10 +26,10 @@ const BookmarksPage = async ({
     where: {
       categoryId: searchParams.categoryId,
       name: {
-        search: searchParams.name
+        contains: searchParams.name,
       },
       tags: {
-        search: searchParams.tags
+        contains: searchParams.tags,
       }
      
     }, 
@@ -48,7 +48,7 @@ const BookmarksPage = async ({
        <Heading
         title="Ai Toolbox"
         description="Your gateway to AI tools and experiences, all in one place."
-        icon={FaToolbox}
+        icon={Wrench}
         iconColor="text-black"
         bgColor="bg-gradient-to-r from-pink-500 to-purple-500"
       />
