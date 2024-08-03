@@ -26,10 +26,10 @@ const BookmarksPage = async ({
     where: {
       categoryId: searchParams.categoryId,
       name: {
-        contains: searchParams.name,
+        search: searchParams.name
       },
       tags: {
-        contains: searchParams.tags,
+        search: searchParams.tags,
       }
      
     }, 

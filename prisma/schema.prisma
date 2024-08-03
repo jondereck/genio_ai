@@ -4,12 +4,14 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider     = "postgres"
+  url          = env("DATABASE_URL")
+  // directUrl    = env("DATABASE_URL_UNPOOLED")
+  relationMode = "prisma"
 }
 
 model UserApiLimit {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(cuid())
   userId    String   @unique
   count     Int      @default(0)
   createdAt DateTime @default(now())
@@ -17,40 +19,40 @@ model UserApiLimit {
 }
 
 model UserSubscription {
-  id                     String    @id @default(auto()) @map("_id") @db.ObjectId
+  id                     String    @id @default(cuid())
   userId                 String    @unique
-  stripeCustomerId       String?   @unique
-  stripeSubscriptionId   String?   @unique
-  stripePriceId          String?
-  stripeCurrentPeriodEnd DateTime?
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_id")
 }
 
 model Category {
-  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  id     String  @id @default(uuid())
   name   String
   alters Alter[]
 }
 
 model Alter {
-  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  id           String @id @default(uuid())
   userId       String
   userName     String
   src          String
-  name         String
+  name         String @db.Text
   description  String
-  instructions String
-  seed         String
+  instructions String @db.Text
+  seed         String @db.Text
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  categoryId String @db.ObjectId
+  categoryId String
   category   Category @relation(fields: [categoryId], references: [id])
 
   messages Message[]
 
   @@index([categoryId])
-  @@fulltext([name])
+  // @@fulltext([name])
 }
 
 enum Role {
@@ -59,13 +61,13 @@ enum Role {
 }
 
 model Message {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(uuid())
   role      Role
-  content   String
+  content   String   @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  alterId String @db.ObjectId
+  alterId String
   userId  String
 
   alter Alter @relation(fields: [alterId], references: [id], onDelete: Cascade)
@@ -74,29 +76,28 @@ model Message {
 }
 
 model BookmarksCategory {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  id   String @id @default(uuid())
   name String
 
   bookmarks Bookmarks[]
 }
 
 model Bookmarks {
-  id String @id @default(auto()) @map("_id")  @db.ObjectId
-
+  id          String @id @default(uuid())
   userId      String
   src         String
-  name        String
-  url         String
-  description String
+  name        String @db.Text
+  url         String @db.Text
+  description String @db.Text
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  categoryId String  @db.ObjectId
+  categoryId String
   category   BookmarksCategory @relation(fields: [categoryId], references: [id])
 
-  tags String
+  tags String @db.Text()
 
   @@index([categoryId])
-  @@fulltext([name, tags])
+  // @@fulltext([name, tags])
 }
