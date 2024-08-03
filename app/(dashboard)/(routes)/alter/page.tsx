@@ -18,10 +18,7 @@ const AlterPage = async ({
   const data = await prismadb.alter.findMany({
     where: {
       categoryId: searchParams.categoryId,
-      name: {
-        contains: searchParams.name, // Use contains, startsWith, or endsWith
-        mode: 'insensitive' // 
-      }
+   name: searchParams.name
      
     }, 
     orderBy: {
